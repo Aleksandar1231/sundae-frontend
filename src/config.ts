@@ -33,6 +33,7 @@ const configurations: { [env: string]: Configuration } = {
       'FUDGE-STRAW LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18], //FUDGE-STRAW
       'FUDGE': ['0xD9FF12172803c072a36785DeFea1Aa981A6A0C18', 18], //FUDGE
       'USDT-BNB-LP': ['0x781655d802670bbA3c89aeBaaEa59D3182fD755D', 18],
+      'MIM-WAVAX-LP': ['0x781655d802670bba3c89aebaaea59d3182fd755d', 18]
     },
     baseLaunchDate: new Date('2021-06-02 13:00:00Z'),
     bondLaunchesAt: new Date('2020-12-03T15:00:00Z'),

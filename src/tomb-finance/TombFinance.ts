@@ -288,9 +288,9 @@ export class TombFinance {
           return rewardPerSecond.mul(400).div(2000).div(24);
         } else if (depositTokenName === 'FUDGE-DAI LP') {
           return rewardPerSecond.mul(400).div(2000).div(24);
-        }else if (depositTokenName === 'FUDGE-AVAX LP') {
-        return rewardPerSecond.mul(400).div(2000).div(24);
-      }
+        } else if (depositTokenName === 'FUDGE-AVAX LP') {
+          return rewardPerSecond.mul(400).div(2000).div(24);
+        }
         return rewardPerSecond.div(24);
       }
       const poolStartTime = await poolContract.poolStartTime();
@@ -335,6 +335,49 @@ export class TombFinance {
     }
   }
 
+
+  async getCSHAREPriceFromPancakeswap(): Promise<string> {
+    //not here
+    const ready = await this.provider.ready;
+    const wavaxInDollars = await this.getWAVAXPriceFromPancakeswap();
+    if (!ready) return;
+    const { WAVAX, CSHARE } = this.externalTokens;
+    try {
+      const fusdt_wftm_lp_pair = this.externalTokens['CSHARE-AVAX LP'];
+      let ftm_amount_BN = await WAVAX.balanceOf(fusdt_wftm_lp_pair.address);
+      let ftm_amount = Number(getFullDisplayBalance(ftm_amount_BN, WAVAX.decimal));
+      let fusdt_amount_BN = await CSHARE.balanceOf(fusdt_wftm_lp_pair.address);
+      let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, CSHARE.decimal));
+      let cshare_price = (ftm_amount / fusdt_amount) * Number(wavaxInDollars);
+      return cshare_price.toString();
+
+    } catch (err) {
+      console.error(`Failed to fetch token price of AVAX: ${err}`);
+    }
+  }
+
+
+  async getCREAMPriceFromPancakeswap(): Promise<string> {
+    //not here
+    const ready = await this.provider.ready;
+    const wavaxInDollars = await this.getWAVAXPriceFromPancakeswap();
+    if (!ready) return;
+    const { WAVAX, CREAM } = this.externalTokens;
+    try {
+      const fusdt_wftm_lp_pair = this.externalTokens['CREAM-AVAX LP'];
+      let ftm_amount_BN = await WAVAX.balanceOf(fusdt_wftm_lp_pair.address);
+      let ftm_amount = Number(getFullDisplayBalance(ftm_amount_BN, WAVAX.decimal));
+      let fusdt_amount_BN = await CREAM.balanceOf(fusdt_wftm_lp_pair.address);
+      let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, CREAM.decimal));
+      let cream_price = (ftm_amount / fusdt_amount) * Number(wavaxInDollars);
+      console.log(`PRICE ${cream_price.toString()}`)
+      return cream_price.toString();
+
+    } catch (err) {
+      console.error(`Failed to fetch token price of AVAX: ${err}`);
+    }
+  }
+
   /**
    * Method to calculate the tokenPrice of the deposited asset in a pool/bank
    * If the deposited token is an LP it will find the price of its pieces
@@ -348,9 +391,16 @@ export class TombFinance {
     let tokenPrice;
     const priceOfOneFtmInDollars = await this.getWFTMPriceFromPancakeswap();
     const priceOfOneAvaxInDollars = await this.getWAVAXPriceFromPancakeswap();
+    const priceOfOneCshareInDollars = await this.getCSHAREPriceFromPancakeswap();
+    const priceOfOneCreamInDollars = await this.getCREAMPriceFromPancakeswap();
     if (tokenName === 'WAVAX') {
       tokenPrice = priceOfOneAvaxInDollars;
-      }else {
+    } else if (tokenName === 'CSHARE') {
+      tokenPrice = priceOfOneCshareInDollars;
+    } else if (tokenName === 'CREAM') {
+      tokenPrice = priceOfOneCreamInDollars;
+    }
+    else {
       if (tokenName === 'FUDGE-DAI LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.TOMB, true, false);
       } else if (tokenName === 'STRAW-DAI LP') {
@@ -376,8 +426,8 @@ export class TombFinance {
           true,
           true,
         );
-      }else if (tokenName === 'DAI') {
-        tokenPrice = priceOfOneFtmInDollars; 
+      } else if (tokenName === 'DAI') {
+        tokenPrice = priceOfOneFtmInDollars;
       } else {
         tokenPrice = await this.getTokenPriceFromPancakeswap(token);
         tokenPrice = (Number(tokenPrice) * Number(priceOfOneFtmInDollars)).toString();
@@ -458,8 +508,8 @@ export class TombFinance {
           ? await this.getTombStatFake()
           : await this.getShareStatFake()
         : isTomb === true
-        ? await this.getTombStat()
-        : await this.getShareStat();
+          ? await this.getTombStat()
+          : await this.getShareStat();
     const priceOfToken = stat.priceInDollars;
     const tokenInLP = Number(tokenSupply) / Number(totalSupply);
     const tokenPrice = (Number(priceOfToken) * tokenInLP * 2) //We multiply by 2 since half the price of the lp token is the price of each piece of the pair. So twice gives the total
