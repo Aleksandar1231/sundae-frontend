@@ -119,13 +119,13 @@ const App: React.FC = () => {
         <Suspense fallback={<Loader />}>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/farms" component={Farms} />
-            <Route exact path="/boardroom" component={Boardroom} />
+            <Route path="/farms" component={Farms} />
+            <Route path="/boardroom" component={Boardroom} />
             {/* <Route path="/rebates">
               <Rebates />
             </Route> */}
-            <Route exact path="/bonds" component={Bonds} />
-            <Route exact path="/treasury" component={Treasury} />
+            <Route path="/bonds" component={Bonds} />
+            <Route path="/treasury" component={Treasury} />
             {/* <Route path="/sbs">
               <SBS />
             </Route>
