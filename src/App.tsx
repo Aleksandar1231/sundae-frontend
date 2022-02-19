@@ -45,7 +45,7 @@ const App: React.FC = () => {
   usePromptNetwork();
 
   return (
-    <Providers>
+    <div>
       <Particles
         id="tsparticles"
         options={{
@@ -115,18 +115,19 @@ const App: React.FC = () => {
           detectRetina: true,
         }}
       />
-      <Router>
-        <Suspense fallback={<Loader />}>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/farms" component={Farms} />
-            <Route path="/boardroom" component={Boardroom} />
-            {/* <Route path="/rebates">
+      <Providers>
+        <Router>
+          <Suspense fallback={<Loader />}>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/farms" component={Farms} />
+              <Route path="/boardroom" component={Boardroom} />
+              {/* <Route path="/rebates">
               <Rebates />
             </Route> */}
-            <Route path="/bonds" component={Bonds} />
-            <Route path="/treasury" component={Treasury} />
-            {/* <Route path="/sbs">
+              <Route path="/bonds" component={Bonds} />
+              <Route path="/treasury" component={Treasury} />
+              {/* <Route path="/sbs">
               <SBS />
             </Route>
             <Route path="/regulations">
@@ -135,11 +136,12 @@ const App: React.FC = () => {
             <Route path="/liquidity">
               <Liquidity />
             </Route> */}
-            <Route path="*" component={NoMatch} />
-          </Switch>
-        </Suspense>
-      </Router>
-    </Providers>
+              <Route path="*" component={NoMatch} />
+            </Switch>
+          </Suspense>
+        </Router>
+      </Providers>
+    </div>
   );
 };
 
