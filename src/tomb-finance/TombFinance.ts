@@ -275,21 +275,21 @@ export class TombFinance {
       if (!contractName.endsWith('TombRewardPool')) {
         const rewardPerSecond = await poolContract.tombPerSecond();
         if (depositTokenName === 'CSHARE') {
-          return rewardPerSecond.mul(100).div(2000).div(48);
+          return rewardPerSecond.mul(100).div(2000).div(24);
         } else if (depositTokenName === 'CREAM') {
-          return rewardPerSecond.mul(100).div(2000).div(48);
+          return rewardPerSecond.mul(100).div(2000).div(24);
         } else if (depositTokenName === 'WAVAX') {
-          return rewardPerSecond.mul(100).div(2000).div(48);
+          return rewardPerSecond.mul(100).div(2000).div(24);
         } else if (depositTokenName === 'DAI') {
-          return rewardPerSecond.mul(100).div(2000).div(48);
+          return rewardPerSecond.mul(100).div(2000).div(24);
         } else if (depositTokenName === 'CREAM-AVAX LP') {
-          return rewardPerSecond.mul(400).div(2000).div(48);
+          return rewardPerSecond.mul(400).div(2000).div(24);
         } else if (depositTokenName === 'CSHARE-AVAX LP') {
-          return rewardPerSecond.mul(400).div(2000).div(48);
+          return rewardPerSecond.mul(400).div(2000).div(24);
         } else if (depositTokenName === 'FUDGE-DAI LP') {
-          return rewardPerSecond.mul(400).div(2000).div(48);
+          return rewardPerSecond.mul(400).div(2000).div(24);
         }else if (depositTokenName === 'FUDGE-AVAX LP') {
-        return rewardPerSecond.mul(400).div(2000).div(48);
+        return rewardPerSecond.mul(400).div(2000).div(24);
       }
         return rewardPerSecond.div(24);
       }
@@ -324,7 +324,7 @@ export class TombFinance {
     if (!ready) return;
     const { WAVAX, MIM } = this.externalTokens;
     try {
-      const fusdt_wftm_lp_pair = this.externalTokens['USDT-BNB-LP'];
+      const fusdt_wftm_lp_pair = this.externalTokens['MIM-WAVAX-LP'];
       let ftm_amount_BN = await WAVAX.balanceOf(fusdt_wftm_lp_pair.address);
       let ftm_amount = Number(getFullDisplayBalance(ftm_amount_BN, WAVAX.decimal));
       let fusdt_amount_BN = await MIM.balanceOf(fusdt_wftm_lp_pair.address);
