@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       textDecoration: 'none',
     },
-  },
+  }
 }));
 
 const ListItemLink = ({ primary, to }) => {
@@ -21,7 +21,7 @@ const ListItemLink = ({ primary, to }) => {
   return (
     <li>
       <ListItem button component={CustomLink} className={classes.appBar} >
-        <ListItemText primary={primary} />
+        <ListItemText disableTypography style={{ color: '#FFFFFF' }} primary={primary} />
       </ListItem>
     </li>
   );

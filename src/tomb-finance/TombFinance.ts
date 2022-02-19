@@ -34,6 +34,7 @@ export class TombFinance {
   WAVAX: ERC20;
   FTM: ERC20;
   DAI: ERC20;
+  MIM: ERC20;
 
   constructor(cfg: Configuration) {
     const { deployments, externalTokens } = cfg;
@@ -54,6 +55,7 @@ export class TombFinance {
     this.WAVAX = this.externalTokens['WAVAX'];
     this.DAI = this.externalTokens['DAI'];
     this.FTM = this.externalTokens['WFTM'];
+    this.MIM = this.externalTokens['']
 
     // Uniswap V2 Pair
     this.TOMBWFTM_LP = new Contract(externalTokens['FUDGE-DAI LP'][0], IUniswapV2PairABI, provider);
@@ -98,10 +100,9 @@ export class TombFinance {
   //===================================================================
 
   async getTombStat(): Promise<TokenStat> {
-    const { TombFtmRewardPool, TombFtmLpTombRewardPool } = this.contracts;
+    const { TombFtmRewardPool } = this.contracts;
     const supply = await this.TOMB.totalSupply();
     const tombRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
-    const tombRewardPoolSupply2 = await this.TOMB.balanceOf(TombFtmLpTombRewardPool.address);
     // const tombRewardPoolSupplyOld = await this.TOMB.balanceOf(TombFtmLpTombRewardPoolOld.address);
     const tombCirculatingSupply = supply.sub(tombRewardPoolSupply);
     // .sub(tombRewardPoolSupplyOld);
@@ -274,21 +275,21 @@ export class TombFinance {
       if (!contractName.endsWith('TombRewardPool')) {
         const rewardPerSecond = await poolContract.tombPerSecond();
         if (depositTokenName === 'CSHARE') {
-          return rewardPerSecond.mul(100).div(2000).div(24).mul(20);
+          return rewardPerSecond.mul(100).div(2000).div(48);
         } else if (depositTokenName === 'CREAM') {
-          return rewardPerSecond.mul(100).div(2000).div(24).mul(20);
+          return rewardPerSecond.mul(100).div(2000).div(48);
         } else if (depositTokenName === 'WAVAX') {
-          return rewardPerSecond.mul(100).div(2000).div(24).mul(20);
+          return rewardPerSecond.mul(100).div(2000).div(48);
         } else if (depositTokenName === 'DAI') {
-          return rewardPerSecond.mul(100).div(2000).div(24).mul(20);
+          return rewardPerSecond.mul(100).div(2000).div(48);
         } else if (depositTokenName === 'CREAM-AVAX LP') {
-          return rewardPerSecond.mul(400).div(2000).div(24).mul(20);
+          return rewardPerSecond.mul(400).div(2000).div(48);
         } else if (depositTokenName === 'CSHARE-AVAX LP') {
-          return rewardPerSecond.mul(400).div(2000).div(24).mul(20);
+          return rewardPerSecond.mul(400).div(2000).div(48);
         } else if (depositTokenName === 'FUDGE-DAI LP') {
-          return rewardPerSecond.mul(400).div(2000).div(24).mul(20);
+          return rewardPerSecond.mul(400).div(2000).div(48);
         }else if (depositTokenName === 'FUDGE-AVAX LP') {
-        return rewardPerSecond.mul(400).div(2000).div(24).mul(20);
+        return rewardPerSecond.mul(400).div(2000).div(48);
       }
         return rewardPerSecond.div(24);
       }
@@ -317,6 +318,22 @@ export class TombFinance {
       return rewardPerSecond.div(24);
     }
   }
+  async getWAVAXPriceFromPancakeswap(): Promise<string> {
+    //not here
+    const ready = await this.provider.ready;
+    if (!ready) return;
+    const { WAVAX, MIM } = this.externalTokens;
+    try {
+      const fusdt_wftm_lp_pair = this.externalTokens['USDT-BNB-LP'];
+      let ftm_amount_BN = await WAVAX.balanceOf(fusdt_wftm_lp_pair.address);
+      let ftm_amount = Number(getFullDisplayBalance(ftm_amount_BN, WAVAX.decimal));
+      let fusdt_amount_BN = await MIM.balanceOf(fusdt_wftm_lp_pair.address);
+      let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, MIM.decimal));
+      return (fusdt_amount / ftm_amount).toString();
+    } catch (err) {
+      console.error(`Failed to fetch token price of AVAX: ${err}`);
+    }
+  }
 
   /**
    * Method to calculate the tokenPrice of the deposited asset in a pool/bank
@@ -326,12 +343,14 @@ export class TombFinance {
    * @param token
    * @returns
    */
+
   async getDepositTokenPriceInDollars(tokenName: string, token: ERC20) {
     let tokenPrice;
     const priceOfOneFtmInDollars = await this.getWFTMPriceFromPancakeswap();
+    const priceOfOneAvaxInDollars = await this.getWAVAXPriceFromPancakeswap();
     if (tokenName === 'WAVAX') {
-      tokenPrice = priceOfOneFtmInDollars;
-    } else {
+      tokenPrice = priceOfOneAvaxInDollars;
+      }else {
       if (tokenName === 'FUDGE-DAI LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.TOMB, true, false);
       } else if (tokenName === 'STRAW-DAI LP') {
@@ -357,8 +376,8 @@ export class TombFinance {
           true,
           true,
         );
-      } else if (tokenName === 'DAI') {
-        tokenPrice = '1';
+      }else if (tokenName === 'DAI') {
+        tokenPrice = priceOfOneFtmInDollars; 
       } else {
         tokenPrice = await this.getTokenPriceFromPancakeswap(token);
         tokenPrice = (Number(tokenPrice) * Number(priceOfOneFtmInDollars)).toString();

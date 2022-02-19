@@ -36,11 +36,13 @@ const Harvest: React.FC<HarvestProps> = ({ bank }) => {
   );
   const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
   return (
-    <Card style={{ boxShadow: 'none !important', border: '1px solid var(--white)', backgroundColor: 'rgba(229, 152, 155, 0.1)'}}>
+    <Card style={{ boxShadow: 'none !important', border: '1px solid var(--white)', backgroundColor: 'rgba(229, 152, 155, 0.1)' }}>
       <CardContent>
         <StyledCardContentInner>
           <StyledCardHeader>
             <CardIcon>
+              {console.log(`bank.earnToken.symbol: ${bank.earnToken.symbol}`)}
+              {console.log(`bank.earnToken.name: ${bank.earnToken.address}`)}
               <TokenSymbol symbol={bank.earnToken.symbol} />
             </CardIcon>
             <Value value={getDisplayBalance(earnings)} />

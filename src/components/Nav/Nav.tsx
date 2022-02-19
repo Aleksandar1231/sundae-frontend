@@ -99,9 +99,9 @@ const Nav = () => {
         {matches ? (
           <>
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-            <Link to="/" color="inherit" className={classes.brandLink}>
-               <img alt="sundae.finance" src={sundaeLogo} height="90px" width='200px' /> 
-               </Link>
+              <Link to="/" color="inherit" className={classes.brandLink}>
+                <img alt="sundae.finance" src={sundaeLogo} height="90px" width='200px' />
+              </Link>
             </Typography>
             <Box mr={5}>
               <Link color="color" to="/" className={classes.link}>
@@ -163,7 +163,7 @@ const Nav = () => {
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
               Sundae Finance
             </Typography>
-{/*             <img
+            {/*             <img
               alt="sundae.finance"
               src={sundaeLogo}
               style={{height: '40px', marginTop: '-10px', marginLeft: '10px', marginRight: '15px'}}
@@ -179,6 +179,7 @@ const Nav = () => {
               classes={{
                 paper: classes.drawerPaper,
               }}
+
             >
               <div>
                 <IconButton onClick={handleDrawerClose}>
@@ -193,19 +194,16 @@ const Nav = () => {
                 <ListItemLink primary="Bonds" to="/bonds" />
                 <ListItemLink primary="Dao" to="/rebates" />
                 <ListItem button component="a" href="https://yieldwolf.finance/avalanche/sundaefinance">
-                  <ListItemText>Vaults</ListItemText>
+                  <ListItemText disableTypography style={{ color: '#FFFFFF' }}>Vaults</ListItemText>
                 </ListItem>
                 <ListItem button component="a" href="">
-                  <ListItemText>Social Club</ListItemText>
+                  <ListItemText disableTypography style={{ color: '#FFFFFF' }}>Social Club</ListItemText>
                 </ListItem>
                 <ListItem button component="a" href="">
-                  <ListItemText>Docs</ListItemText>
+                  <ListItemText disableTypography style={{ color: '#FFFFFF' }}>Docs</ListItemText>
                 </ListItem>
                 <ListItem button component="a" href="https://icecreamfinance.app">
-                  <ListItemText>IceCream</ListItemText>
-                </ListItem>
-                <ListItem style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <AccountButton text="Connect" />
+                  <ListItemText disableTypography style={{ color: '#FFFFFF' }}>IceCream</ListItemText>
                 </ListItem>
               </List>
             </Drawer>

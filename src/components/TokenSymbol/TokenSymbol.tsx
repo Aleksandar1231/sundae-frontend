@@ -39,7 +39,7 @@ const logosBySymbol: { [title: string]: string } = {
   'DAI': wftmLogo,
   'TOMB-FTM-LP': tombFtmLpLogo,
   'TSHARE-FTM-LP': tshareFtmLpLogo,
-  'FUDGE': tombLogo,
+  'FUDGE': tombLogoPNG,
   'CARAML': tBondLogo,
   'STRAW': tShareLogo,
   'WAVAX': wavaxLogo,
