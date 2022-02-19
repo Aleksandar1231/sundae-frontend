@@ -45,7 +45,7 @@ const App: React.FC = () => {
   usePromptNetwork();
 
   return (
-   <Providers>
+    <Providers>
       <Particles
         id="tsparticles"
         options={{
@@ -115,6 +115,7 @@ const App: React.FC = () => {
           detectRetina: true,
         }}
       />
+      <Router>
         <Suspense fallback={<Loader />}>
           <Switch>
             <Route exact path="/">
@@ -165,7 +166,7 @@ const Providers: React.FC = ({ children }) => {
             walletlink: {
               url: config.defaultProvider,
               appName: 'Sundae Finance',
-              appLogoUrl: './sundaelogo.png',
+              appLogoUrl: './sundaefinance.png',
             },
           }}
         >
