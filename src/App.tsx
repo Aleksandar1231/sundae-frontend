@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider as TP } from '@material-ui/core/styles';
 import { ThemeProvider as TP1 } from 'styled-components';
 import { UseWalletProvider } from 'use-wallet';
@@ -118,24 +118,14 @@ const App: React.FC = () => {
       <Router>
         <Suspense fallback={<Loader />}>
           <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/farms">
-              <Farms />
-            </Route>
-            <Route path="/boardroom">
-              <Boardroom />
-            </Route>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/farms" component={Farms} />
+            <Route exact path="/boardroom" component={Boardroom} />
             {/* <Route path="/rebates">
               <Rebates />
             </Route> */}
-            <Route path="/bonds">
-              <Bonds />
-            </Route>
-            <Route path="/treasury">
-              <Treasury />
-            </Route>
+            <Route exact path="/bonds" component={Bonds} />
+            <Route exact path="/treasury" component={Treasury} />
             {/* <Route path="/sbs">
               <SBS />
             </Route>
@@ -145,9 +135,7 @@ const App: React.FC = () => {
             <Route path="/liquidity">
               <Liquidity />
             </Route> */}
-            <Route path="*">
-              <NoMatch />
-            </Route>
+            <Route path="*" component={NoMatch} />
           </Switch>
         </Suspense>
       </Router>
