@@ -35,6 +35,7 @@ export class TombFinance {
   FTM: ERC20;
   DAI: ERC20;
   MIM: ERC20;
+  
 
   constructor(cfg: Configuration) {
     const { deployments, externalTokens } = cfg;
@@ -316,6 +317,22 @@ export class TombFinance {
       return rewardPerSecond.div(24);
     }
   }
+  async getAVAXPriceFromPancakeswap(): Promise<string> {
+    //not here
+    const ready = await this.provider.ready;
+    if (!ready) return;
+    const { WAVAX, MIM } = this.externalTokens;
+    try {
+      const fusdt_wftm_lp_pair = this.externalTokens['MIM-WAVAX-LP'];
+      let ftm_amount_BN = await WAVAX.balanceOf(fusdt_wftm_lp_pair.address);
+      let ftm_amount = Number(getFullDisplayBalance(ftm_amount_BN, WAVAX.decimal));
+      let fusdt_amount_BN = await MIM.balanceOf(fusdt_wftm_lp_pair.address);
+      let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, MIM.decimal));
+      return (fusdt_amount / ftm_amount).toString();
+    } catch (err) {
+      console.error(`Failed to fetch token price of AVAX: ${err}`);
+    }
+  }
   async getWAVAXPriceFromPancakeswap(): Promise<string> {
     //not here
     const ready = await this.provider.ready;
@@ -428,7 +445,7 @@ export class TombFinance {
   async getDepositTokenPriceInDollars(tokenName: string, token: ERC20) {
     let tokenPrice;
     const priceOfOneFtmInDollars = await this.getWFTMPriceFromPancakeswap();
-    const priceOfOneAvaxInDollars = await this.getWAVAXPriceFromPancakeswap();
+    const priceOfOneAvaxInDollars = await this.getAVAXPriceFromPancakeswap();
     const priceOfOneCshareInDollars = await this.getCSHAREPriceFromPancakeswap();
     const priceOfOneCreamInDollars = await this.getCREAMPriceFromPancakeswap();
     if (tokenName === 'WAVAX') {

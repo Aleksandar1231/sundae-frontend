@@ -10006,13 +10006,13 @@
     ]
   },
   "FudgeAvaxRewardPool": {
-    "address": "0x2971aB78F17dC8EA57718D6D9b2385791029b288",
+    "address": "0x8acDAd125db178CF60aB53D251a0858b12Ff4E20",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_tomb",
             "type": "address"
           },
           {
@@ -10184,7 +10184,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTSharePerShare",
+            "name": "accTombPerShare",
             "type": "uint256"
           },
           {
@@ -10224,7 +10224,20 @@
       },
       {
         "inputs": [],
-        "name": "tSharePerSecond",
+        "name": "tomb",
+        "outputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "tombPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -10243,19 +10256,6 @@
             "internalType": "uint256",
             "name": "",
             "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "tshare",
-        "outputs": [
-          {
-            "internalType": "contract IERC20",
-            "name": "",
-            "type": "address"
           }
         ],
         "stateMutability": "view",
@@ -10373,7 +10373,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingShare",
+        "name": "pendingTOMB",
         "outputs": [
           {
             "internalType": "uint256",
