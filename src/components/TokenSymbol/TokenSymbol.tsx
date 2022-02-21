@@ -20,6 +20,11 @@ import ThreesharesLPLogo from '../../assets/img/straw-dai.png';
 import fsLogo from '../../assets/img/fudge-straw.png';
 import faLogo from '../../assets/img/fudge-avax.png';
 
+import fcLogo from '../../assets/img/fudge-cream.png';
+import csLogo from '../../assets/img/cream-straw.png';
+import saLogo from '../../assets/img/straw-avax.png';
+
+
 const logosBySymbol: { [title: string]: string } = {
   //Real tokens
   //=====================
@@ -44,7 +49,11 @@ const logosBySymbol: { [title: string]: string } = {
   'STRAW': tShareLogo,
   'WAVAX': wavaxLogo,
   'FUDGE-STRAW LP':fsLogo,
-  'FUDGE-AVAX LP':faLogo
+  'FUDGE-AVAX LP':faLogo,
+  'FUDGE-CREAM LP':fcLogo,
+  'CREAM-STRAW LP':csLogo,
+  'STRAW-AVAX LP':saLogo
+
 };
 
 type LogoProps = {

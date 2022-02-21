@@ -64,23 +64,23 @@ const Cemetery = () => {
                   </Grid>
                 </div> */}
 
-                {/* <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 1).length === 0}>
+                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 2).length === 0}>
                   <Typography color="textPrimary" variant="h4" gutterBottom style={{ marginTop: '20px' }}>
-                    Earn TOMB by staking LP
+                    Earn STRAW by staking LP
                   </Typography>
                   <Alert variant="filled" severity="warning">
-                    All below pools have ended. Please unstake and collect your rewards.
+                    LP pools start Feb 21 @2PM PST and will run for 370 days, please be aware of 0.25% deposit tax.
                   </Alert>
                   <Grid container spacing={3} style={{ marginTop: '20px' }}>
                     {activeBanks
-                      .filter((bank) => bank.sectionInUI === 1)
+                      .filter((bank) => bank.sectionInUI === 2)
                       .map((bank) => (
                         <React.Fragment key={bank.name}>
                           <CemeteryCard bank={bank} />
                         </React.Fragment>
                       ))}
                   </Grid>
-                </div> */}
+                </div> 
 
                 {/* UNCOMMENT THIS AFTER GP ENDS  */}
 

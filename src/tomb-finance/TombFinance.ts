@@ -289,7 +289,7 @@ export class TombFinance {
         } else if (depositTokenName === 'FUDGE-DAI LP') {
           return rewardPerSecond.mul(400).div(2000).div(24);
         }
-          return rewardPerSecond.div(24);
+        return rewardPerSecond.div(24);
       }
       const poolStartTime = await poolContract.poolStartTime();
       const startDateTime = new Date(poolStartTime.toNumber() * 1000);
@@ -301,17 +301,17 @@ export class TombFinance {
     }
     const rewardPerSecond = await poolContract.tSharePerSecond();
     if (depositTokenName === 'FUDGE') {
-      return rewardPerSecond.mul(35500).div(60000);
+      return rewardPerSecond.mul(11000).div(55000);
     } else if (depositTokenName === 'FUDGE-STRAW LP') {
-      return rewardPerSecond.mul(15000).div(60000);
-    } else if (depositTokenName === 'CREAM-AVAX LP') {
-      return rewardPerSecond.mul(15000).div(60000);
-    } else if (depositTokenName === 'CSHARE-AVAX LP') {
-      return rewardPerSecond.mul(15000).div(60000);
-    } else if (depositTokenName === 'STRAW-DAI LP') {
-      return rewardPerSecond.mul(15000).div(60000);
+      return rewardPerSecond.mul(2750).div(55000);
+    } else if (depositTokenName === 'STRAW-AVAX LP') {
+      return rewardPerSecond.mul(5500).div(55000);
+    } else if (depositTokenName === 'FUDGE-CREAM LP') {
+      return rewardPerSecond.mul(5500).div(55000);
+    } else if (depositTokenName === 'CREAM-STRAW LP') {
+      return rewardPerSecond.mul(2750).div(55000);
     } else if (depositTokenName === 'FUDGE-DAI LP') {
-      return rewardPerSecond.mul(15000).div(60000);
+      return rewardPerSecond.mul(27500).div(55000);
     } else {
       return rewardPerSecond.div(24);
     }
@@ -368,7 +368,47 @@ export class TombFinance {
       let fusdt_amount_BN = await CREAM.balanceOf(fusdt_wftm_lp_pair.address);
       let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, CREAM.decimal));
       let cream_price = (ftm_amount / fusdt_amount) * Number(wavaxInDollars);
-      console.log(`PRICE ${cream_price.toString()}`)
+      return cream_price.toString();
+
+    } catch (err) {
+      console.error(`Failed to fetch token price of AVAX: ${err}`);
+    }
+  }
+
+  async getFUDGEPriceFromPancakeswap(): Promise<string> {
+    //not here
+    const ready = await this.provider.ready;
+    const daiInDollars = '1'
+    if (!ready) return;
+    const { DAI, FUDGE } = this.externalTokens;
+    try {
+      const fusdt_wftm_lp_pair = this.externalTokens['FUDGE-DAI LP'];
+      let ftm_amount_BN = await DAI.balanceOf(fusdt_wftm_lp_pair.address);
+      let ftm_amount = Number(getFullDisplayBalance(ftm_amount_BN, DAI.decimal));
+      let fusdt_amount_BN = await FUDGE.balanceOf(fusdt_wftm_lp_pair.address);
+      let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, FUDGE.decimal));
+      let cream_price = (ftm_amount / fusdt_amount);
+      return cream_price.toString();
+
+    } catch (err) {
+      console.error(`Failed to fetch token price of AVAX: ${err}`);
+    }
+  }
+
+  async getSTRAWPriceFromPancakeswap(): Promise<string> {
+    //not here
+    const ready = await this.provider.ready;
+    const wavaxInDollars = await this.getWAVAXPriceFromPancakeswap();
+    if (!ready) return;
+    const { WAVAX, STRAW } = this.externalTokens;
+    try {
+      const fusdt_wftm_lp_pair = this.externalTokens['STRAW-AVAX LP'];
+      let ftm_amount_BN = await WAVAX.balanceOf(fusdt_wftm_lp_pair.address);
+      let ftm_amount = Number(getFullDisplayBalance(ftm_amount_BN, WAVAX.decimal));
+      let fusdt_amount_BN = await STRAW.balanceOf(fusdt_wftm_lp_pair.address);
+      let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, STRAW.decimal));
+      let cream_price = (ftm_amount / fusdt_amount) * Number(wavaxInDollars)
+      console.log(`STRAW PRICE ${cream_price.toString()}`)
       return cream_price.toString();
 
     } catch (err) {
@@ -410,7 +450,33 @@ export class TombFinance {
           false,
           true,
         );
-      } else if (tokenName === 'CREAM-AVAX LP') {
+      } else if (tokenName === 'STRAW-AVAX LP') {
+        tokenPrice = await this.getLPV2TokenPrice(
+          token,
+          this.TSHARE,
+          false,
+        );
+      } else if (tokenName === 'FUDGE-STRAW LP') {
+        tokenPrice = await this.getLPV2TokenPrice(
+          token,
+          this.TOMB,
+          true
+        );
+      }
+      else if (tokenName === 'CREAM-STRAW LP') {
+        tokenPrice = await this.getLPV2TokenPrice(
+          token,
+          new ERC20('0xAE21d31a6494829a9E4B2B291F4984AAE8121757', this.provider, 'CREAM'),
+          false,
+        );
+      } else if (tokenName === 'FUDGE-CREAM LP') {
+        tokenPrice = await this.getLPV2TokenPrice(
+          token,
+          this.TOMB,
+          true
+        );
+      }
+      else if (tokenName === 'CREAM-AVAX LP') {
         tokenPrice = await this.getLPTokenPrice(
           token,
           new ERC20('0xAE21d31a6494829a9E4B2B291F4984AAE8121757', this.provider, 'CREAM'),
@@ -528,6 +594,34 @@ export class TombFinance {
     );
     return { priceInDollars: price['cream-shares'].usd };
   }
+
+  async getLPV2TokenPrice(lpToken: ERC20, token: ERC20, isTomb: boolean): Promise<string> {
+    const totalSupply = getFullDisplayBalance(await lpToken.totalSupply(), lpToken.decimal);
+    //Get amount of tokenA
+    const tokenSupply = getFullDisplayBalance(await token.balanceOf(lpToken.address), token.decimal);
+    const stat = isTomb === true
+      ? await this.getTombStat()
+      : await this.getShareStat();
+    const priceOfToken = stat.priceInDollars;
+    console.log(priceOfToken)
+    const tokenInLP = Number(tokenSupply) / Number(totalSupply);
+    const tokenPrice = (Number(priceOfToken) * tokenInLP * 2) //We multiply by 2 since half the price of the lp token is the price of each piece of the pair. So twice gives the total
+      .toString();
+    console.log(tokenPrice)
+    return tokenPrice;
+  }
+
+
+  async getFudgeStat() {
+    const price = await this.getFUDGEPriceFromPancakeswap()
+    return price
+  }
+
+  async getStrawStat() {
+    const price = await this.getSTRAWPriceFromPancakeswap()
+    return price
+  }
+
 
   async earnedFromBank(
     poolName: ContractName,
