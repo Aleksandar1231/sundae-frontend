@@ -63,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const buyfudgeAddress = 'https://traderjoexyz.com/trade?outputCurrency=0xD9FF12172803c072a36785DeFea1Aa981A6A0C18#/';
+const viewFudgeAddress = 'https://dexscreener.com/avalanche/0xe367414f29e247b2d92edd610aa6dd5a7fd631ba';
+const viewStrawAddress = 'https://dexscreener.com/avalanche/0x5eef38855090ccc49a1b7391f4c7b9efbdfe1456';
 const buystrawAddress = 'https://traderjoexyz.com/trade?outputCurrency=0xf8D0C6c3ddC03F43A0687847f2b34bfd6941C2A2#/';
 
 const Home = () => {
@@ -347,7 +349,7 @@ const Home = () => {
               <div>
                 <h3>Governance Token</h3>
               </div>
-              {/* <Button
+{/*                <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('TOMB');
                 }}
@@ -357,7 +359,7 @@ const Home = () => {
               >
                 +&nbsp;
                 <img alt="metamask fox" style={{ width: '20px' }} src={MetamaskFox} />
-              </Button> */}
+              </Button>  */}
               <Box mt={2} style={{ backgroundColor: 'transparent !important' }}>
                 <CardIcon style={{ backgroundColor: 'transparent !important' }}>
                   <TokenSymbol symbol="TOMB" style={{ backgroundColor: 'transparent !important' }} />
@@ -379,9 +381,23 @@ const Home = () => {
                 Total Supply: {tombTotalSupply}
               </span>
               <Box>
-                <Button variant="contained" color="primary" style={{ marginTop: '20px' }} target="_blank" href={buyfudgeAddress}
-                 >
+                <Button
+                  variant="contained"
+                  color="primary"
+                  style={{ marginTop: '20px', marginRight: '5px' }}
+                  target="_blank"
+                  href={buyfudgeAddress}
+                >
                   Buy Now
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  style={{ marginTop: '20px', marginRight: '5px' }}
+                  target="_blank"
+                  href={viewFudgeAddress}
+                >
+                  Chart
                 </Button>
               </Box>
             </CardContent>
@@ -432,8 +448,23 @@ const Home = () => {
                 Total Supply: {tShareTotalSupply}
               </span>
               <Box>
-              <Button variant="contained" color="primary" style={{ marginTop: '20px' }} target="_blank" href={buystrawAddress}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  style={{ marginTop: '20px', marginRight: '5px' }}
+                  target="_blank"
+                  href={buystrawAddress}
+                >
                   Buy Now
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  style={{ marginTop: '20px', marginRight: '5px' }}
+                  target="_blank"
+                  href={viewStrawAddress}
+                >
+                  Chart
                 </Button>
               </Box>
             </CardContent>
@@ -484,7 +515,7 @@ const Home = () => {
                 Total Supply: {tBondTotalSupply}
               </span>
               <Box>
-                <Button variant="contained" color="primary" style={{ marginTop: '20px' }}href="/bonds">
+                <Button variant="contained" color="primary" style={{ marginTop: '20px' }} href="/bonds">
                   View BONDS
                 </Button>
               </Box>
@@ -619,6 +650,7 @@ const Home = () => {
               <CardContent align="center">
                 <Typography variant="h5">TWAP:</Typography>
                 <Typography style={{ fontSize: '25px' }}>{rebateStats.tombPrice.toFixed(4)} DAI</Typography>
+                {console.log(rebateStats, 'RebateStats')}
               </CardContent>
             </Card>
             <Card

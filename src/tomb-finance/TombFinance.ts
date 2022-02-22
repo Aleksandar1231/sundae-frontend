@@ -964,13 +964,13 @@ export class TombFinance {
       let assetUrl;
       if (assetName === 'TOMB') {
         asset = this.TOMB;
-        assetUrl = 'https://tomb.finance/presskit/tomb_icon_noBG.png';
+        assetUrl = 'https://raw.githubusercontent.com/IceCreamFinancial/contracts-public/main/fudge.png';
       } else if (assetName === 'TSHARE') {
         asset = this.TSHARE;
-        assetUrl = 'https://tomb.finance/presskit/tshare_icon_noBG.png';
+        assetUrl = 'https://raw.githubusercontent.com/IceCreamFinancial/contracts-public/main/straw.png';
       } else if (assetName === 'TBOND') {
         asset = this.TBOND;
-        assetUrl = 'https://tomb.finance/presskit/tbond_icon_noBG.png';
+        assetUrl = 'https://raw.githubusercontent.com/IceCreamFinancial/contracts-public/main/caraml.png';
       }
       await ethereum.request({
         method: 'wallet_watchAsset',

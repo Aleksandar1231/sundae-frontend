@@ -69,7 +69,7 @@ const Cemetery = () => {
                     Earn STRAW by staking LP
                   </Typography>
                   <Alert variant="filled" severity="warning">
-                    LP pools start Feb 21 @2PM PST and will run for 370 days, please be aware of 0.25% deposit tax.
+                    LP pools start Feb 21 @2PM PST and will run for 370 days, please be aware of 0.5% deposit tax.
                   </Alert>
                   <Grid container spacing={3} style={{ marginTop: '20px' }}>
                     {activeBanks
@@ -86,7 +86,7 @@ const Cemetery = () => {
 
                 <Alert variant="filled" severity="info" style={{ marginTop: '50px', backgroundColor: '#757CE8' }}>
 
-                  Genesis pools will be live Feb 19 @2PM PST, please be aware of the 1% deposit tax.
+                  Genesis pools are now closed, please withdraw!
 
                 </Alert>
 
