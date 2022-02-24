@@ -349,7 +349,7 @@ const Home = () => {
               <div>
                 <h3>Governance Token</h3>
               </div>
-{/*                <Button
+              {/*                <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('TOMB');
                 }}
@@ -649,8 +649,7 @@ const Home = () => {
             >
               <CardContent align="center">
                 <Typography variant="h5">TWAP:</Typography>
-                <Typography style={{ fontSize: '25px' }}>{rebateStats.tombPrice.toFixed(4)} DAI</Typography>
-                {console.log(rebateStats, 'RebateStats')}
+                <Typography style={{ fontSize: '25px' }}>{tombPriceInFTM ? tombPriceInFTM : '-.----'} DAI</Typography>
               </CardContent>
             </Card>
             <Card

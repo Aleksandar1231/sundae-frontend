@@ -20,7 +20,7 @@ import useStakedBalanceOnMasonry from '../../hooks/useStakedBalanceOnMasonry';
 import { getDisplayBalance } from '../../utils/formatBalance';
 import useCurrentEpoch from '../../hooks/useCurrentEpoch';
 import useFetchMasonryAPR from '../../hooks/useFetchMasonryAPR';
-
+import useTombStats from '../../hooks/useTombStats';
 import useCashPriceInEstimatedTWAP from '../../hooks/useCashPriceInEstimatedTWAP';
 import useTreasuryAllocationTimes from '../../hooks/useTreasuryAllocationTimes';
 import useTotalStakedOnMasonry from '../../hooks/useTotalStakedOnMasonry';
@@ -64,11 +64,13 @@ const Masonry = () => {
   const { onRedeem } = useRedeemOnMasonry();
   const stakedBalance = useStakedBalanceOnMasonry();
   const currentEpoch = useCurrentEpoch();
+  const tombStats = useTombStats();
   const cashStat = useCashPriceInEstimatedTWAP();
   const totalStaked = useTotalStakedOnMasonry();
   const masonryAPR = useFetchMasonryAPR();
   const canClaimReward = useClaimRewardCheck();
   const canWithdraw = useWithdrawCheck();
+  const tombPriceInFTM = useMemo(() => (tombStats ? Number(tombStats.tokenInFtm).toFixed(4) : null), [tombStats]);
   const scalingFactor = useMemo(() => (cashStat ? Number(cashStat.priceInDollars).toFixed(4) : null), [cashStat]);
   const { to } = useTreasuryAllocationTimes();
   const rebateStats = useRebateTreasury();
@@ -126,7 +128,8 @@ const Masonry = () => {
                     <Typography>
                       FUDGE Price<small> (TWAP)</small>
                     </Typography>
-                    <Typography>{rebateStats.tombPrice.toFixed(4)} DAI</Typography>
+                    {/* <Typography>{rebateStats.tombPrice.toFixed(4)} DAI</Typography> */}
+                    <Typography>{tombPriceInFTM ? tombPriceInFTM : '-.----'} DAI</Typography>
                   </CardContent>
                 </Card>
               </Grid>
@@ -163,10 +166,9 @@ const Masonry = () => {
             </Grid>
 
             <Grid container justify="center">
-              <Alert variant="filled" severity="info" style={{ marginTop: '50px', backgroundColor: "#757CE8" }}>
+              <Alert variant="filled" severity="info" style={{ marginTop: '50px', backgroundColor: '#757CE8' }}>
                 Staked STRAWs can only be withdrawn after 6 epochs since deposit.
               </Alert>
-
             </Grid>
 
             <Box mt={4}>
