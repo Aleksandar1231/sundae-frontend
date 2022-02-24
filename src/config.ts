@@ -315,7 +315,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     closedForStaking: false,
   },
   CreamRewardPool: {
-    name: 'Earn FUDGE by staking CREAM',
+    name: 'Earn STRAW by staking CREAM',
     poolId: 6,
     sectionInUI: 2,
     contract: 'CreamRewardPool',
