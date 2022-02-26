@@ -5,7 +5,7 @@ import useRefresh from './useRefresh';
 
 const useShareStats = () => {
   const [stat, setStat] = useState<TokenStat>();
-  const { slowRefresh } = useRefresh();
+  const { fastRefresh } = useRefresh();
   const tombFinance = useTombFinance();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const useShareStats = () => {
       }
     }
     fetchSharePrice();
-  }, [setStat, tombFinance, slowRefresh]);
+  }, [setStat, tombFinance, fastRefresh]);
 
   return stat;
 };

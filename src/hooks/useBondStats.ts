@@ -5,7 +5,7 @@ import useRefresh from './useRefresh';
 
 const useBondStats = () => {
   const [stat, setStat] = useState<TokenStat>();
-  const { slowRefresh } = useRefresh();
+  const { fastRefresh } = useRefresh();
   const tombFinance = useTombFinance();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const useBondStats = () => {
       }
     }
     fetchBondPrice();
-  }, [setStat, tombFinance, slowRefresh]);
+  }, [setStat, tombFinance, fastRefresh]);
 
   return stat;
 };

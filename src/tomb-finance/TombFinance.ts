@@ -158,12 +158,12 @@ export class TombFinance {
    * CirculatingSupply (always equal to total supply for bonds)
    */
   async getBondStat(): Promise<TokenStat> {
-    const { Treasury } = this.contracts;
+    const { Treasury,TombFtmRewardPool } = this.contracts;
     const tombStat = await this.getTombStat();
     const bondTombRatioBN = await Treasury.getBondPremiumRate();
     const modifier = bondTombRatioBN / 1e18 > 1 ? bondTombRatioBN / 1e18 : 1;
-    const bondPriceInFTM = (Number(tombStat.tokenInFtm) * modifier).toFixed(2);
-    const priceOfTBondInDollars = (Number(tombStat.priceInDollars) * modifier).toFixed(2);
+    const bondPriceInFTM = (Number(tombStat.tokenInFtm)).toFixed(2);
+    const priceOfTBondInDollars = (Number(tombStat.priceInDollars)).toFixed(2);
     const supply = await this.TBOND.displayedTotalSupply();
     return {
       tokenInFtm: bondPriceInFTM,
@@ -185,11 +185,11 @@ export class TombFinance {
 
     const supply = await this.TSHARE.totalSupply();
 
-    const priceInFTM = await this.getTokenPriceFromPancakeswap(this.TSHARE);
+    const priceInFTM = await this.getSTRAWPriceFromPancakeswap();
     const tombRewardPoolSupply = await this.TSHARE.balanceOf(TombFtmLPTShareRewardPool.address);
     const tShareCirculatingSupply = supply.sub(tombRewardPoolSupply);
-    const priceOfOneFTM = await this.getWFTMPriceFromPancakeswap();
-    const priceOfSharesInDollars = (Number(priceInFTM) * Number(priceOfOneFTM)).toFixed(2);
+    const priceOfOneFTM = await this.getSTRAWPriceFromPancakeswap();
+    const priceOfSharesInDollars = ( Number(priceOfOneFTM)).toFixed(2);
 
     return {
       tokenInFtm: priceInFTM,
@@ -302,7 +302,7 @@ export class TombFinance {
     }
     const rewardPerSecond = await poolContract.tSharePerSecond();
     if (depositTokenName === 'FUDGE') {
-      return rewardPerSecond.mul(11000).div(55000);
+      return rewardPerSecond.mul(2750).div(55000);
     } else if (depositTokenName === 'FUDGE-STRAW LP') {
       return rewardPerSecond.mul(2750).div(55000);
     } else if (depositTokenName === 'STRAW-AVAX LP') {
@@ -314,7 +314,7 @@ export class TombFinance {
     } else if (depositTokenName === 'FUDGE-DAI LP') {
       return rewardPerSecond.mul(27500).div(55000);
     } else {
-      return rewardPerSecond.div(24);
+      return rewardPerSecond.mul(8250).div(55000);
     }
   }
   async getAVAXPriceFromPancakeswap(): Promise<string> {
