@@ -99,9 +99,10 @@ const Nav = () => {
         {matches ? (
           <>
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-              <Link to="/" color="inherit" className={classes.brandLink}>
+              Sundae Finance
+{/*               <Link to="/" color="inherit" className={classes.brandLink}>
                 <img alt="sundae.finance" src={sundaeLogo} height="90px" width="200px" />
-              </Link>
+              </Link> */}
             </Typography>
             <Box mr={5}>
               <Link color="color" to="/" className={classes.link}>

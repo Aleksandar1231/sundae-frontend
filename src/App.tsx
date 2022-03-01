@@ -50,7 +50,7 @@ const App: React.FC = () => {
         id="tsparticles"
         options={{
           background: {
-            image: 'public/background1.jpg',
+            image: 'public/background.jpg',
           },
           fpsLimit: 120,
           interactivity: {
@@ -76,7 +76,7 @@ const App: React.FC = () => {
                 quantity: 4,
               },
               repulse: {
-                distance: 200,
+                distance: 100,
                 duration: 0.4,
               },
             },
@@ -91,13 +91,13 @@ const App: React.FC = () => {
               enable: true,
               outMode: 'bounce',
               random: false,
-              speed: 3,
+              speed: 1.5,
               straight: false,
             },
             number: {
               density: {
                 enable: true,
-                area: 800,
+                area: 2000,
               },
               value: 80,
             },
@@ -109,7 +109,7 @@ const App: React.FC = () => {
             },
             size: {
               random: true,
-              value: 7,
+              value: 4,
             },
           },
           detectRetina: true,
