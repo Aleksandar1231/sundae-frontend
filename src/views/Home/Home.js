@@ -214,7 +214,7 @@ const Home = () => {
             <Paper style={{ backgroundColor: 'transparent', boxShadow: 'none', border: 'none' }}>
               <Box p={4} display="flex" justifyContent="center" alignItems="center">
                 <Typography variant="h3" fontWeight="bold" align="center">
-                  Get your spoons ready for the second scoop of the sweetest protocol on Avalanche
+                Farm STRAW and earn rewards on the sweetest ecosystem on Avalanche!
                 </Typography>
               </Box>
             </Paper>
