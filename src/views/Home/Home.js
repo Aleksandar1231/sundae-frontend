@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { Alert } from '@material-ui/lab';
 import { createGlobalStyle } from 'styled-components';
 import CountUp from 'react-countup';
+import { useWallet } from 'use-wallet';
 import CardIcon from '../../components/CardIcon';
 import TokenSymbol from '../../components/TokenSymbol';
 import useTombStats from '../../hooks/useTombStats';
@@ -99,6 +100,7 @@ const Home = () => {
 
   const tbondBalance = useTokenBalance(tombFinance.TBOND);
   const displayTbondBalance = useMemo(() => getDisplayBalance(tbondBalance), [tbondBalance]);
+  const { account } = useWallet();
 
   let tomb;
   let tShare;
@@ -359,10 +361,12 @@ const Home = () => {
               <div>
                 <h3>Governance Token</h3>
               </div>
-              {displayTombBalance && (
+              {account ? (
                 <div>
                   <h4>My FUDGE: {displayTombBalance}</h4>
                 </div>
+              ) : (
+                <></>
               )}
               {/*                <Button
                 onClick={() => {
@@ -433,10 +437,12 @@ const Home = () => {
               <div>
                 <h3>Share Token</h3>
               </div>
-              {displayTshareBalance && (
+              {account ? (
                 <div>
                   <h4>My STRAW: {displayTshareBalance}</h4>
                 </div>
+              ) : (
+                <></>
               )}
               {/* <Button
                 onClick={() => {
@@ -505,10 +511,12 @@ const Home = () => {
               <div>
                 <h3>Bond Token</h3>
               </div>
-              {displayTbondBalance && (
+              {account ? (
                 <div>
-                  <h4>My CARAML: {displayTbondBalance}</h4>
+                  <h4>My CARAML: {displayTshareBalance}</h4>
                 </div>
+              ) : (
+                <></>
               )}
               {/* <Button
                 onClick={() => {
