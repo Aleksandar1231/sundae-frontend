@@ -98,23 +98,23 @@ const Nav = () => {
       <Toolbar className={classes.toolbar}>
         {matches ? (
           <>
-            <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
+            <Typography variant="h6" color="inherit" noWrap className='toolbar-title'>
               Sundae Finance
-{/*               <Link to="/" color="inherit" className={classes.brandLink}>
+              {/*               <Link to="/" color="inherit" className={classes.brandLink}>
                 <img alt="sundae.finance" src={sundaeLogo} height="90px" width="200px" />
               </Link> */}
             </Typography>
             <Box mr={5}>
-              <Link color="color" to="/" className={classes.link}>
+              <Link color="color" to="/" className='nav-link'>
                 Home
               </Link>
-              <Link color="textPrimary" to="/farms" className={classes.link}>
+              <Link color="textPrimary" to="/farms" className='nav-link'>
                 Farm
               </Link>
-              <Link color="textPrimary" to="/boardroom" className={classes.link}>
+              <Link color="textPrimary" to="/boardroom" className='nav-link'>
                 Boardroom
               </Link>
-              <Link color="textPrimary" to="/bonds" className={classes.link}>
+              <Link color="textPrimary" to="/bonds" className='nav-link'>
                 Bonds
               </Link>
               {/* <Link color="textPrimary" to="/rebates" className={classes.link}>
@@ -135,16 +135,16 @@ const Nav = () => {
               <Link color="textPrimary" to="/regulations" className={classes.link}>
                 Regulations
               </Link> */}
-              <a href="https://yieldwolf.finance/avalanche/sundaefinance" target="_blank" className={classes.link}>
+              <a href="https://yieldwolf.finance/avalanche/sundaefinance" target="_blank" className='nav-link'>
                 Vaults
               </a>
-              <a href="" target="_blank" className={classes.link}>
+              <a href="" target="_blank" className='nav-link'>
                 Social Club
               </a>
-              <a href="https://icecreamfinancial.gitbook.io/sundae-finance/" target="_blank" className={classes.link}>
+              <a href="https://icecreamfinancial.gitbook.io/sundae-finance/" target="_blank" className='nav-link'>
                 Docs
               </a>
-              <a href="https://icecreamfinance.app" target="_blank" className={classes.link}>
+              <a href="https://icecreamfinance.app" target="_blank" className='nav-link'>
                 IceCream
               </a>
             </Box>

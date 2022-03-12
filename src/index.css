@@ -107,3 +107,55 @@ code {
   background-color: black;
   color: #757ce8 !important;
 }
+
+.gradient-text {
+  background-color: #f3b194;
+  background-image: linear-gradient(45deg, #f3b194, #fb5a83);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+
+
+}
+
+.toolbar-title {
+  font-family: "Gilroy";
+  font-size: 30px;
+  flex-grow: 1;
+  background-color: #f3b194;
+  background-image: linear-gradient(45deg, #f3b194, #fb5a83);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+}
+
+.nav-link {
+  background-color: #f3b194;
+  background-image: linear-gradient(45deg, #f3b194, #fb5a83);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin: 10px;
+  font-weight: bold;
+}
+
+.nav-link:hover{
+  background-color: #fff;
+  background-size: 100%;
+  background-image: linear-gradient(45deg, #fff, #fff);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent; 
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+}

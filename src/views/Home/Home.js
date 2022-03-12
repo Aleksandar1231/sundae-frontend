@@ -225,8 +225,8 @@ const Home = () => {
           <Grid item xs={12} sm={8}>
             <Paper style={{ backgroundColor: 'transparent', boxShadow: 'none', border: 'none' }}>
               <Box p={4} display="flex" justifyContent="center" alignItems="center">
-                <Typography variant="h3" fontWeight="bold" align="center">
-                  Farm STRAW and earn rewards on the sweetest ecosystem on Avalanche!
+                <Typography variant="h3" fontWeight="bold" align="center" className="gradient-text">
+                  Farm STRAW and earn rewards on the sweetest protocol on Avalanche!
                 </Typography>
               </Box>
             </Paper>
@@ -351,8 +351,8 @@ const Home = () => {
         <Grid item xs={12} sm={4}>
           <Card
             style={{ backgroundColor: 'rgba(229, 152, 155, 0.1)', boxShadow: 'none', border: '1px solid var(--white)' }}
-            // onMouseOver={handleMouseOverFudge}
-            // onMouseOut={handleMouseOutFudge}
+          // onMouseOver={handleMouseOverFudge}
+          // onMouseOut={handleMouseOutFudge}
           >
             <CardContent align="center" style={{ position: 'relative' }}>
               <div>
@@ -363,7 +363,7 @@ const Home = () => {
               </div>
               {account ? (
                 <div>
-                  <h4>My FUDGE: {displayTombBalance}</h4>
+                  <h4>In Wallet: {displayTombBalance}</h4>
                 </div>
               ) : (
                 <></>
@@ -427,8 +427,8 @@ const Home = () => {
         <Grid item xs={12} sm={4}>
           <Card
             style={{ backgroundColor: 'rgba(229, 152, 155, 0.1)', boxShadow: 'none', border: '1px solid var(--white)' }}
-            // onMouseOver={handleMouseOverStraw}
-            // onMouseOut={handleMouseOutStraw}
+          // onMouseOver={handleMouseOverStraw}
+          // onMouseOut={handleMouseOutStraw}
           >
             <CardContent align="center" style={{ position: 'relative' }}>
               <div>
@@ -439,7 +439,7 @@ const Home = () => {
               </div>
               {account ? (
                 <div>
-                  <h4>My STRAW: {displayTshareBalance}</h4>
+                  <h4>In Wallet: {displayTshareBalance}</h4>
                 </div>
               ) : (
                 <></>
@@ -501,8 +501,8 @@ const Home = () => {
         <Grid item xs={12} sm={4}>
           <Card
             style={{ backgroundColor: 'rgba(229, 152, 155, 0.1)', boxShadow: 'none', border: '1px solid var(--white)' }}
-            // onMouseOver={handleMouseOverCaraml}
-            // onMouseOut={handleMouseOutCaraml}
+          // onMouseOver={handleMouseOverCaraml}
+          // onMouseOut={handleMouseOutCaraml}
           >
             <CardContent align="center" style={{ position: 'relative' }}>
               <div>
@@ -513,7 +513,7 @@ const Home = () => {
               </div>
               {account ? (
                 <div>
-                  <h4>My CARAML: {displayTshareBalance}</h4>
+                  <h4>In Wallet: {displayTshareBalance}</h4>
                 </div>
               ) : (
                 <></>
