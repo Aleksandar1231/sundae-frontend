@@ -223,8 +223,8 @@ const Home = () => {
         {/* Explanation text */}
         <Grid container direction="column" alignItems="center" justifyContent="center">
           <Grid item xs={12} sm={8}>
-            <Paper style={{ backgroundColor: 'transparent', boxShadow: 'none', border: 'none' }}>
-              <Box p={4} display="flex" justifyContent="center" alignItems="center" >
+            <Paper style={{ boxShadow: 'none', border: 'none' }}>
+              <Box p={4} justifyContent="center" alignItems="center" >
                 <Typography variant="h3" fontWeight="bold" align="center" className="gradient-text">
                   The sweetest protocol on Avalanche!
                   <div style={{ padding: '10px' }}>
