@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { Alert } from '@material-ui/lab';
 import { createGlobalStyle } from 'styled-components';
 import CountUp from 'react-countup';
+import { useWallet } from 'use-wallet';
 import CardIcon from '../../components/CardIcon';
 import TokenSymbol from '../../components/TokenSymbol';
 import useTombStats from '../../hooks/useTombStats';
@@ -17,6 +18,8 @@ import useBondStats from '../../hooks/useBondStats';
 import usetShareStats from '../../hooks/usetShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import useFantomPrice from '../../hooks/useFantomPrice';
+import { getDisplayBalance } from '../../utils/formatBalance';
+import useTokenBalance from '../../hooks/useTokenBalance';
 import { tomb as tombTesting, tShare as tShareTesting } from '../../tomb-finance/deployments/deployments.testing.json';
 import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.mainnet.json';
 import useTotalTreasuryBalance from '../../hooks/useTotalTreasuryBalance.js';
@@ -89,6 +92,15 @@ const Home = () => {
     balance_2shares,
   } = useTotalTreasuryBalance();
   const totalTVL = TVL + rebatesTVL;
+  const tombBalance = useTokenBalance(tombFinance.TOMB);
+  const displayTombBalance = useMemo(() => getDisplayBalance(tombBalance), [tombBalance]);
+
+  const tshareBalance = useTokenBalance(tombFinance.TSHARE);
+  const displayTshareBalance = useMemo(() => getDisplayBalance(tshareBalance), [tshareBalance]);
+
+  const tbondBalance = useTokenBalance(tombFinance.TBOND);
+  const displayTbondBalance = useMemo(() => getDisplayBalance(tbondBalance), [tbondBalance]);
+  const { account } = useWallet();
 
   let tomb;
   let tShare;
@@ -214,7 +226,7 @@ const Home = () => {
             <Paper style={{ backgroundColor: 'transparent', boxShadow: 'none', border: 'none' }}>
               <Box p={4} display="flex" justifyContent="center" alignItems="center">
                 <Typography variant="h3" fontWeight="bold" align="center">
-                Farm STRAW and earn rewards on the sweetest ecosystem on Avalanche!
+                  Farm STRAW and earn rewards on the sweetest ecosystem on Avalanche!
                 </Typography>
               </Box>
             </Paper>
@@ -349,6 +361,13 @@ const Home = () => {
               <div>
                 <h3>Governance Token</h3>
               </div>
+              {account ? (
+                <div>
+                  <h4>My FUDGE: {displayTombBalance}</h4>
+                </div>
+              ) : (
+                <></>
+              )}
               {/*                <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('TOMB');
@@ -418,6 +437,13 @@ const Home = () => {
               <div>
                 <h3>Share Token</h3>
               </div>
+              {account ? (
+                <div>
+                  <h4>My STRAW: {displayTshareBalance}</h4>
+                </div>
+              ) : (
+                <></>
+              )}
               {/* <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('TSHARE');
@@ -485,6 +511,13 @@ const Home = () => {
               <div>
                 <h3>Bond Token</h3>
               </div>
+              {account ? (
+                <div>
+                  <h4>My CARAML: {displayTshareBalance}</h4>
+                </div>
+              ) : (
+                <></>
+              )}
               {/* <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('TBOND');
