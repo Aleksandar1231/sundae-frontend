@@ -226,7 +226,7 @@ const Home = () => {
             <Paper style={{ backgroundColor: 'transparent', boxShadow: 'none', border: 'none' }}>
               <Box p={4} display="flex" justifyContent="center" alignItems="center">
                 <Typography variant="h3" fontWeight="bold" align="center" className="gradient-text">
-                  Farm STRAW and earn rewards on the sweetest protocol on Avalanche!
+                  The sweetest protocol on Avalanche!
                 </Typography>
               </Box>
             </Paper>
