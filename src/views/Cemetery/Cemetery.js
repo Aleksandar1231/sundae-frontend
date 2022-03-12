@@ -97,7 +97,7 @@ const Cemetery = () => {
                     gutterBottom
                     style={{ marginTop: '15px', marginBottom: '30px' }}
                   >
-                    Genesis Pools
+                    Finished Pools
                   </Typography>
                   <Grid container spacing={3}>
                     {activeBanks
