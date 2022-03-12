@@ -83,7 +83,7 @@ const Cemetery = () => {
 
                 <Alert variant="filled" severity="info" style={{ marginTop: '50px', backgroundColor: '#757CE8' }}>
 
-                  Genesis Pools are now completed, please unstake!
+                  The following pools have concluded. Please unstake.
 
                 </Alert>
 
