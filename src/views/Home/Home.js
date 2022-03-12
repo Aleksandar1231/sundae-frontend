@@ -24,7 +24,9 @@ import { tomb as tombTesting, tShare as tShareTesting } from '../../tomb-finance
 import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.mainnet.json';
 import useTotalTreasuryBalance from '../../hooks/useTotalTreasuryBalance.js';
 import useRebateTreasury from '../../hooks/useRebateTreasury';
-
+import {
+  useMediaQuery,
+} from '@material-ui/core';
 import { Box, Button, Card, CardContent, Grid, Paper, Typography } from '@material-ui/core';
 import ZapModal from '../Bank/components/ZapModal';
 
@@ -71,6 +73,7 @@ const viewStrawAddress = 'https://dexscreener.com/avalanche/0x5eef38855090ccc49a
 const buystrawAddress = 'https://traderjoexyz.com/trade?outputCurrency=0xf8D0C6c3ddC03F43A0687847f2b34bfd6941C2A2#/';
 
 const Home = () => {
+  const matches = useMediaQuery('(min-width:900px)');
   const rebateStats = useRebateTreasury();
   const classes = useStyles();
   const TVL = useTotalValueLocked();
@@ -225,12 +228,21 @@ const Home = () => {
           <Grid item xs={12} sm={8}>
             <Paper style={{ boxShadow: 'none', border: 'none' }}>
               <Box p={4} justifyContent="center" alignItems="center" >
-                <Typography variant="h3" fontWeight="bold" align="center">
-                  The sweetest protocol on Avalanche!
-                  <div style={{ padding: '10px' }}>
-                    <TokenSymbol symbol="WAVAX" />
-                  </div>
-                </Typography>
+                {matches ?
+                  <Typography variant="h3" fontWeight="bold" align="center" className="gradient-text">
+                    The sweetest protocol on Avalanche!
+                    <div style={{ padding: '10px' }}>
+                      <TokenSymbol symbol="WAVAX" />
+                    </div>
+                  </Typography> :
+                  <Typography variant="h3" fontWeight="bold" align="center">
+                    The sweetest protocol on Avalanche!
+                    <div style={{ padding: '10px' }}>
+                      <TokenSymbol symbol="WAVAX" />
+                    </div>
+                  </Typography>
+                }
+
               </Box>
             </Paper>
           </Grid>
