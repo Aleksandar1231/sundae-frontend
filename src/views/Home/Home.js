@@ -225,7 +225,7 @@ const Home = () => {
           <Grid item xs={12} sm={8}>
             <Paper style={{ boxShadow: 'none', border: 'none' }}>
               <Box p={4} justifyContent="center" alignItems="center" >
-                <Typography variant="h3" fontWeight="bold" align="center" className="gradient-text">
+                <Typography variant="h3" fontWeight="bold" align="center">
                   The sweetest protocol on Avalanche!
                   <div style={{ padding: '10px' }}>
                     <TokenSymbol symbol="WAVAX" />
