@@ -161,7 +161,7 @@ const Nav = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
+            <Typography variant="h6" color="inherit" noWrap className="toolbar-title">
               Sundae Finance
             </Typography>
             {/*             <img
@@ -195,7 +195,7 @@ const Nav = () => {
                 <ListItemLink primary="Dao" to="/rebates" />
                 <ListItem button component="a" href="https://yieldwolf.finance/avalanche/sundaefinance">
                   <ListItemText disableTypography style={{ color: '#FFFFFF' }}>
-                    Vaults
+                    Vaults (Coming Soon)
                   </ListItemText>
                 </ListItem>
                 <ListItem button component="a" href="">

@@ -256,7 +256,7 @@ const Home = () => {
           <Box mt={3}>
             <Card style={{ backgroundColor: 'none', boxShadow: 'none', border: 'none' }}>
               <CardContent align="center">
-                <h3>Total Value Locked</h3>
+                <h3 >Total Value Locked</h3>
                 <CountUp style={{ fontSize: '40px' }} end={TVL} separator="," prefix="$" />
               </CardContent>
             </Card>
@@ -403,7 +403,7 @@ const Home = () => {
                 <Button
                   variant="contained"
                   color="primary"
-                  style={{ marginTop: '20px', marginRight: '5px' }}
+                  style={{ marginTop: '20px', marginRight: '5px', backgroundColor: '#21ad8f' }}
                   target="_blank"
                   href={buyfudgeAddress}
                 >
@@ -412,7 +412,7 @@ const Home = () => {
                 <Button
                   variant="contained"
                   color="primary"
-                  style={{ marginTop: '20px', marginRight: '5px' }}
+                  style={{ marginTop: '20px', marginRight: '5px', backgroundColor: '#21ad8f' }}
                   target="_blank"
                   href={viewFudgeAddress}
                 >
@@ -477,7 +477,7 @@ const Home = () => {
                 <Button
                   variant="contained"
                   color="primary"
-                  style={{ marginTop: '20px', marginRight: '5px' }}
+                  style={{ marginTop: '20px', marginRight: '5px', backgroundColor: '#21ad8f' }}
                   target="_blank"
                   href={buystrawAddress}
                 >
@@ -486,7 +486,7 @@ const Home = () => {
                 <Button
                   variant="contained"
                   color="primary"
-                  style={{ marginTop: '20px', marginRight: '5px' }}
+                  style={{ marginTop: '20px', marginRight: '5px', backgroundColor: '#21ad8f' }}
                   target="_blank"
                   href={viewStrawAddress}
                 >
@@ -548,7 +548,7 @@ const Home = () => {
                 Total Supply: {tBondTotalSupply}
               </span>
               <Box>
-                <Button variant="contained" color="primary" style={{ marginTop: '20px' }} href="/bonds">
+                <Button variant="contained" color="primary" style={{ marginTop: '20px', backgroundColor: '#21ad8f' }} href="/bonds">
                   View BONDS
                 </Button>
               </Box>
