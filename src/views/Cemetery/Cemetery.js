@@ -84,11 +84,11 @@ const Cemetery = () => {
 
                 {/* UNCOMMENT THIS AFTER GP ENDS  */}
 
-                <Alert variant="filled" severity="info" style={{ marginTop: '50px', backgroundColor: '#757CE8' }}>
+                 <Alert variant="filled" severity="info" style={{ marginTop: '50px', backgroundColor: '#757CE8' }}>
 
-                  Genesis pools are now closed, please withdraw!
+                  The follow pools are now finish!
 
-                </Alert> 
+                </Alert>  
 
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 0).length === 0}>
                   <Typography
