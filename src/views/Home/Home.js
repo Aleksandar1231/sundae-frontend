@@ -224,9 +224,12 @@ const Home = () => {
         <Grid container direction="column" alignItems="center" justifyContent="center">
           <Grid item xs={12} sm={8}>
             <Paper style={{ backgroundColor: 'transparent', boxShadow: 'none', border: 'none' }}>
-              <Box p={4} display="flex" justifyContent="center" alignItems="center">
+              <Box p={4} display="flex" justifyContent="center" alignItems="center" >
                 <Typography variant="h3" fontWeight="bold" align="center" className="gradient-text">
                   The sweetest protocol on Avalanche!
+                  <div style={{ padding: '10px' }}>
+                    <TokenSymbol symbol="WAVAX" />
+                  </div>
                 </Typography>
               </Box>
             </Paper>
@@ -716,7 +719,7 @@ const Home = () => {
           </Grid>
         </Grid>
       </Box>
-    </Page>
+    </Page >
   );
 };
 

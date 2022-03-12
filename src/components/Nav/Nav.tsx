@@ -109,13 +109,13 @@ const Nav = () => {
                 Home
               </Link>
               <Link color="textPrimary" to="/farms" className='nav-link'>
-                Creamery
+                Farm
               </Link>
               <Link color="textPrimary" to="/boardroom" className='nav-link'>
-                Factory
+                Boardroom
               </Link>
               <Link color="textPrimary" to="/bonds" className='nav-link'>
-                Mix
+                Bonds
               </Link>
               {/* <Link color="textPrimary" to="/rebates" className={classes.link}>
                 DAO
@@ -189,13 +189,13 @@ const Nav = () => {
               <Divider />
               <List>
                 <ListItemLink primary="Home" to="/" />
-                <ListItemLink primary="Creamery" to="/farms" />
-                <ListItemLink primary="Factory" to="/boardroom" />
-                <ListItemLink primary="Mix" to="/bonds" />
+                <ListItemLink primary="Farm" to="/farms" />
+                <ListItemLink primary="Boardroom" to="/boardroom" />
+                <ListItemLink primary="Bonds" to="/bonds" />
                 <ListItemLink primary="Dao" to="/rebates" />
                 <ListItem button component="a" href="https://yieldwolf.finance/avalanche/sundaefinance">
                   <ListItemText disableTypography style={{ color: '#FFFFFF' }}>
-                    Vaults (Coming Soon)
+                    Vaults (Coming)
                   </ListItemText>
                 </ListItem>
                 <ListItem button component="a" href="">
