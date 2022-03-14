@@ -98,7 +98,7 @@ const Nav = () => {
       <Toolbar className={classes.toolbar}>
         {matches ? (
           <>
-            <Typography variant="h6" color="inherit" noWrap className='toolbar-title'>
+            <Typography  variant="h5" color="inherit" noWrap className='toolbar-title'>
               Sundae Finance
               {/*               <Link to="/" color="inherit" className={classes.brandLink}>
                 <img alt="sundae.finance" src={sundaeLogo} height="90px" width="200px" />
