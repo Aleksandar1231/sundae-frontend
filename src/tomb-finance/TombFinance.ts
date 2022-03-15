@@ -302,7 +302,7 @@ export class TombFinance {
     }
     const rewardPerSecond = await poolContract.tSharePerSecond();
     if (depositTokenName === 'FUDGE') {
-      return rewardPerSecond.mul(0).div(55000);
+      return rewardPerSecond.mul(10725).div(55000);
     } else if (depositTokenName === 'FUDGE-STRAW LP') {
       return rewardPerSecond.mul(10725).div(55000);
     } else if (depositTokenName === 'STRAW-AVAX LP') {
@@ -314,7 +314,7 @@ export class TombFinance {
     } else if (depositTokenName === 'FUDGE-DAI LP') {
       return rewardPerSecond.mul(18150).div(55000);
     } else {
-      return rewardPerSecond.mul(10725).div(55000);
+      return rewardPerSecond.mul(0).div(55000);
     }
   }
   async getAVAXPriceFromPancakeswap(): Promise<string> {
