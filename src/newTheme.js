@@ -5,26 +5,30 @@ const newTheme = createMuiTheme({
   palette: {
     type: 'dark',
     text: {
-      primary: '#E6E9EE',
+      primary: '#000',
     },
     background: {
-      default: 'transparent',
-      paper: 'transparent',
+      default: '#121212',
+      paper: 'rgba(255, 255, 255, 0.9)',
     },
     primary: {
-      light: '#757CE8',
-      main: '#757ce8',
-      dark: '#571EB1',
-      contrastText: '#16191E',
+      light: '#FFD170',
+      main: '#21ad8f',
+      dark: '#21c38f',
+      contrastText: '#000',
+    },
+    discord :{
+      light: '#6043f7',
+      main: '#6043f7',
     },
     secondary: {
-      light: '#757CE8',
-      main: '#757CE8',
-      dark: '#757CE8',
+      light: '#6043f7',
+      main: '#6043f7',
+      dark: '#757ce8',
       contrastText: '#000',
     },
     action: {
-      disabledBackground: '#9f9d9d !important',
+      disabledBackground: '#CDCDCD',
       active: '#000',
       hover: '#000',
     },
@@ -32,18 +36,6 @@ const newTheme = createMuiTheme({
   typography: {
     color: '#E6E9EE',
     fontFamily: ['"Gilroy"', 'sans-serif'].join(','),
-  },
-  components: {
-    MuiButton: {
-      variants: [
-        {
-          props: { variant: 'standard' },
-          style: {
-            border: '1px solid var(--white)',
-          },
-        },
-      ],
-    },
   },
 });
 

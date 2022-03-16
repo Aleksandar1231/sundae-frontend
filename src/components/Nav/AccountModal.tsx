@@ -30,7 +30,7 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
           <TokenSymbol symbol="TOMB" />
           <StyledBalance>
             <StyledValue>{displayTombBalance}</StyledValue>
-            <Label color="black" text="FUDGE Available" />
+            <Label text="FUDGE Available" />
           </StyledBalance>
         </StyledBalanceWrapper>
 
@@ -38,7 +38,7 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
           <TokenSymbol symbol="TSHARE" />
           <StyledBalance>
             <StyledValue>{displayTshareBalance}</StyledValue>
-            <Label color="black" text="STRAW Available" />
+            <Label text="STRAW Available" />
           </StyledBalance>
         </StyledBalanceWrapper>
 
@@ -46,7 +46,7 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
           <TokenSymbol symbol="TBOND" />
           <StyledBalance>
             <StyledValue>{displayTbondBalance}</StyledValue>
-            <Label color="black" text="CARAML Available" />
+            <Label text="CARAML Available" />
           </StyledBalance>
         </StyledBalanceWrapper>
       </Balances>
@@ -77,7 +77,7 @@ const StyledBalanceWrapper = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 0 ${(props) => props.theme.spacing[3]}px;
+  margin: 0 ${(props) => props.theme.spacing[2]}px;
 `;
 
 export default AccountModal;

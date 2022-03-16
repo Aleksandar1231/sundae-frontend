@@ -25,3 +25,4 @@ const useTokenBalance = (token: ERC20) => {
 };
 
 export default useTokenBalance;
+

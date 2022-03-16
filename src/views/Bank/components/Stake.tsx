@@ -65,17 +65,17 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
     />,
   );
 
-  // const [onPresentZap, onDissmissZap] = useModal(
-  //   <ZapModal
-  //     decimals={bank.depositToken.decimal}
-  //     onConfirm={(zappingToken, tokenName, amount) => {
-  //       if (Number(amount) <= 0 || isNaN(Number(amount))) return;
-  //       onZap(zappingToken, tokenName, amount);
-  //       onDissmissZap();
-  //     }}
-  //     tokenName={bank.depositTokenName}
-  //   />,
-  // );
+   const [onPresentZap, onDissmissZap] = useModal(
+     <ZapModal
+       decimals={bank.depositToken.decimal}
+       onConfirm={(zappingToken, tokenName, amount) => {
+         if (Number(amount) <= 0 || isNaN(Number(amount))) return;
+         onZap(zappingToken, tokenName, amount);
+        onDissmissZap();
+      }}
+       tokenName={bank.depositTokenName}
+     />,
+   );
 
   const [onPresentWithdraw, onDismissWithdraw] = useModal(
     <WithdrawModal
@@ -91,7 +91,7 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
   );
 
   return (
-    <Card style={{ boxShadow: 'none !important', border: '1px solid var(--white)', backgroundColor: 'rgba(229, 152, 155, 0.1)' }}>
+    <Card style={{ boxShadow: 'none !important', backgroundColor: 'rgba(229, 152, 155, 0.1)' }}>
       <CardContent>
         <StyledCardContentInner>
           <StyledCardHeader>

@@ -46,7 +46,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <Particles
+     {/*  <Particles
         id="tsparticles"
         options={{
           background: {
@@ -114,7 +114,7 @@ const App: React.FC = () => {
           },
           detectRetina: true,
         }}
-      />
+      /> */}
       <Providers>
         <Router>
           <Suspense fallback={<Loader />}>

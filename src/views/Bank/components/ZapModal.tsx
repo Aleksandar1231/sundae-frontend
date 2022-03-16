@@ -35,8 +35,8 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
   const [zappingTokenBalance, setZappingTokenBalance] = useState(ftmBalance);
   const [estimate, setEstimate] = useState({ token0: '0', token1: '0' }); // token0 will always be FTM in this case
   const [approveZapperStatus, approveZapper] = useApproveZapper(zappingToken);
-  const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
-  const tShareFtmLpStats = useLpStats('TSHARE-FTM-LP');
+  const tombFtmLpStats = useLpStats('FUDGE-DAI LP');
+  const tShareFtmLpStats = useLpStats('STRAW-AVAX LP');
   const tombLPStats = useMemo(() => (tombFtmLpStats ? tombFtmLpStats : null), [tombFtmLpStats]);
   const tshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
   const ftmAmountPerLP = tokenName.startsWith(TOMB_TICKER) ? tombLPStats?.ftmAmount : tshareLPStats?.ftmAmount;
@@ -80,13 +80,6 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
   return (
     <Modal>
       <ModalTitle text={`Zap in ${tokenName}`} />
-      <Typography variant="h6" align="center">
-        Powered by{' '}
-        <a target="_blank" rel="noopener noreferrer" href="https://mlnl.finance">
-          mlnl.finance
-        </a>
-      </Typography>
-
       <StyledActionSpacer />
       <InputLabel style={{ color: '#2c2560' }} id="label">
         Select asset to zap with
@@ -98,10 +91,9 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
         id="select"
         value={zappingToken}
       >
-        <StyledMenuItem value={FTM_TICKER}>FTM</StyledMenuItem>
-        <StyledMenuItem value={TSHARE_TICKER}>TSHARE</StyledMenuItem>
-        {/* Tomb as an input for zapping will be disabled due to issues occuring with the Gatekeeper system */}
-        {/* <StyledMenuItem value={TOMB_TICKER}>TOMB</StyledMenuItem> */}
+        {/* <StyledMenuItem value={FTM_TICKER}>FTM</StyledMenuItem> */}
+        <StyledMenuItem value={TSHARE_TICKER}>STRAW</StyledMenuItem>
+         <StyledMenuItem value={TOMB_TICKER}>FUDGE</StyledMenuItem>
       </Select>
       <TokenInput
         onSelectMax={handleSelectMax}
@@ -115,11 +107,11 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
         {' '}
         {tokenName}: {Number(estimate.token0) / Number(ftmAmountPerLP)}
       </StyledDescriptionText>
-      <StyledDescriptionText>
+{/*       <StyledDescriptionText>
         {' '}
         ({Number(estimate.token0)} {FTM_TICKER} / {Number(estimate.token1)}{' '}
         {tokenName.startsWith(TOMB_TICKER) ? TOMB_TICKER : TSHARE_TICKER}){' '}
-      </StyledDescriptionText>
+      </StyledDescriptionText> */}
       <ModalActions>
         <Button
           color="primary"

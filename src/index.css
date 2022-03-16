@@ -1,6 +1,4 @@
-* {
-  box-shadow: none !important;
-}
+
 
 :root {
   --black: #16191e;
@@ -11,9 +9,33 @@
 
 body,
 html,
-h1,
-h2,
-h3,
+h1 {
+  margin: 0;
+  font-family: 'Gilroy', sans-serif !important;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h2 {
+  margin: 0;
+  font-family: 'Gilroy', sans-serif !important;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h3 {
+  margin: 0;
+  font-family: 'Gilroy', sans-serif !important;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 h4 {
   margin: 0;
   font-family: 'Gilroy', sans-serif !important;
@@ -35,42 +57,61 @@ body {
 .MuiTypography-body1,
 .MuiPaper-root,
 .MuiPaper-root h2 {
-  color: var(--black) !important;
-}
-.MuiPaper-elevation1 {
-  box-shadow: none !important;
-  background-color: #ffffff22;
-  backdrop-filter: blur(5px);
-  border-radius: 10px !important;
-  border: 1px solid var(--white);
-}
-
-.MuiCard-root {
-  background-color: #ffffff22;
-  backdrop-filter: blur(5px);
-  border-radius: 10px !important;
-}
-
-.MuiButton-contained {
-  border-radius: 4px !important;
+  color: #000000 !important;
 }
 
 body {
-  position: relative;
+  position: absolute;
   content: '';
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  background-position: center center !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
 }
 
-h1,
-h2,
-h3,
-h4,
+h1 {
+  margin: 0;
+  font-family: 'Gilroy', sans-serif !important;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 60px!important;
+}
+h2 {
+  margin: 0;
+  font-family: 'Gilroy', sans-serif !important;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h3 {
+  margin: 0;
+  font-family: 'Gilroy', sans-serif !important;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h4 {
+  margin: 0;
+  font-family: 'Gilroy', sans-serif !important;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 h5,
 h6 {
-  font-family: 'Gilroy' !important;
+  font-family: 'Gilroy', !important;
 }
 
 footer .a:hover {
@@ -78,17 +119,18 @@ footer .a:hover {
 }
 
 .MuiToolbar-regular {
-  color: var(--white);
+  color: #1b1b1b;
+}
+.MuiButton-root{
+  border-radius: 8px !important;
 }
 
-.MuiButton-contained {
-  color: var(--black) !important;
-  background-color: var(--white);
-}
 
-.MuiButton-containedPrimary {
-  color: var(--white) !important;
-  background-color: var(--accent);
+.MuiButton-containedPrimary,
+.MuiButton-containedPrimary:hover,
+.MuiListItem-button:hover,
+.MuiButtonBase-root:hover {
+  color: rgb(0, 0, 0) !important;
 }
 
 code {
@@ -96,7 +138,7 @@ code {
 }
 
 .wallet-button {
-  color: #2c2560 !important;
+  color: #000000 !important;
   font-family: 'Gilroy', sans-serif !important;
   font-size: 1.1rem !important;
   text-align: left !important;
@@ -108,22 +150,12 @@ code {
   color: #757ce8 !important;
 }
 
-.gradient-text {
-  background-color: #f3b194;
-  background-image: linear-gradient(45deg, #f3b194, #fb5a83);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent; 
-  -moz-text-fill-color: transparent;
-}
 
 .toolbar-title {
   font-family: "Gilroy";
-  font-size: 30px;
+  font-size: 30px!important;
   flex-grow: 1;
-  background-color: #f3b194;
-  background-image: linear-gradient(45deg, #f3b194, #fb5a83);
+  background-color: #000;
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -132,8 +164,7 @@ code {
 }
 
 .nav-link {
-  background-color: #f3b194;
-  background-image: linear-gradient(45deg, #f3b194, #fb5a83);
+  background-color: #000;
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -146,14 +177,12 @@ code {
 }
 
 .nav-link:hover{
-  background-color: #fff;
+  background-color: rgb(160, 160, 160);
   background-size: 100%;
-  background-image: linear-gradient(45deg, #fff, #fff);
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
   -webkit-text-fill-color: transparent; 
   -moz-text-fill-color: transparent; 
   color: #fff;
   text-transform: uppercase;
   font-size: 14px;
 }
+

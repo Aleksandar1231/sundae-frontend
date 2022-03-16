@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
-import bg from '../../assets/img/background.jpg';
 import useEagerConnect from '../../hooks/useEagerConnect';
 
 import Footer from '../Footer';

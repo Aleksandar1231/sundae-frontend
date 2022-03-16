@@ -81,21 +81,21 @@ const Cemetery = () => {
 
                 {/* UNCOMMENT THIS AFTER GP ENDS  */}
 
-                <Alert variant="filled" severity="info" style={{ marginTop: '50px', backgroundColor: '#757CE8' }}>
-
-                  The following pools have concluded. Please unstake.
-
-                </Alert>
 
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 0).length === 0}>
                   <Typography
                     color="textPrimary"
                     variant="h4"
                     gutterBottom
-                    style={{ marginTop: '15px', marginBottom: '30px' }}
+                    style={{ marginTop: '25px' }}
                   >
                     Finished Pools
                   </Typography>
+                  <Alert variant="filled" severity="info" style={{ marginTop: '25px',marginBottom:'25px' }}>
+
+                  The following pools have concluded. Please unstake.
+
+                  </Alert>
                   <Grid container spacing={3}>
                     {activeBanks
                       .filter((bank) => bank.sectionInUI === 0)

@@ -56,7 +56,7 @@ export class TombFinance {
     this.WAVAX = this.externalTokens['WAVAX'];
     this.DAI = this.externalTokens['DAI'];
     this.FTM = this.externalTokens['WFTM'];
-    this.MIM = this.externalTokens['']
+    this.MIM = this.externalTokens['MIM']
 
     // Uniswap V2 Pair
     this.TOMBWFTM_LP = new Contract(externalTokens['FUDGE-DAI LP'][0], IUniswapV2PairABI, provider);
@@ -302,17 +302,17 @@ export class TombFinance {
     }
     const rewardPerSecond = await poolContract.tSharePerSecond();
     if (depositTokenName === 'FUDGE') {
-      return rewardPerSecond.mul(10725).div(55000);
+      return rewardPerSecond.mul(6875).div(55000);
     } else if (depositTokenName === 'FUDGE-STRAW LP') {
-      return rewardPerSecond.mul(10725).div(55000);
+      return rewardPerSecond.mul(0).div(55000);
     } else if (depositTokenName === 'STRAW-AVAX LP') {
-      return rewardPerSecond.mul(15400).div(55000);
+      return rewardPerSecond.mul(23375).div(55000);
     } else if (depositTokenName === 'FUDGE-CREAM LP') {
       return rewardPerSecond.mul(0).div(55000);
     } else if (depositTokenName === 'CREAM-STRAW LP') {
       return rewardPerSecond.mul(0).div(55000);
     } else if (depositTokenName === 'FUDGE-DAI LP') {
-      return rewardPerSecond.mul(18150).div(55000);
+      return rewardPerSecond.mul(24750).div(55000);
     } else {
       return rewardPerSecond.mul(0).div(55000);
     }

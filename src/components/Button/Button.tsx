@@ -22,9 +22,6 @@ const Button: React.FC<ButtonProps> = ({ children, disabled, href, onClick, size
     case 'secondary':
       buttonColor = color.teal[200];
       break;
-    case 'tertiary':
-      buttonColor = color.gray[400]
-      break;
     case 'default':
     default:
       buttonColor = color.primary.main;
@@ -95,7 +92,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   align-items: center;
   background-color: ${(props) => props.theme.color.grey[900]};
   border: 0;
-  border-radius: 12px;
+  border-radius: 12px !important;
   box-shadow: ${(props) => props.boxShadow};
   color: ${(props) => (!props.disabled ? props.color : `${props.color}55`)};
   cursor: pointer;

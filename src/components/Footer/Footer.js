@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '15px',
     paddingBottom: '15px',
     width: '100%',
-    color: 'var(--white)',
+    color: 'white',
     backgroundColor: 'transparent',
     textAlign: 'center',
     height: '1.3rem',
@@ -27,13 +27,19 @@ const useStyles = makeStyles((theme) => ({
     height: '24px',
     display: 'inline',
     marginLeft: '20px',
-    filter: 'sepia(1) brightness(2) hue-rotate(314deg) saturate(7.5)',
   },
 
   img: {
     width: '24px',
     height: '24px',
-    color: 'var(--white)',
+  },
+  elipse: {
+    position: 'absolute',
+    width: '80px',
+    height: '80px',
+    left: '1700px',
+    top: '-100px',
+
   },
 }));
 
@@ -43,13 +49,13 @@ const Footer = () => {
     <footer className={classes.footer}>
       <Container maxWidth="lg">
         <Grid container>
-          <Grid item xs={6}>
-            <Typography variant="body2" color="textPrimary" align="left">
+          <Grid item xs={12}>
+          <Typography variant="body2" style={{ color: "#fff" }} align="center">
               {'Copyright © IceCream x Sundae Finance '}
               {new Date().getFullYear()}
             </Typography>
           </Grid>
-          <Grid item xs={6} style={{ textAlign: 'right' }}>
+          <Grid item xs={12} style={{ textAlign: 'center', marginTop: '10px' }}>
             <a
               href="https://twitter.com/icecreamfinance"
               rel="noopener noreferrer"

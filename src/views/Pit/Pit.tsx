@@ -48,7 +48,7 @@ const Pit: React.FC = () => {
     async (amount: string) => {
       const tx = await tombFinance.buyBonds(amount);
       addTransaction(tx, {
-        summary: `Buy ${Number(amount).toFixed(2)} TBOND with ${amount} TOMB`,
+        summary: `Buy ${Number(amount).toFixed(2)} CARAML with ${amount} FUDGE`,
       });
     },
     [tombFinance, addTransaction],
@@ -57,7 +57,7 @@ const Pit: React.FC = () => {
   const handleRedeemBonds = useCallback(
     async (amount: string) => {
       const tx = await tombFinance.redeemBonds(amount);
-      addTransaction(tx, { summary: `Redeem ${amount} TBOND` });
+      addTransaction(tx, { summary: `Redeem ${amount} CARAML` });
     },
     [tombFinance, addTransaction],
   );
@@ -96,7 +96,7 @@ const Pit: React.FC = () => {
               <StyledStatsWrapper>
                 <ExchangeStat
                   tokenName="FUDGE"
-                  description="Last-Hour TWAP Price"
+                  description="Last-Epoch TWAP Price"
                   price={getDisplayBalance(cashPrice, 18, 4)}
                 />
                 <Spacer size="md" />

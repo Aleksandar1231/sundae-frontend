@@ -21,7 +21,7 @@ const Input: React.FC<InputProps> = ({ endAdornment, onChange, placeholder, star
 
 const StyledInputWrapper = styled.div`
   align-items: center;
-  background-color: white;
+  background-color: ${(props) => props.theme.color.grey[200]};
   border-radius: ${(props) => props.theme.borderRadius}px;
   display: flex;
   padding: 0 ${(props) => props.theme.spacing[3]}px;
@@ -30,7 +30,7 @@ const StyledInputWrapper = styled.div`
 const StyledInput = styled.input`
   background: none;
   border: 0;
-  color: ${(props) => props.theme.color.grey[600]};
+  color: ${(props) => props.theme.color.grey[800]};
   font-size: 18px;
   flex: 1;
   height: 56px;
