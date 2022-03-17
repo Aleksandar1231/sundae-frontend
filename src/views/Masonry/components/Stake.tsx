@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
-import { Box, Button, Card, CardContent, Typography } from '@material-ui/core';
+import { Box, Button, CardContent, Typography } from '@material-ui/core';
 
 // import Button from '../../../components/Button';
-// import Card from '../../../components/Card';
+import Card from '../../../components/Card';
 // import CardContent from '../../../components/CardContent';
-import CardIcon from '../../../components/CardIcon';
+// import CardIcon from '../../../components/CardIcon';
 import { AddIcon, RemoveIcon } from '../../../components/icons';
 import IconButton from '../../../components/IconButton';
 import Label from '../../../components/Label';
@@ -38,7 +38,7 @@ const Stake: React.FC = () => {
   const stakedBalance = useStakedBalanceOnMasonry();
   const { from, to } = useUnstakeTimerMasonry();
 
-  const stakedTokenPriceInDollars = useStakedTokenPriceInDollars('TSHARE', tombFinance.TSHARE);
+  const stakedTokenPriceInDollars = useStakedTokenPriceInDollars('STRAW', tombFinance.TSHARE);
   const tokenPriceInDollars = useMemo(
     () =>
       stakedTokenPriceInDollars
@@ -76,39 +76,37 @@ const Stake: React.FC = () => {
 
   return (
     <Box>
-      <Card
-        style={{ backgroundColor: 'rgba(229, 152, 155, 0.1)', boxShadow: 'none', border: '1px solid var(--white)' }}
-      >
+      <Card>
         <CardContent>
           <StyledCardContentInner>
-            <StyledCardHeader>
-              <CardIcon>
-                <TokenSymbol symbol="TSHARE" />
-              </CardIcon>
+            <StyledCardHeader style={{ marginTop: '48px' }}>
+              <TokenSymbol symbol="TSHARE" />
               <Value value={getDisplayBalance(stakedBalance)} />
-              <Label text={`≈ $${tokenPriceInDollars}`} color="#fff" />
-              <Label text={'STRAW Staked'} color="#fff" />
+              <Label text={`≈ $${tokenPriceInDollars}`} color="black" />
+              <Label text={'STRAW Staked'} color="black" />
             </StyledCardHeader>
             <StyledCardActions>
               {approveStatus !== ApprovalState.APPROVED ? (
                 <Button
-                  disabled={approveStatus !== ApprovalState.NOT_APPROVED}
-                  variant="contained"
-                  color="primary"
-                  style={{ marginTop: '20px' }}
-                  onClick={approve}
-                >
+                disabled={approveStatus !== ApprovalState.NOT_APPROVED}
+                variant="contained"
+                color="primary"
+                style={{ marginTop: '65px' }}
+                onClick={approve}
+              >
                   Approve STRAW
                 </Button>
               ) : (
                 <>
-                  <IconButton disabled={!canWithdrawFromMasonry} onClick={onPresentWithdraw}>
-                    <RemoveIcon />
-                  </IconButton>
-                  <StyledActionSpacer />
-                  <IconButton onClick={onPresentDeposit}>
-                    <AddIcon />
-                  </IconButton>
+                  <StyledCardActions2>
+                    <IconButton disabled={!canWithdrawFromMasonry} onClick={onPresentWithdraw}>
+                      <RemoveIcon />
+                    </IconButton>
+                    <StyledActionSpacer />
+                    <IconButton onClick={onPresentDeposit}>
+                      <AddIcon />
+                    </IconButton>
+                  </StyledCardActions2>
                 </>
               )}
             </StyledCardActions>
@@ -142,10 +140,16 @@ const StyledCardActions = styled.div`
   margin-top: 28px;
   width: 100%;
 `;
+const StyledCardActions2 = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+  width: 100%;
+`;
 
 const StyledActionSpacer = styled.div`
   height: ${(props) => props.theme.spacing[4]}px;
-  width: ${(props) => props.theme.spacing[4]}px;
+  width: ${(props) => props.theme.spacing[6]}px;
 `;
 
 const StyledCardContentInner = styled.div`

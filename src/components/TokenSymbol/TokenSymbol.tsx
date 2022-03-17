@@ -71,7 +71,7 @@ const TokenSymbol: React.FC<LogoProps> = ({symbol}) => {
     return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={90} height={90} />;
   }/* else if( symbol === 'CREAM'){
     return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={100} height={89} />;
-  } */else if( symbol === 'FUDGE'){
+  } */else if( symbol === 'CARAML' ||symbol === 'FUDGE'){
     return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={90} height={90} />;
   }else{
     return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={100} height={100} />;

@@ -6,48 +6,35 @@ import Spacer from '../../components/Spacer';
 import Harvest from './components/Harvest';
 import Stake from './components/Stake';
 import { makeStyles } from '@material-ui/core/styles';
-import useRebateTreasury from '../../hooks/useRebateTreasury';
 
-import { Box, Card, CardContent, Button, Typography, Grid } from '@material-ui/core';
+import { Box, Card, CardContent, /* Button ,*/ Typography, Grid } from '@material-ui/core';
+// import Card from '../../components/Card';
 
 import { Alert } from '@material-ui/lab';
 
 import UnlockWallet from '../../components/UnlockWallet';
 import Page from '../../components/Page';
 
-import useRedeemOnMasonry from '../../hooks/useRedeemOnMasonry';
-import useStakedBalanceOnMasonry from '../../hooks/useStakedBalanceOnMasonry';
+// import useRedeemOnMasonry from '../../hooks/useRedeemOnMasonry';
+// import useStakedBalanceOnMasonry from '../../hooks/useStakedBalanceOnMasonry';
 import { getDisplayBalance } from '../../utils/formatBalance';
 import useCurrentEpoch from '../../hooks/useCurrentEpoch';
 import useFetchMasonryAPR from '../../hooks/useFetchMasonryAPR';
-import useTombStats from '../../hooks/useTombStats';
+
 import useCashPriceInEstimatedTWAP from '../../hooks/useCashPriceInEstimatedTWAP';
 import useTreasuryAllocationTimes from '../../hooks/useTreasuryAllocationTimes';
 import useTotalStakedOnMasonry from '../../hooks/useTotalStakedOnMasonry';
-import useClaimRewardCheck from '../../hooks/masonry/useClaimRewardCheck';
-import useWithdrawCheck from '../../hooks/masonry/useWithdrawCheck';
+// import useClaimRewardCheck from '../../hooks/masonry/useClaimRewardCheck';
+// import useWithdrawCheck from '../../hooks/masonry/useWithdrawCheck';
 import ProgressCountdown from './components/ProgressCountdown';
-// import MasonryImage from '../../assets/img/masonry.png';
 import { createGlobalStyle } from 'styled-components';
 
-// const BackgroundImage = createGlobalStyle`
-//   body, html {
-//     background: url(${MasonryImage}) no-repeat !important;
-//     background-size: cover !important;
-//   }
-// `;
-
-const BackgroundImage = createGlobalStyle`
-  body {
-    background-color: var(--black);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='32' viewBox='0 0 16 32'%3E%3Cg fill='%231D1E1F' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 24h4v2H0v-2zm0 4h6v2H0v-2zm0-8h2v2H0v-2zM0 0h4v2H0V0zm0 4h2v2H0V4zm16 20h-6v2h6v-2zm0 4H8v2h8v-2zm0-8h-4v2h4v-2zm0-20h-6v2h6V0zm0 4h-4v2h4V4zm-2 12h2v2h-2v-2zm0-8h2v2h-2V8zM2 8h10v2H2V8zm0 8h10v2H2v-2zm-2-4h14v2H0v-2zm4-8h6v2H4V4zm0 16h6v2H4v-2zM6 0h2v2H6V0zm0 24h2v2H6v-2z'/%3E%3C/g%3E%3C/svg%3E");
-}
-
-* {
-    border-radius: 0 !important;
-    box-shadow: none !important;
-}
-`;
+/* const BackgroundImage = createGlobalStyle`
+  body, html {
+    background: url(${MasonryImage}) no-repeat !important;
+    background-size: cover !important;
+  }
+`; */
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
@@ -61,115 +48,71 @@ const useStyles = makeStyles((theme) => ({
 const Masonry = () => {
   const classes = useStyles();
   const { account } = useWallet();
-  const { onRedeem } = useRedeemOnMasonry();
-  const stakedBalance = useStakedBalanceOnMasonry();
+  // const { onRedeem } = useRedeemOnMasonry();
+  // const stakedBalance = useStakedBalanceOnMasonry();
   const currentEpoch = useCurrentEpoch();
-  const tombStats = useTombStats();
   const cashStat = useCashPriceInEstimatedTWAP();
   const totalStaked = useTotalStakedOnMasonry();
   const masonryAPR = useFetchMasonryAPR();
-  const canClaimReward = useClaimRewardCheck();
-  const canWithdraw = useWithdrawCheck();
-  const tombPriceInFTM = useMemo(() => (tombStats ? Number(tombStats.tokenInFtm).toFixed(4) : null), [tombStats]);
+  // const canClaimReward = useClaimRewardCheck();
+  // const canWithdraw = useWithdrawCheck();
   const scalingFactor = useMemo(() => (cashStat ? Number(cashStat.priceInDollars).toFixed(4) : null), [cashStat]);
   const { to } = useTreasuryAllocationTimes();
-  const rebateStats = useRebateTreasury();
 
   return (
     <Page>
-      <BackgroundImage />
       {!!account ? (
         <>
-          <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
+          <Typography color="primary.black" align="center" variant="h3" gutterBottom>
             Boardroom
           </Typography>
           <Box mt={5}>
             <Grid container justify="center" spacing={3}>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card
-                  className={classes.gridItem}
-                  style={{
-                    backgroundColor: 'rgba(229, 152, 155, 0.1)',
-                    boxShadow: 'none',
-                    border: '1px solid var(--white)',
-                  }}
-                >
+                <Card style={{background: '#fff', borderRadius: '15px', height: '120px'}} className={classes.gridItem}>
                   <CardContent>
-                    <Typography style={{ textAlign: 'center' }}>Next Epoch</Typography>
+                    <h3 style={{margin:'10px',textAlign: 'center', color: '#000', fontSize:'18px'}}>Next Epoch</h3>
                     <ProgressCountdown base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" />
                   </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card
-                  className={classes.gridItem}
-                  style={{
-                    backgroundColor: 'rgba(229, 152, 155, 0.1)',
-                    boxShadow: 'none',
-                    border: '1px solid var(--white)',
-                  }}
-                >
+                <Card style={{background: '#fff', borderRadius: '15px', height: '120px'}} className={classes.gridItem}>
                   <CardContent align="center">
-                    <Typography>Current Epoch</Typography>
-                    <Typography>{Number(currentEpoch)}</Typography>
+                    <h3 style={{ margin:'10px',textAlign: 'center', color: '#000', fontSize:'18px'}}>Current Epoch</h3>
+                    <h2 style={{ fontWeight: 'lighter'}}>{Number(currentEpoch)}</h2>
+                    
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card
-                  className={classes.gridItem}
-                  style={{
-                    backgroundColor: 'rgba(229, 152, 155, 0.1)',
-                    boxShadow: 'none',
-                    border: '1px solid var(--white)',
-                  }}
-                >
+              <Grid item xs={12} md={2} lg={3} className={classes.gridItem}>
+                <Card style={{background: '#fff', borderRadius: '15px', height: '120px'}} className={classes.gridItem}>
                   <CardContent align="center">
-                    <Typography>
-                      FUDGE Price<small> (TWAP)</small>
-                    </Typography>
-                    {/* <Typography>{rebateStats.tombPrice.toFixed(4)} DAI</Typography> */}
-                    <Typography>{tombPriceInFTM ? tombPriceInFTM : '-.----'} DAI</Typography>
+                    <h3 style={{ margin:'10px',textAlign: 'center', color: '#000', fontSize:'18px'}}>
+                      STRAW Price<small> (TWAP)</small>
+                    </h3>
+                    <h2 style={{ fontWeight: 'lighter'}}>{scalingFactor}</h2>
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card
-                  className={classes.gridItem}
-                  style={{
-                    backgroundColor: 'rgba(229, 152, 155, 0.1)',
-                    boxShadow: 'none',
-                    border: '1px solid var(--white)',
-                  }}
-                >
+              <Grid item xs={12} md={2} lg={3} className={classes.gridItem}>
+                <Card style={{background: '#fff', borderRadius: '15px', height: '120px'}} className={classes.gridItem}>
                   <CardContent align="center">
-                    <Typography>APR</Typography>
-                    <Typography>{masonryAPR.toFixed(2)}%</Typography>
+                    <h3 style={{ margin:'10px',textAlign: 'center', color: '#000', fontSize:'18px'}}>APR</h3>
+                    <h2 style={{ fontWeight: 'lighter'}}>{masonryAPR.toFixed(2)}%</h2>
                   </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={2}>
-                <Card
-                  className={classes.gridItem}
-                  style={{
-                    backgroundColor: 'rgba(229, 152, 155, 0.1)',
-                    boxShadow: 'none',
-                    border: '1px solid var(--white)',
-                  }}
-                >
+                <Card style={{background: '#fff', borderRadius: '15px', height: '120px'}} className={classes.gridItem}>
                   <CardContent align="center">
-                    <Typography>STRAWs Staked</Typography>
-                    <Typography>{getDisplayBalance(totalStaked)}</Typography>
+                    <h3 style={{ margin:'10px',textAlign: 'center', color: '#000', fontSize:'18px'}}>STRAW Staked</h3>
+                    <h2 style={{ fontWeight: 'lighter'}}>{getDisplayBalance(totalStaked)}</h2>
                   </CardContent>
                 </Card>
               </Grid>
             </Grid>
 
-            <Grid container justify="center">
-              <Alert variant="filled" severity="info" style={{ marginTop: '50px', backgroundColor: '#757CE8' }}>
-                Staked STRAWs can only be withdrawn after 6 epochs since deposit.
-              </Alert>
-            </Grid>
 
             <Box mt={4}>
               <StyledBoardroom>
@@ -214,19 +157,6 @@ const Masonry = () => {
               </Card>
             </Grid>
           </Grid> */}
-          </Box>
-
-          <Box mt={5}>
-            <Grid container justify="center" spacing={3} mt={10}>
-              <Button
-                disabled={stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)}
-                onClick={onRedeem}
-                color="primary"
-                variant="contained"
-              >
-                Claim and Withdraw
-              </Button>
-            </Grid>
           </Box>
         </>
       ) : (

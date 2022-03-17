@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import Page from '../../components/Page';
-import PitImage from '../../assets/img/pit.png';
+import PitImage from '../../assets/img/none.png';
 import { createGlobalStyle } from 'styled-components';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import { useWallet } from 'use-wallet';
@@ -18,21 +18,14 @@ import useTokenBalance from '../../hooks/useTokenBalance';
 import useBondsPurchasable from '../../hooks/useBondsPurchasable';
 import { getDisplayBalance } from '../../utils/formatBalance';
 import { BOND_REDEEM_PRICE, BOND_REDEEM_PRICE_BN } from '../../tomb-finance/constants';
-import { Typography } from '@material-ui/core';
-
-const BackgroundImage = createGlobalStyle`
+import { Box, Card, CardContent, /* Button ,*/ Typography, Grid } from '@material-ui/core';
+/* const BackgroundImage = createGlobalStyle`
   body {
-    background-color: var(--black);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='32' viewBox='0 0 16 32'%3E%3Cg fill='%231D1E1F' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 24h4v2H0v-2zm0 4h6v2H0v-2zm0-8h2v2H0v-2zM0 0h4v2H0V0zm0 4h2v2H0V4zm16 20h-6v2h6v-2zm0 4H8v2h8v-2zm0-8h-4v2h4v-2zm0-20h-6v2h6V0zm0 4h-4v2h4V4zm-2 12h2v2h-2v-2zm0-8h2v2h-2V8zM2 8h10v2H2V8zm0 8h10v2H2v-2zm-2-4h14v2H0v-2zm4-8h6v2H4V4zm0 16h6v2H4v-2zM6 0h2v2H6V0zm0 24h2v2H6v-2z'/%3E%3C/g%3E%3C/svg%3E");
-}
-
-* {
-    background: transparent;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-}
+    background: url(${PitImage}) no-repeat !important;
+    background-size: cover !important;
+  }
 `;
-
+ */
 const Pit: React.FC = () => {
   const { path } = useRouteMatch();
   const { account } = useWallet();
@@ -67,16 +60,18 @@ const Pit: React.FC = () => {
   return (
     <Switch>
       <Page>
-        <BackgroundImage />
+        {/* <BackgroundImage /> */}
         {!!account ? (
           <>
-            <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
-              CARAML
-            </Typography>
             <Route exact path={path}>
-              <PageHeader icon={'🏦'} subtitle="Earn premiums upon redemption" />
+            <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
+                Bonds
+              </Typography>
+              <Typography color="textPrimary" align="center" variant="h5" gutterBottom>
+                Earn premiums upon redemption
+              </Typography>
             </Route>
-            <StyledBond>
+            <StyledBond style={{marginTop:'40px'}}>
               <StyledCardWrapper>
                 <ExchangeCard
                   action="Purchase"
@@ -96,7 +91,7 @@ const Pit: React.FC = () => {
               <StyledStatsWrapper>
                 <ExchangeStat
                   tokenName="FUDGE"
-                  description="Last-Epoch TWAP Price"
+                  description="Last-Hour TWAP Price"
                   price={getDisplayBalance(cashPrice, 18, 4)}
                 />
                 <Spacer size="md" />
@@ -116,7 +111,7 @@ const Pit: React.FC = () => {
                   priceDesc={`${getDisplayBalance(bondBalance)} CARAML Available in wallet`}
                   onExchange={handleRedeemBonds}
                   disabled={!bondStat || bondBalance.eq(0) || !isBondRedeemable}
-                  disabledDescription={!isBondRedeemable ? `Enabled when CARAML > ${BOND_REDEEM_PRICE}DAI` : null}
+                  disabledDescription={!isBondRedeemable ? `Enabled when FUDGE > ${BOND_REDEEM_PRICE} DAI` : null}
                 />
               </StyledCardWrapper>
             </StyledBond>
@@ -131,7 +126,6 @@ const Pit: React.FC = () => {
 
 const StyledBond = styled.div`
   display: flex;
-  background: transparent;
   @media (max-width: 768px) {
     width: 100%;
     flex-flow: column nowrap;
@@ -142,7 +136,6 @@ const StyledBond = styled.div`
 const StyledCardWrapper = styled.div`
   display: flex;
   flex: 1;
-  background: transparent;
   flex-direction: column;
   @media (max-width: 768px) {
     width: 80%;
@@ -153,7 +146,6 @@ const StyledStatsWrapper = styled.div`
   display: flex;
   flex: 0.8;
   margin: 0 20px;
-  background: transparent;
   flex-direction: column;
 
   @media (max-width: 768px) {

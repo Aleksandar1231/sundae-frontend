@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Button, Card } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 // import Button from '../../../components/Button';
-// import Card from '../../../components/Card';
+import Card from '../../../components/Card';
 import CardContent from '../../../components/CardContent';
 import useTombFinance from '../../../hooks/useTombFinance';
 import Label from '../../../components/Label';
@@ -62,22 +62,21 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
     />,
   );
   return (
-    <Card style={{ backgroundColor: 'rgba(229, 152, 155, 0.1)', boxShadow: 'none', border: '1px solid var(--white)' }}>
+    <Card>
       <CardContent>
         <StyledCardContentInner>
           <StyledCardTitle>{`${action} ${toTokenName}`}</StyledCardTitle>
           <StyledExchanger>
             <StyledToken>
-              <StyledCardIcon style={{ background: 'transparent' }}>
+              <StyledCardIcon>
                 <TokenSymbol symbol={fromToken.symbol} size={54} />
               </StyledCardIcon>
               <Label text={fromTokenName} variant="normal" />
             </StyledToken>
             <StyledExchangeArrow>
-              {/*<FontAwesomeIcon icon={faArrowRight} />//*/}
             </StyledExchangeArrow>
             <StyledToken>
-              <StyledCardIcon style={{ background: 'transparent' }}>
+              <StyledCardIcon>
                 <TokenSymbol symbol={toToken.symbol} size={54} />
               </StyledCardIcon>
               <Label text={toTokenName} variant="normal" />
@@ -117,7 +116,6 @@ const StyledCardTitle = styled.div`
 `;
 
 const StyledCardIcon = styled.div`
-  background-color: ${(props) => props.theme.color.grey[900]};
   width: 72px;
   height: 72px;
   border-radius: 36px;

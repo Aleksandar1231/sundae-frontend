@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '15px',
     paddingBottom: '15px',
     width: '100%',
-    color: 'white',
+    color: 'black',
     backgroundColor: 'transparent',
     textAlign: 'center',
     height: '1.3rem',

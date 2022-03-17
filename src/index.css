@@ -114,8 +114,8 @@ h6 {
   font-family: 'Gilroy', !important;
 }
 
-footer .a:hover {
-  fill: '#DA4567';
+.footer {
+  fill: '#000';
 }
 
 .MuiToolbar-regular {
@@ -149,6 +149,7 @@ code {
   background-color: black;
   color: #757ce8 !important;
 }
+
 
 
 .toolbar-title {
