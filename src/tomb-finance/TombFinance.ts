@@ -35,7 +35,7 @@ export class TombFinance {
   FTM: ERC20;
   DAI: ERC20;
   MIM: ERC20;
-  
+
 
   constructor(cfg: Configuration) {
     const { deployments, externalTokens } = cfg;
@@ -158,7 +158,7 @@ export class TombFinance {
    * CirculatingSupply (always equal to total supply for bonds)
    */
   async getBondStat(): Promise<TokenStat> {
-    const { Treasury,TombFtmRewardPool } = this.contracts;
+    const { Treasury, TombFtmRewardPool } = this.contracts;
     const tombStat = await this.getTombStat();
     const bondTombRatioBN = await Treasury.getBondPremiumRate();
     const modifier = bondTombRatioBN / 1e18 > 1 ? bondTombRatioBN / 1e18 : 1;
@@ -189,7 +189,7 @@ export class TombFinance {
     const tombRewardPoolSupply = await this.TSHARE.balanceOf(TombFtmLPTShareRewardPool.address);
     const tShareCirculatingSupply = supply.sub(tombRewardPoolSupply);
     const priceOfOneFTM = await this.getSTRAWPriceFromPancakeswap();
-    const priceOfSharesInDollars = ( Number(priceOfOneFTM)).toFixed(2);
+    const priceOfSharesInDollars = (Number(priceOfOneFTM)).toFixed(2);
 
     return {
       tokenInFtm: priceInFTM,
@@ -202,7 +202,7 @@ export class TombFinance {
   async getTombStatInEstimatedTWAP(): Promise<TokenStat> {
     const { SeigniorageOracle, TombFtmRewardPool } = this.contracts;
     const expectedPrice = await SeigniorageOracle.twap(this.TOMB.address, ethers.utils.parseEther('1'));
-
+    console.log(expectedPrice)
     const supply = await this.TOMB.totalSupply();
     const tombRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
     const tombCirculatingSupply = supply.sub(tombRewardPoolSupply);
@@ -888,7 +888,7 @@ export class TombFinance {
     const nextEpochTimestamp: BigNumber = await Treasury.nextEpochPoint();
     const nextAllocation = new Date(nextEpochTimestamp.mul(1000).toNumber());
     const prevAllocation = new Date(Date.now());
-
+    console.log(nextEpochTimestamp.toNumber());
     return { from: prevAllocation, to: nextAllocation };
   }
   /**

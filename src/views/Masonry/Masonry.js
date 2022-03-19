@@ -7,8 +7,8 @@ import Harvest from './components/Harvest';
 import Stake from './components/Stake';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Box, Card, CardContent, /* Button ,*/ Typography, Grid } from '@material-ui/core';
-// import Card from '../../components/Card';
+import { Box, CardContent, /* Button ,*/ Typography, Grid } from '@material-ui/core';
+import Card from '../../components/Card';
 
 import { Alert } from '@material-ui/lab';
 
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   gridItem: {
     height: '100%',
     [theme.breakpoints.up('md')]: {
-      height: '90px',
+      height: '100%',
     },
   },
 }));
@@ -60,7 +60,7 @@ const Masonry = () => {
   const { to } = useTreasuryAllocationTimes();
 
   return (
-    <Page>
+    < Page >
       {!!account ? (
         <>
           <Typography color="primary.black" align="center" variant="h3" gutterBottom>
@@ -69,45 +69,45 @@ const Masonry = () => {
           <Box mt={5}>
             <Grid container justify="center" spacing={3}>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card style={{background: '#fff', borderRadius: '15px', height: '120px'}} className={classes.gridItem}>
+                <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent>
-                    <h3 style={{margin:'10px',textAlign: 'center', color: '#000', fontSize:'18px'}}>Next Epoch</h3>
+                    <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>Next Epoch</h3>
                     <ProgressCountdown base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" />
                   </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card style={{background: '#fff', borderRadius: '15px', height: '120px'}} className={classes.gridItem}>
+                <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent align="center">
-                    <h3 style={{ margin:'10px',textAlign: 'center', color: '#000', fontSize:'18px'}}>Current Epoch</h3>
-                    <h2 style={{ fontWeight: 'lighter'}}>{Number(currentEpoch)}</h2>
-                    
+                    <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>Current Epoch</h3>
+                    <h2 style={{ fontWeight: 'lighter' }}>{Number(currentEpoch)}</h2>
+
                   </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={3} className={classes.gridItem}>
-                <Card style={{background: '#fff', borderRadius: '15px', height: '120px'}} className={classes.gridItem}>
+                <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent align="center">
-                    <h3 style={{ margin:'10px',textAlign: 'center', color: '#000', fontSize:'18px'}}>
+                    <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>
                       STRAW Price<small> (TWAP)</small>
                     </h3>
-                    <h2 style={{ fontWeight: 'lighter'}}>{scalingFactor}</h2>
+                    <h2 style={{ fontWeight: 'lighter' }}>{scalingFactor}</h2>
                   </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={3} className={classes.gridItem}>
-                <Card style={{background: '#fff', borderRadius: '15px', height: '120px'}} className={classes.gridItem}>
+                <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent align="center">
-                    <h3 style={{ margin:'10px',textAlign: 'center', color: '#000', fontSize:'18px'}}>APR</h3>
-                    <h2 style={{ fontWeight: 'lighter'}}>{masonryAPR.toFixed(2)}%</h2>
+                    <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>APR</h3>
+                    <h2 style={{ fontWeight: 'lighter' }}>{masonryAPR.toFixed(2)}%</h2>
                   </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={2}>
-                <Card style={{background: '#fff', borderRadius: '15px', height: '120px'}} className={classes.gridItem}>
+                <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent align="center">
-                    <h3 style={{ margin:'10px',textAlign: 'center', color: '#000', fontSize:'18px'}}>STRAW Staked</h3>
-                    <h2 style={{ fontWeight: 'lighter'}}>{getDisplayBalance(totalStaked)}</h2>
+                    <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>STRAW Staked</h3>
+                    <h2 style={{ fontWeight: 'lighter' }}>{getDisplayBalance(totalStaked)}</h2>
                   </CardContent>
                 </Card>
               </Grid>
@@ -161,8 +161,9 @@ const Masonry = () => {
         </>
       ) : (
         <UnlockWallet />
-      )}
-    </Page>
+      )
+      }
+    </Page >
   );
 };
 
