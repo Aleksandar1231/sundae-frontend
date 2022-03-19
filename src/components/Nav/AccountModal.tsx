@@ -77,7 +77,7 @@ const StyledBalanceWrapper = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 0 ${(props) => props.theme.spacing[2]}px;
+  margin: 0 ${(props) => props.theme.spacing[3]}px;
 `;
 
 export default AccountModal;

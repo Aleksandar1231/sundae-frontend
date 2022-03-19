@@ -448,14 +448,14 @@ export class TombFinance {
     const priceOfOneAvaxInDollars = await this.getAVAXPriceFromPancakeswap();
     const priceOfOneCshareInDollars = await this.getCSHAREPriceFromPancakeswap();
     const priceOfOneCreamInDollars = await this.getCREAMPriceFromPancakeswap();
+    const priceOfOneStrawInDollars = await this.getSTRAWPriceFromPancakeswap();
     if (tokenName === 'WAVAX') {
       tokenPrice = priceOfOneAvaxInDollars;
     } else if (tokenName === 'CSHARE') {
       tokenPrice = priceOfOneCshareInDollars;
     } else if (tokenName === 'CREAM') {
       tokenPrice = priceOfOneCreamInDollars;
-    }
-    else {
+    } else {
       if (tokenName === 'FUDGE-DAI LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.TOMB, true, false);
       } else if (tokenName === 'STRAW-DAI LP') {
@@ -509,7 +509,9 @@ export class TombFinance {
         );
       } else if (tokenName === 'DAI') {
         tokenPrice = priceOfOneFtmInDollars;
-      } else {
+      } else if (tokenName === 'STRAW'){
+        tokenPrice = priceOfOneStrawInDollars;
+      }else {
         tokenPrice = await this.getTokenPriceFromPancakeswap(token);
         tokenPrice = (Number(tokenPrice) * Number(priceOfOneFtmInDollars)).toString();
       }

@@ -89,7 +89,7 @@ const Masonry = () => {
                 <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent align="center">
                     <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>
-                      STRAW Price<small> (TWAP)</small>
+                      Current TWAP
                     </h3>
                     <h2 style={{ fontWeight: 'lighter' }}>{scalingFactor}</h2>
                   </CardContent>
