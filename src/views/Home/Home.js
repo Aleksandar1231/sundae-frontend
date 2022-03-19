@@ -677,10 +677,12 @@ const Home = () => {
                     <h2>Rewards</h2>
                   </div>
                   <div style={{ display: 'flex', marginTop: '10px' }}>
-                    <div style={{ width: '30%' }}>
+                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
                       <TokenSymbol symbol="FUDGE-DAI LP" style={{ backgroundColor: 'transparent !important' }} />
+                      <h4>FUDGE-DAI LP</h4>
                     </div>
-                    <div style={{ width: '70%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <div style={{ width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                       <div
                         style={{
                           display: 'flex',
@@ -713,10 +715,11 @@ const Home = () => {
                     </div>
                   </div>
                   <div style={{ display: 'flex', marginTop: '10px' }}>
-                    <div style={{ width: '30%' }}>
+                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                       <TokenSymbol symbol="STRAW-AVAX LP" style={{ backgroundColor: 'transparent !important' }} />
+                      <h4>STRAW-AVAX LP</h4>
                     </div>
-                    <div style={{ width: '70%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <div style={{ width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                       <div
                         style={{
                           display: 'flex',
@@ -749,10 +752,11 @@ const Home = () => {
                     </div>
                   </div>
                   <div style={{ display: 'flex' }}>
-                    <div style={{ width: '30%', marginTop: '10px' }}>
+                    <div style={{ width: '40%', marginTop: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                       <TokenSymbol symbol="FUDGE" style={{ backgroundColor: 'transparent !important' }} />
+                      <h4>FUDGE</h4>
                     </div>
-                    <div style={{ width: '70%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <div style={{ width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                       <div
                         style={{
                           display: 'flex',
