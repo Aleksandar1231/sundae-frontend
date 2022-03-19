@@ -133,6 +133,10 @@ const CemeteryCard = ({ bank }) => {
             <h3 style={{ marginBottom: '10px', color: 'black' }}>Daily ROI:</h3>
             <h4 style={{ color: 'black' }}>{statsOnPool?.dailyAPR}%</h4>
           </Grid>
+          <Grid style={{ display: 'flex', marginBottom: '5px', marginTop: '10px', justifyContent: "space-between" }}>
+            <h3 style={{ marginBottom: '10px', color: 'black' }}>APR:</h3>
+            <h4 style={{ color: 'black' }}>{statsOnPool?.yearlyAPR}%</h4>
+          </Grid>
           <Grid style={{ display: 'flex', marginBottom: '5px', justifyContent: "space-between" }}>
             <h3 style={{ marginBottom: '10px', color: 'black' }}>Earn:</h3>
             <h4 style={{ color: 'black' }}>{bank.earnTokenName}</h4>
