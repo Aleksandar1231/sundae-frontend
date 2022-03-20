@@ -338,53 +338,50 @@ const Home = () => {
         </Grid>
 
         <Grid container justifyContent="space-around" alignItems="center" xs={12} sm={12} style={{ marginTop: '20px' }}>
-          <Grid sm={7}>
-            <Grid xs={12}>
+          <Grid container item xs={12} sm={7} spacing={3}>
+            <Grid item xs={12}>
               <Card>
                 <CardContent style={{ position: 'relative', backgroundColor: 'white' }}>
-                  <div style={{ display: 'flex', padding: '15px' }}>
-                    <div
+                  <Grid container style={{ display: 'flex', padding: '15px' }}>
+                    <Grid item xs={3}
                       style={{
-                        width: '30%',
                         display: 'flex',
                         justifyContent: 'center',
-                        alignContent: 'center',
                         alignItems: 'center',
                         flexDirection: 'column',
                       }}
                     >
                       <TokenSymbol symbol="TOMB" style={{ backgroundColor: 'transparent !important' }} />
-                      <div>
-                        <h2 style={{ paddingTop: '10px' }}>FUDGE</h2>
-                      </div>
-                      <div>
-                        <h4>Governance Token</h4>
-                      </div>
-                    </div>
-                    {isMobile ? (
-                      <div style={{ width: '70%', padding: '0px 40px' }}>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold' }}>Market Cap:</span>
-                          <span>${(tombCirculatingSupply * tombPriceInDollars).toFixed(2)}</span>
-                        </span>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold' }}>Circulating Supply:</span>
-                          <span>{tombCirculatingSupply}</span>
-                        </span>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold' }}>Total Supply:</span>
-                          <span>{tombTotalSupply}</span>
-                        </span>
-                        <div
-                          style={{ display: 'flex', alignItems: 'flex-end', marginTop: '20px', flexDirection: 'column' }}
-                        >
-                          <span style={{ fontSize: '20px' }}>${tombPriceInDollars ? tombPriceInDollars : '-.--'}</span>
-                        </div>
-                        <Box style={{ display: 'flex', justifyContent: 'flex-end', height: '20%' }}>
+                      <h2 style={{ paddingTop: '10px' }}>FUDGE</h2>
+                      <h4>Governance Token</h4>
+                    </Grid>
+                    <Grid item xs={9} style={{ padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'stretch' }}>
+                      <Grid style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h3>Market Cap:</h3>
+                        <h3>
+                          ${(tombCirculatingSupply * tombPriceInDollars).toFixed(2)}
+                        </h3>
+                      </Grid>
+                      <Grid style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h3>Circulating Supply:</h3>
+                        <h3 >{tombCirculatingSupply}</h3>
+                      </Grid>
+
+                      <Grid style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h3>Total Supply:</h3>
+                        <h3 >{tombTotalSupply}</h3>
+                      </Grid>
+
+                      <Grid style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', marginTop: '15px' }}>
+                        <Grid xs={12} sm={6} style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'flex-end' }}>
+                          <h2 style={{ fontSize: '40px' }}>${tombPriceInDollars ? tombPriceInDollars : '-.--'}</h2>
+                        </Grid>
+                        <Grid xs={12} sm={6} style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end' }}>
+
                           <Button
                             color="primary"
                             variant="contained"
-                            style={{ marginTop: '20px', marginRight: '15px' }}
+                            style={{ marginTop: '30px', marginRight: '15px' }}
                             target="_blank"
                             href={buyfudgeAddress}
                           >
@@ -393,108 +390,61 @@ const Home = () => {
                           <Button
                             color="primary"
                             variant="contained"
-                            style={{ marginTop: '20px' }}
+                            style={{ marginTop: '30px' }}
                             target="_blank"
                             href={viewFudgeAddress}
                           >
                             Chart
                           </Button>
-                        </Box>
-                      </div>
-                    ) : (
-                      <div style={{ width: '70%', padding: '0px 40px' }}>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold', fontSize: '20px' }}>Market Cap:</span>
-                          <span style={{ fontSize: '20px' }}>
-                            ${(tombCirculatingSupply * tombPriceInDollars).toFixed(2)}
-                          </span>
-                        </span>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold', fontSize: '20px' }}>Circulating Supply:</span>
-                          <span style={{ fontSize: '20px' }}>{tombCirculatingSupply}</span>
-                        </span>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold', fontSize: '20px' }}>Total Supply:</span>
-                          <span style={{ fontSize: '20px' }}>{tombTotalSupply}</span>
-                        </span>
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <div
-                            style={{ display: 'flex', alignItems: 'flex-end', marginTop: '20px', flexDirection: 'column' }}
-                          >
-                            <span style={{ fontSize: '45px' }}>${tombPriceInDollars ? tombPriceInDollars : '-.--'}</span>
-                          </div>
-                          <Box style={{ display: 'flex', justifyContent: 'flex-end', height: '20%' }}>
-                            <Button
-                              color="primary"
-                              variant="contained"
-                              style={{ marginTop: '30px', marginRight: '15px' }}
-                              target="_blank"
-                              href={buyfudgeAddress}
-                            >
-                              Buy Now
-                            </Button>
-                            <Button
-                              color="primary"
-                              variant="contained"
-                              style={{ marginTop: '30px' }}
-                              target="_blank"
-                              href={viewFudgeAddress}
-                            >
-                              Chart
-                            </Button>
-                          </Box>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                        </Grid>
+                      </Grid>
 
+                    </Grid>
+                  </Grid>
                 </CardContent>
               </Card>
             </Grid>
 
-            {/* CShare */}
-            <Grid style={{ marginTop: '20px' }} xs={12}>
+
+            <Grid item xs={12}>
               <Card>
                 <CardContent style={{ position: 'relative', backgroundColor: 'white' }}>
-                  <div style={{ display: 'flex', padding: '15px' }}>
-                    <div
+                  <Grid container style={{ display: 'flex', padding: '15px' }}>
+                    <Grid item xs={3}
                       style={{
-                        width: '30%',
                         display: 'flex',
                         justifyContent: 'center',
-                        alignContent: 'center',
                         alignItems: 'center',
                         flexDirection: 'column',
                       }}
                     >
                       <TokenSymbol symbol="TSHARE" style={{ backgroundColor: 'transparent !important' }} />
-                      <div>
-                        <h2 style={{ paddingTop: '10px' }}>STRAW</h2>
-                      </div>
-                      <div>
-                        <h4>Utility Token</h4>
-                      </div>
-                    </div>
-                    {isMobile ? (
-                      <div style={{ width: '70%', padding: '0px 40px' }}>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold' }}>Market Cap:</span>
-                          <span>${(tShareCirculatingSupply * tSharePriceInDollars).toFixed(2)}</span>
-                        </span>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold' }}>Circulating Supply:</span>
-                          <span>{tShareCirculatingSupply}</span>
-                        </span>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold' }}>Total Supply:</span>
-                          <span>{tShareTotalSupply}</span>
-                        </span>
-                        <div
-                          style={{ display: 'flex', alignItems: 'flex-end', marginTop: '20px', flexDirection: 'column' }}
-                        >
-                          <span style={{ fontSize: '20px' }}>${tSharePriceInDollars ? tSharePriceInDollars : '-.--'}</span>
-                        </div>
-                        <Box style={{ display: 'flex', justifyContent: 'flex-end', height: '20%' }}>
+                      <h2 style={{ paddingTop: '10px' }}>STRAW</h2>
+                      <h4>Utility Token</h4>
+                    </Grid>
+                    <Grid item xs={9} style={{ padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'stretch' }}>
+                      <Grid style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h3>Market Cap:</h3>
+                        <h3>
+                          ${(tShareCirculatingSupply * tSharePriceInDollars).toFixed(2)}
+                        </h3>
+                      </Grid>
+                      <Grid style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h3>Circulating Supply:</h3>
+                        <h3 >{tShareCirculatingSupply}</h3>
+                      </Grid>
+
+                      <Grid style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h3>Total Supply:</h3>
+                        <h3 >{tShareTotalSupply}</h3>
+                      </Grid>
+
+                      <Grid style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', marginTop: '15px' }}>
+                        <Grid xs={12} sm={6} style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'flex-end' }}>
+                          <h2 style={{ fontSize: '40px' }}>${tSharePriceInDollars ? tSharePriceInDollars : '-.--'}</h2>
+                        </Grid>
+                        <Grid xs={12} sm={6} style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end' }}>
+
                           <Button
                             color="primary"
                             variant="contained"
@@ -513,152 +463,71 @@ const Home = () => {
                           >
                             Chart
                           </Button>
-                        </Box>
-                      </div>
-                    ) : (
-                      <div style={{ width: '70%', padding: '0px 40px' }}>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold', fontSize: '20px' }}>Market Cap:</span>
-                          <span style={{ fontSize: '20px' }}>
-                            ${(tShareCirculatingSupply * tSharePriceInDollars).toFixed(2)}
-                          </span>
-                        </span>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold', fontSize: '20px' }}>Circulating Supply:</span>
-                          <span style={{ fontSize: '20px' }}>{tShareCirculatingSupply}</span>
-                        </span>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold', fontSize: '20px' }}>Total Supply:</span>
-                          <span style={{ fontSize: '20px' }}>{tShareTotalSupply}</span>
-                        </span>
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <div
-                            style={{ display: 'flex', alignItems: 'flex-end', marginTop: '20px', flexDirection: 'column' }}
-                          >
-                            <span style={{ fontSize: '45px' }}>
-                              ${tSharePriceInDollars ? tSharePriceInDollars : '-.--'}
-                            </span>
-                          </div>
-                          <Box style={{ display: 'flex', justifyContent: 'flex-end', height: '20%' }}>
-                            <Button
-                              color="primary"
-                              variant="contained"
-                              style={{ marginTop: '30px', marginRight: '15px' }}
-                              target="_blank"
-                              href={buystrawAddress}
-                            >
-                              Buy Now
-                            </Button>
-                            <Button
-                              color="primary"
-                              variant="contained"
-                              style={{ marginTop: '30px' }}
-                              target="_blank"
-                              href={viewStrawAddress}
-                            >
-                              Chart
-                            </Button>
-                          </Box>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                        </Grid>
+                      </Grid>
+
+                    </Grid>
+                  </Grid>
                 </CardContent>
               </Card>
             </Grid>
-            {/* bonds */}
-            <Grid style={{ marginTop: '20px' }} xs={12}>
+
+            <Grid item xs={12}>
               <Card>
                 <CardContent style={{ position: 'relative', backgroundColor: 'white' }}>
-                  <div style={{ display: 'flex', padding: '15px' }}>
-                    <div
+                  <Grid container style={{ display: 'flex', padding: '15px' }}>
+                    <Grid item xs={3}
                       style={{
-                        width: '30%',
                         display: 'flex',
                         justifyContent: 'center',
-                        alignContent: 'center',
                         alignItems: 'center',
                         flexDirection: 'column',
                       }}
                     >
                       <TokenSymbol symbol="TBOND" style={{ backgroundColor: 'transparent !important' }} />
-                      <div>
-                        <h2 style={{ paddingTop: '10px' }}>CARAML</h2>
-                      </div>
-                      <div>
-                        <h4>Bond Token</h4>
-                      </div>
-                    </div>
-                    {isMobile ? (
-                      <div style={{ width: '70%', padding: '0px 40px' }}>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold' }}>Market Cap:</span>
-                          <span>${(tBondCirculatingSupply * tBondPriceInDollars).toFixed(2)}</span>
-                        </span>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold' }}>Circulating Supply:</span>
-                          <span>{tBondCirculatingSupply}</span>
-                        </span>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold' }}>Total Supply:</span>
-                          <span>{tBondTotalSupply}</span>
-                        </span>
-                        <div
-                          style={{ display: 'flex', alignItems: 'flex-end', marginTop: '20px', flexDirection: 'column' }}
-                        >
-                          <span style={{ fontSize: '20px' }}>${tBondPriceInDollars ? tBondPriceInDollars : '-.--'}</span>
+                      <h2 style={{ paddingTop: '10px' }}>CARAML</h2>
+                      <h4>Bond Token</h4>
+                    </Grid>
+                    <Grid item xs={9} style={{ padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'stretch' }}>
+                      <Grid style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h3>Market Cap:</h3>
+                        <h3>
+                          ${(tBondCirculatingSupply * tBondPriceInDollars).toFixed(2)}
+                        </h3>
+                      </Grid>
+                      <Grid style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h3>Circulating Supply:</h3>
+                        <h3 >{tBondCirculatingSupply}</h3>
+                      </Grid>
 
-                        </div>
-                        <Box style={{ display: 'flex', justifyContent: 'flex-end', height: '20%' }}>
+                      <Grid style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h3>Total Supply:</h3>
+                        <h3 >{tBondTotalSupply}</h3>
+                      </Grid>
+
+                      <Grid style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', marginTop: '15px' }}>
+                        <Grid xs={12} sm={6} style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'flex-end' }}>
+                          <h2 style={{ fontSize: '40px' }}>${tBondPriceInDollars ? tBondPriceInDollars : '-.--'}</h2>
+                        </Grid>
+                        <Grid xs={12} sm={6} style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end' }}>
+
                           <Link style={{ textDecoration: "none" }} to="/bonds">
                             <Button variant="contained" color="primary" style={{ marginTop: '30px', backgroundColor: '#21ad8f' }}>
                               View BONDS
                             </Button>
                           </Link>
-                        </Box>
-                      </div>
-                    ) : (
-                      <div style={{ width: '70%', padding: '0px 40px' }}>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold', fontSize: '20px' }}>Market Cap:</span>
-                          <span style={{ fontSize: '20px' }}>
-                            ${(tBondCirculatingSupply * tBondPriceInDollars).toFixed(2)}
-                          </span>
-                        </span>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold', fontSize: '20px' }}>Circulating Supply:</span>
-                          <span style={{ fontSize: '20px' }}>{tBondCirculatingSupply}</span>
-                        </span>
-                        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 'bold', fontSize: '20px' }}>Total Supply:</span>
-                          <span style={{ fontSize: '20px' }}>{tBondTotalSupply}</span>
-                        </span>
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <div
-                            style={{ display: 'flex', alignItems: 'flex-end', marginTop: '20px', flexDirection: 'column' }}
-                          >
-                            <span style={{ fontSize: '45px' }}>
-                              ${tBondPriceInDollars ? tBondPriceInDollars : '-.--'}
-                            </span>
+                        </Grid>
+                      </Grid>
 
-                          </div>
-                          <Box style={{ display: 'flex', justifyContent: 'flex-end', height: '20%' }}>
-                            <Link style={{ textDecoration: "none" }} to="/bonds">
-                              <Button variant="contained" color="primary" style={{ marginTop: '30px', backgroundColor: '#21ad8f' }}>
-                                View BONDS
-                              </Button>
-                            </Link>
-                          </Box>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                    </Grid>
+                  </Grid>
                 </CardContent>
               </Card>
             </Grid>
           </Grid>
 
-          <Grid style={{ width: '100%', marginTop: '20px' }} sm={4} xs={12}>
+
+          <Grid item style={{ margin: '20px' }} sm={4} xs={12}>
             <Card xs={12}>
               <CardContent style={{ backgroundColor: 'white' }}>
 
@@ -714,7 +583,7 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
-                  <div style={{ display: 'flex', marginTop: '10px' }}>
+                  <div style={{ display: 'flex', marginTop: '20px' }}>
                     <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                       <TokenSymbol symbol="STRAW-AVAX LP" style={{ backgroundColor: 'transparent !important' }} />
                       <h4>STRAW-AVAX LP</h4>
@@ -751,8 +620,8 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
-                  <div style={{ display: 'flex' }}>
-                    <div style={{ width: '40%', marginTop: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', marginTop: '20px' }}>
+                    <div style={{ width: '40%',  display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                       <TokenSymbol symbol="FUDGE" style={{ backgroundColor: 'transparent !important' }} />
                       <h4>FUDGE</h4>
                     </div>
@@ -950,33 +819,33 @@ const Home = () => {
 };
 const StyledValue = styled.div`
   //color: ${(props) => props.theme.color.grey[300]};
-  font-size: 30px;
-  font-weight: 700;
-`;
+        font-size: 30px;
+        font-weight: 700;
+        `;
 
 const StyledBalance = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-`;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        `;
 
 const Balances = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-`;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        `;
 
 const StyledBalanceWrapper = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  margin: 1%;
-`;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        margin: 1%;
+        `;
 
 
 export default Home;

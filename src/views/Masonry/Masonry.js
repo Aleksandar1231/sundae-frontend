@@ -98,8 +98,26 @@ const Masonry = () => {
               <Grid item xs={12} md={2} lg={3} className={classes.gridItem}>
                 <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent align="center">
-                    <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>APR</h3>
-                    <h2 style={{ fontWeight: 'lighter' }}>{masonryAPR.toFixed(2)}%</h2>
+                    <Grid container style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+                      <Grid xs={4}>
+
+                        <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>APR</h3>
+                        <h2 style={{ fontSize: '20px', fontWeight: 'lighter' }}>{masonryAPR.toFixed(2)}%</h2>
+                      </Grid>
+                      <Grid xs={4}>
+
+                        <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>Daily</h3>
+                        <h2 style={{ fontSize: '20px', fontWeight: 'lighter' }}>{(masonryAPR / 365).toFixed(2)}%</h2>
+                      </Grid>
+
+                      <Grid xs={4}>
+
+                        <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>Epoch</h3>
+                        <h2 style={{ fontSize: '20px', fontWeight: 'lighter' }}>{(masonryAPR / 365 / 4).toFixed(2)}%</h2>
+                      </Grid>
+
+
+                    </Grid>
                   </CardContent>
                 </Card>
               </Grid>
