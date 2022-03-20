@@ -64,16 +64,20 @@ const CemeteryCard = ({ bank }) => {
   const { onRedeem } = useRedeem(bank);
   const earnings = useEarnings(bank.contract, bank.earnTokenName, bank.poolId);
   const { onReward } = useHarvest(bank);
-  const bombStats = useTombStats();
+  const tombStats = useTombStats();
   const tShareStats = useShareStats();
-  const tokenStats = bank.earnTokenName === 'CSHARE' ? tShareStats : bombStats;
-  const stakedBalance = useStakedBalance(bank.contract, bank.poolId);
-  const stakedTokenPriceInDollars = useStakedTokenPriceInDollars(bank.depositTokenName, bank.depositToken);
+
+  const tokenName = bank.earnTokenName === 'STRAW' ? 'STRAW' : 'FUDGE';
+  const tokenStats = bank.earnTokenName === 'STRAW' ? tShareStats : tombStats;
   const tokenPriceInDollars = useMemo(
     () => (tokenStats ? Number(tokenStats.priceInDollars).toFixed(2) : null),
     [tokenStats],
   );
   const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
+
+  const stakedBalance = useStakedBalance(bank.contract, bank.poolId);
+  const stakedTokenPriceInDollars = useStakedTokenPriceInDollars(bank.depositTokenName, bank.depositToken);
+  
   const stakedInDollars = (
     Number(stakedTokenPriceInDollars) * Number(getDisplayBalance(stakedBalance, bank.depositToken.decimal))
   ).toFixed(2);
