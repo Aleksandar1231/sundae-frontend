@@ -2,8 +2,8 @@ import React, { useMemo, useContext } from 'react';
 import styled from 'styled-components';
 
 // import Button from '../../../components/Button';
-import { Button, Card, CardContent, Typography } from '@material-ui/core';
-// import Card from '../../../components/Card';
+import { Button, CardContent, Typography } from '@material-ui/core';
+import Card from '../../../components/Card';
 // import CardContent from '../../../components/CardContent';
 import CardIcon from '../../../components/CardIcon';
 import { AddIcon, RemoveIcon } from '../../../components/icons';
@@ -71,17 +71,17 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
     />,
   );
 
-   const [onPresentZap, onDissmissZap] = useModal(
-     <ZapModal
-       decimals={bank.depositToken.decimal}
-       onConfirm={(zappingToken, tokenName, amount) => {
-         if (Number(amount) <= 0 || isNaN(Number(amount))) return;
-         onZap(zappingToken, tokenName, amount);
+  const [onPresentZap, onDissmissZap] = useModal(
+    <ZapModal
+      decimals={bank.depositToken.decimal}
+      onConfirm={(zappingToken, tokenName, amount) => {
+        if (Number(amount) <= 0 || isNaN(Number(amount))) return;
+        onZap(zappingToken, tokenName, amount);
         onDissmissZap();
       }}
-       tokenName={bank.depositTokenName}
-     />,
-   );
+      tokenName={bank.depositTokenName}
+    />,
+  );
 
   const [onPresentWithdraw, onDismissWithdraw] = useModal(
     <WithdrawModal
@@ -98,7 +98,7 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
 
   return (
     <Card >
-      <CardContent>
+      <CardContent style={{ boxShadow: 'none !important', backgroundColor: 'rgba(229, 152, 155, 0.1)' }}>
         <StyledCardContentInner>
           <StyledCardHeader>
             <CardIcon>

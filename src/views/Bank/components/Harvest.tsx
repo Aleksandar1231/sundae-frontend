@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
-import { Button, Card, CardContent, Typography } from '@material-ui/core';
+import { Button, CardContent, Typography } from '@material-ui/core';
 // import Button from '../../../components/Button';
-// import Card from '../../../components/Card';
+import Card from '../../../components/Card';
 // import CardContent from '../../../components/CardContent';
 import CardIcon from '../../../components/CardIcon';
 import Label from '../../../components/Label';
