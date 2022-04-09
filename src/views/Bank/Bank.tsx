@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useMemo, useState } from 'react';
+import styled, { keyframes } from 'styled-components';
 
 import { useParams } from 'react-router-dom';
 import { useWallet } from 'use-wallet';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Box, Button, Card, CardContent, Typography, Grid } from '@material-ui/core';
+import { Box, Button, Card, CardContent, Typography, Grid, Select, withStyles, MenuItem } from '@material-ui/core';
 
 import PageHeader from '../../components/PageHeader';
 import Spacer from '../../components/Spacer';
@@ -17,6 +17,13 @@ import useStatsForPool from '../../hooks/useStatsForPool';
 import useRedeem from '../../hooks/useRedeem';
 import { Bank as BankEntity } from '../../tomb-finance';
 import useTombFinance from '../../hooks/useTombFinance';
+import useNodes from '../../hooks/useNodes';
+import useNodeText from '../../hooks/useNodeText';
+import { getDisplayBalance } from '../../utils/formatBalance';
+import useClaimedBalance from '../../hooks/useClaimedBalance';
+import useStakedBalance from '../../hooks/useStakedBalance';
+import { Text } from '../../components/Text';
+
 const useStyles = makeStyles((theme) => ({
   gridItem: {
     height: '100%',
@@ -36,19 +43,78 @@ const Bank: React.FC = () => {
   const classes = useStyles();
   const { bankId } = useParams();
   const bank = useBank(bankId);
+  const [poolId, setPoolId] = useState(0);
+  const LOCK_ID = 'LOCK_ID';
 
   const { account } = useWallet();
+  const { getNodeText } = useNodeText();
   const { onRedeem } = useRedeem(bank);
   const statsOnPool = useStatsForPool(bank);
-  return account && bank ? (
+  const nodes = useNodes(bank.contract, bank.sectionInUI, account);
+  const hasNodes = nodes.length > 0 && nodes.filter((x) => x.gt(0)).length > 0;
+  const claimBalance = useClaimedBalance(bank.contract, bank.sectionInUI, account);
+  const maxPayout = useStakedBalance(bank.contract, bank.poolId, bank.sectionInUI, account).mul(4);
+  const [width, setWidth] = useState(window.innerWidth);
+  
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    }
+  }, []);
+
+  const isMobile = width <= 768
+  const nodeStartTime = 0;
+  const isNodeStart = bank.sectionInUI !== 3 || Date.now() / 1000 >= nodeStartTime;
+  
+  const handleChangeLockup = (event: any) => {
+    const value = event.target.value;
+    setPoolId(Number(value));
+    bank.poolId = Number(value);
+    localStorage.setItem(LOCK_ID, String(value))
+  }
+
+  useEffect(() => {
+    const poolId = localStorage.getItem(LOCK_ID)
+    if (bank.sectionInUI === 3 && poolId) {
+      setPoolId(Number(poolId));
+      bank.poolId = Number(poolId);
+    }
+  });
+
+  return account && bank && isNodeStart ? (
     <>
       <PageHeader
         icon="🏦"
-        subtitle={`Deposit ${bank?.depositTokenName} and earn ${bank?.earnTokenName}`}
-        title={bank?.name}
+        subtitle={bank.sectionInUI !== 3
+          ? `Deposit ${bank?.depositTokenName} and earn ${bank?.earnTokenName}`
+          : `Purchase nodes to generate FUDGE`
+        }
+        title= {bank?.name}
       />
       <Box>
         <Grid container justify="center" spacing={3} style={{ marginBottom: '50px' }}>
+        {bank.sectionInUI === 3 &&
+            <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
+              <StyledOutlineWrapper>
+                <StyledOutline />
+                <Card className={classes.gridItem}>
+                  <CardContent style={{ textAlign: 'center' }}>
+                    <Typography>Node Type</Typography>
+                    <Select variant='outlined' onChange={handleChangeLockup} style={{ height: '2.5rem', color: '#1d48b6', fontSize: '16px', fontWeight: 'bold', textAlign: 'center', marginLeft: '1rem', marginBottom: '-16px' }} labelId="label" id="select" value={poolId}>
+                      <StyledMenuItem value={0}>{getNodeText(0)}</StyledMenuItem>
+                      <StyledMenuItem value={1}>{getNodeText(1)}</StyledMenuItem>
+                      <StyledMenuItem value={2}>{getNodeText(2)}</StyledMenuItem>
+                    </Select>
+                  </CardContent>
+                </Card>
+              </StyledOutlineWrapper>
+            </Grid>
+          }
+
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
             <Card className={classes.gridItem} style={{ border: '1px solid var(--white)', backgroundColor: 'rgba(229, 152, 155, 0.1)', boxShadow: 'none' }}>
               <CardContent style={{ textAlign: 'center', boxShadow: 'none !important' }}>
@@ -84,14 +150,58 @@ const Bank: React.FC = () => {
             <Spacer />
             <StyledCardWrapper>{<Stake bank={bank} />}</StyledCardWrapper>
           </StyledCardsWrapper>
+
+          {bank.sectionInUI !== 3 && <Spacer size="lg" />}
+          {bank.depositTokenName.includes('LP') && <LPTokenHelpText bank={bank} />}
           <Spacer size="lg" />
-          {/* {bank.depositTokenName.includes('LP') && <LPTokenHelpText bank={bank} />} */}
-          <Spacer size="lg" />
-          <div>
-            <Button onClick={onRedeem} color="primary" variant="contained">
-              Claim & Withdraw
-            </Button>
+          {bank.sectionInUI !== 3 ?
+            <div>
+              <Button onClick={onRedeem} className="shinyButtonSecondary">
+                Claim &amp; Withdraw
+              </Button>
+            </div>
+            :
+            hasNodes ?
+              <div style={{ display: 'flex',  flexDirection: isMobile ? 'column' : 'row' }}>
+                <Card style={{ backgroundColor: '#08090d' }}>
+                  <CardContent>
+                    <StyledTitle>Nodes</StyledTitle>
+                    {nodes.map((num, id) => {
+                      return num.gt(0)
+                        ?
+                        <Text style={{ display: 'flex', fontSize: '1rem', marginTop: '8px' }} key={id}>
+                          <b style={{ color: 'rgb(29, 72, 182)', marginRight: '8px' }}>
+                            {num.toString()}x
+                          </b>
+                          <div>
+                            {getNodeText(id)}{num.gt(1) ? 's' : ''}
+                          </div>
+                        </Text>
+                        : null;
+                    })}
+                  </CardContent>
+                </Card>
+                <Card style={{ marginLeft: isMobile ? '0' : '1.5rem', marginTop: isMobile ? '1.5rem' : '0'}}>
+                  <CardContent>
+                    <StyledTitle>Claimed</StyledTitle>
+                    <Text style={{ fontSize: '1rem', marginTop: '8px' }}>
+                      {getDisplayBalance(claimBalance, 18, 2)} FUDGE
+                    </Text>
+                  </CardContent>
+                </Card>
+                <Card style={{ marginLeft: isMobile ? '0' : '1.5rem', marginTop: isMobile ? '1.5rem' : '0'}}>
+                  <CardContent>
+                    <StyledTitle>Max Payout</StyledTitle>
+                    <Text style={{ fontSize: '1rem', marginTop: '8px' }}>
+                      {getDisplayBalance(maxPayout, 18, 0)} FUDGE
+                    </Text>
+                  </CardContent>
+                </Card>
+
           </div>
+          : null
+
+          }
           <Spacer size="lg" />
         </StyledBank>
       </Box>
@@ -182,5 +292,48 @@ const Center = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+const StyledTitle = styled.h1`
+  color: '#1d48b6';
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+`;
+
+const StyledOutline = styled.div`
+  background: #1d48b6;
+  background-size: 300% 300%;
+  border-radius: 0px;
+  filter: blur(8px);
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  bottom: -6px;
+  left: -6px;
+  z-index: -1;
+`;
+
+const StyledOutlineWrapper = styled.div`    
+    position: relative;
+    background: #08090d;
+    border-radius: 0px;
+    box-shadow: 0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 1px 1px rgba(25, 19, 38, 0.05)
+`;
+
+const StyledMenuItem = withStyles({
+  root: {
+    backgroundColor: '#08090d',
+    color: '#dddfee',
+    textAlign: 'center',
+    '&:hover': {
+      backgroundColor: 'black',
+      color: '#1d48b6',
+    },
+    selected: {
+      backgroundColor: 'white',
+    },
+  },
+})(MenuItem);
 
 export default Bank;

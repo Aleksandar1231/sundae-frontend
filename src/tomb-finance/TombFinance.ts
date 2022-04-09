@@ -93,6 +93,38 @@ export class TombFinance {
   get isUnlocked(): boolean {
     return !!this.myAccount;
   }
+  //===================================================================
+  //===================== GET NODE STATS =============================
+  //=========================== START ===================================
+  //===================================================================
+ 
+  async getNodes(contract: string, user: string): Promise<BigNumber[]> {
+    return await this.contracts[contract].getNodes(user);
+  }
+
+  async claimedBalanceNode(poolName: ContractName, account = this.myAccount): Promise<BigNumber> {
+    const pool = this.contracts[poolName];
+    try {
+      let userInfo = await pool.users(account);
+      return await userInfo.total_claims;
+    } catch (err) {
+      console.error(`Failed to call userInfo() on pool ${pool.address}: ${err}`);
+      return BigNumber.from(0);
+    }
+  }
+
+  async getNodePrice(poolName: ContractName, poolId: Number): Promise<BigNumber> {
+    const pool = this.contracts[poolName];
+    try {
+      return await pool.tierAmounts(poolId);
+    } catch (err) {
+      console.error(`Failed to call tierAmounts on contract ${pool.address}: ${err}`);
+      return BigNumber.from(0);
+    }
+  }
+
+
+
 
   //===================================================================
   //===================== GET ASSET STATS =============================
@@ -229,34 +261,72 @@ export class TombFinance {
    * @param bank
    * @returns
    */
-  async getPoolAPRs(bank: Bank): Promise<PoolStats> {
+   async getPoolAPRs(bank: Bank): Promise<PoolStats> {
     if (this.myAccount === undefined) return;
     const depositToken = bank.depositToken;
     const poolContract = this.contracts[bank.contract];
-    const depositTokenPrice = await this.getDepositTokenPriceInDollars(bank.depositTokenName, depositToken);
-    const stakeInPool = await depositToken.balanceOf(bank.address);
-    const TVL = Number(depositTokenPrice) * Number(getDisplayBalance(stakeInPool, depositToken.decimal));
-    const stat = bank.earnTokenName === 'FUDGE' ? await this.getTombStat() : await this.getShareStat();
-    const tokenPerSecond = await this.getTokenPerSecond(
-      bank.earnTokenName,
-      bank.contract,
-      poolContract,
-      bank.depositTokenName,
-    );
 
-    const tokenPerHour = tokenPerSecond.mul(60).mul(60);
-    const totalRewardPricePerYear =
-      Number(stat.priceInDollars) * Number(getDisplayBalance(tokenPerHour.mul(24).mul(365)));
-    const totalRewardPricePerDay = Number(stat.priceInDollars) * Number(getDisplayBalance(tokenPerHour.mul(24)));
-    const totalStakingTokenInPool =
-      Number(depositTokenPrice) * Number(getDisplayBalance(stakeInPool, depositToken.decimal));
-    const dailyAPR = (totalRewardPricePerDay / totalStakingTokenInPool) * 100;
-    const yearlyAPR = (totalRewardPricePerYear / totalStakingTokenInPool) * 100;
-    return {
-      dailyAPR: dailyAPR.toFixed(2).toString(),
-      yearlyAPR: yearlyAPR.toFixed(2).toString(),
-      TVL: TVL.toFixed(2).toString(),
-    };
+    if (bank.sectionInUI === 3) {
+      const [depositTokenPrice, points, totalPoints, tierAmount, poolBalance, totalBalance, dripRate, dailyUserDrip] = await Promise.all([
+        this.getDepositTokenPriceInDollars(bank.depositTokenName, depositToken),
+        poolContract.tierAllocPoints(bank.poolId),
+        poolContract.totalAllocPoints(),
+        poolContract.tierAmounts(bank.poolId),
+        poolContract.getBalancePool(),
+        depositToken.balanceOf(bank.address),
+        poolContract.dripRate(),
+        poolContract.getDayDripEstimate(this.myAccount),
+      ]);
+      const stakeAmount = Number(getDisplayBalance(tierAmount))
+    
+
+      const dailyDrip = totalPoints && +totalPoints > 0 
+        ? getDisplayBalance(poolBalance.mul(BigNumber.from(86400)).mul(points).div(totalPoints).div(dripRate)) 
+        : 0;
+      const dailyDripAPR = (Number(dailyDrip) / stakeAmount) * 100;
+      const yearlyDripAPR = (Number(dailyDrip) * 365 / stakeAmount) * 100;
+      
+      const dailyDripUser = Number(getDisplayBalance(dailyUserDrip));
+      const yearlyDripUser = Number(dailyDripUser) * 365;
+      
+      const TVL = Number(depositTokenPrice) * Number(getDisplayBalance(totalBalance, depositToken.decimal));
+
+      return {
+        userDailyBurst: dailyDripUser.toFixed(2).toString(),
+        userYearlyBurst: yearlyDripUser.toFixed(2).toString(),
+        dailyAPR: dailyDripAPR.toFixed(2).toString(),
+        yearlyAPR: yearlyDripAPR.toFixed(2).toString(),
+        TVL: TVL.toFixed(2).toString(),
+      };
+    } else {
+      const [depositTokenPrice, stakeInPool, stat, tokenPerSecond] = await Promise.all([
+        this.getDepositTokenPriceInDollars(bank.depositTokenName, depositToken),
+        depositToken.balanceOf(bank.address),
+        bank.earnTokenName === 'FUDGE' ? this.getTombStat() : this.getShareStat(),
+        this.getTokenPerSecond(
+          bank.earnTokenName,
+          bank.contract,
+          poolContract,
+          bank.depositTokenName,
+        )
+      ]);
+     
+      const TVL = Number(depositTokenPrice) * Number(getDisplayBalance(stakeInPool, depositToken.decimal));
+
+      const tokenPerHour = tokenPerSecond.mul(60).mul(60);
+      const totalRewardPricePerYear =
+        Number(stat.priceInDollars) * Number(getDisplayBalance(tokenPerHour.mul(24).mul(365)));
+      const totalRewardPricePerDay = Number(stat.priceInDollars) * Number(getDisplayBalance(tokenPerHour.mul(24)));
+      const totalStakingTokenInPool =
+        Number(depositTokenPrice) * Number(getDisplayBalance(stakeInPool, depositToken.decimal));
+      const dailyAPR = (totalRewardPricePerDay / totalStakingTokenInPool) * 100;
+      const yearlyAPR = (totalRewardPricePerYear / totalStakingTokenInPool) * 100;
+      return {
+        dailyAPR: dailyAPR.toFixed(2).toString(),
+        yearlyAPR: yearlyAPR.toFixed(2).toString(),
+        TVL: TVL.toFixed(2).toString(),
+      };
+    }
   }
 
   /**
@@ -650,24 +720,30 @@ export class TombFinance {
   ): Promise<BigNumber> {
     const pool = this.contracts[poolName];
     try {
-      if (earnTokenName === 'FUDGE') {
+      if (earnTokenName === 'FUDGE' && poolName.includes('Node')) {
+        return await pool.getTotalRewards(account);
+      } else if (earnTokenName === 'FUDGE') {
         return await pool.pendingTOMB(poolId, account);
       } else {
         return await pool.pendingShare(poolId, account);
       }
     } catch (err) {
-      console.error(`Failed to call earned() on pool ${pool.address}: ${err}`);
+      console.error(`Failed to call pendingShare() on pool ${pool.address}: ${err}`);
       return BigNumber.from(0);
     }
   }
 
-  async stakedBalanceOnBank(poolName: ContractName, poolId: Number, account = this.myAccount): Promise<BigNumber> {
+  async stakedBalanceOnBank(poolName: ContractName, poolId: Number, sectionInUI: Number, account = this.myAccount): Promise<BigNumber> {
     const pool = this.contracts[poolName];
     try {
-      let userInfo = await pool.userInfo(poolId, account);
-      return await userInfo.amount;
+      let userInfo = sectionInUI !== 3
+        ? await pool.userInfo(poolId, account)
+        : await pool.users(account);
+      return sectionInUI !== 3
+        ? await userInfo.amount
+        : await userInfo.total_deposits;
     } catch (err) {
-      console.error(`Failed to call balanceOf() on pool ${pool.address}: ${err}`);
+      console.error(`Failed to call userInfo() on pool ${pool.address}: ${err}`);
       return BigNumber.from(0);
     }
   }
@@ -678,9 +754,11 @@ export class TombFinance {
    * @param amount Number of tokens with decimals applied. (e.g. 1.45 DAI * 10^18)
    * @returns {string} Transaction hash
    */
-  async stake(poolName: ContractName, poolId: Number, amount: BigNumber): Promise<TransactionResponse> {
+   async stake(poolName: ContractName, poolId: Number, sectionInUI: Number, amount: BigNumber): Promise<TransactionResponse> {
     const pool = this.contracts[poolName];
-    return await pool.deposit(poolId, amount);
+    return sectionInUI !== 3
+      ? await pool.deposit(poolId, amount)
+      : await pool.create(poolId, amount);
   }
 
   /**
@@ -697,10 +775,12 @@ export class TombFinance {
   /**
    * Transfers earned token reward from given pool to my account.
    */
-  async harvest(poolName: ContractName, poolId: Number): Promise<TransactionResponse> {
+   async harvest(poolName: ContractName, poolId: Number, sectionInUI: Number): Promise<TransactionResponse> {
     const pool = this.contracts[poolName];
     //By passing 0 as the amount, we are asking the contract to only redeem the reward and not the currently staked token
-    return await pool.withdraw(poolId, 0);
+    return sectionInUI !== 3
+      ? await pool.withdraw(poolId, 0)
+      : await pool.claim();
   }
 
   /**

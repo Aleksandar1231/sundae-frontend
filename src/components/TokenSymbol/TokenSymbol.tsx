@@ -19,7 +19,7 @@ import ThreeombLPLogo from '../../assets/img/fudge-dai.png';
 import ThreesharesLPLogo from '../../assets/img/straw-dai.png';
 import fsLogo from '../../assets/img/fudge-straw.png';
 import faLogo from '../../assets/img/fudge-avax.png';
-
+import nodeLogo from '../../assets/img/node.png';
 import fcLogo from '../../assets/img/fudge-cream.png';
 import csLogo from '../../assets/img/cream-straw.png';
 import saLogo from '../../assets/img/straw-avax.png';
@@ -31,6 +31,7 @@ const logosBySymbol: { [title: string]: string } = {
   TOMBPNG: tombLogoPNG,
   TSHAREPNG: tShareLogoPNG,
   WFTM: wftmLogo,
+  NODE:nodeLogo,
   'CREAM-AVAX LP': TwoombLPLogo,
   'CSHARE-AVAX LP': TwosharesLPLogo,
   'CREAM-CSHARE LP': TwoombTwosharesLPLogo,

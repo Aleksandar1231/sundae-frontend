@@ -21,9 +21,10 @@ import useStakedBalance from '../../../hooks/useStakedBalance';
 import useStakedTokenPriceInDollars from '../../../hooks/useStakedTokenPriceInDollars';
 import useTokenBalance from '../../../hooks/useTokenBalance';
 import useWithdraw from '../../../hooks/useWithdraw';
-
+import useNodePrice from '../../../hooks/useNodePrice';
+import useNodeText from '../../../hooks/useNodeText';
 import { getDisplayBalance } from '../../../utils/formatBalance';
-
+import useWallet from 'use-wallet';
 import DepositModal from './DepositModal';
 import WithdrawModal from './WithdrawModal';
 import ZapModal from './ZapModal';
@@ -39,18 +40,22 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
 
   const { color: themeColor } = useContext(ThemeContext);
   const tokenBalance = useTokenBalance(bank.depositToken);
-  const stakedBalance = useStakedBalance(bank.contract, bank.poolId);
+  const { account } = useWallet();
+  const stakedBalance = useStakedBalance(bank.contract, bank.poolId, bank.sectionInUI, account);
+  const nodePrice = useNodePrice(bank.contract, bank.poolId, bank.sectionInUI);
+  const { getNodeText } = useNodeText();
   const stakedTokenPriceInDollars = useStakedTokenPriceInDollars(bank.depositTokenName, bank.depositToken);
   const tokenPriceInDollars = useMemo(
     () => (stakedTokenPriceInDollars ? stakedTokenPriceInDollars : null),
     [stakedTokenPriceInDollars],
   );
   const earnedInDollars = (
-    Number(tokenPriceInDollars) * Number(getDisplayBalance(stakedBalance, bank.depositToken.decimal))
+    Number(tokenPriceInDollars) * Number(getDisplayBalance(bank.sectionInUI !== 3 ? stakedBalance : nodePrice, bank.depositToken.decimal))
   ).toFixed(2);
   const { onStake } = useStake(bank);
   const { onZap } = useZap(bank);
   const { onWithdraw } = useWithdraw(bank);
+
 
   const [onPresentDeposit, onDismissDeposit] = useModal(
     <DepositModal

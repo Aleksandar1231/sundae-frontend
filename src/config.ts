@@ -60,7 +60,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   finished: will disable the pool on the UI if set to true
   sort: the order of the pool
   */
-  FudgeCshareRewardPool: {
+ /*  FudgeCshareRewardPool: {
     name: 'Earn FUDGE by staking CSHARE',
     poolId: 0,
     sectionInUI: 0,
@@ -88,21 +88,6 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 1,
     closedForStaking: false,
   },
-/*   FUDGEDAILPRewardPool: {
-    name: 'Earn FUDGE by staking FUDGE-DAI LP',
-    poolId: 2,
-    sectionInUI: 0,
-    contract: 'FUDGEDAILPRewardPool',
-    depositTokenName: 'FUDGE-DAI LP',
-    earnTokenName: 'FUDGE',
-    finished: false,
-    multiplier: '6000',
-    site: 'https://2omb.finance',
-    buyLink:
-      'https://spookyswap.finance/add/0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae/0xc54A1684fD1bef1f077a336E6be4Bd9a3096a6Ca',
-    sort: 2,
-    closedForStaking: false,
-  }, */
   FudgeCreamAvaxLPRewardPool: {
     name: 'Earn FUDGE by staking CREAM-AVAX LP',
     poolId: 3,
@@ -187,7 +172,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 7,
     closedForStaking: false,
   },
-
+ */
   // TombBloomRewardPool: {
   //   name: 'Earn 3OMB by staking BLOOM',
   //   poolId: 8,
@@ -202,34 +187,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 9,
   //   closedForStaking: true,
   // },
-  // TombFtmLPTombRewardPool: {
-  //   name: 'Earn TOMB by TOMB-FTM LP',
-  //   poolId: 0,
-  //   sectionInUI: 1,
-  //   contract: 'TombFtmLpTombRewardPool',
-  //   depositTokenName: 'TOMB-FTM-LP',
-  //   earnTokenName: 'TOMB',
-  //   finished: false,
-  //   multiplier: '0',
-  //   buyLink: '',
-  //   site: '',
-  //   sort: 7,
-  //   closedForStaking: true,
-  // },
-  // TombFtmLPTombRewardPoolOld: {
-  //   name: 'Earn TOMB by TOMB-FTM LP',
-  //   poolId: 0,
-  //   sectionInUI: 1,
-  //   contract: 'TombFtmLpTombRewardPoolOld',
-  //   depositTokenName: 'TOMB-FTM-LP',
-  //   earnTokenName: 'TOMB',
-  //   finished: true,
-  //   multiplier: '0',
-  //   buyLink: '',
-  //   site: '',
-  //   sort: 9,
-  //   closedForStaking: true,
-  // },
+ 
   FudgeDaiLPTShareRewardPool: {
     name: 'Earn STRAW by FUDGE-DAI LP',
     poolId: 0,
@@ -329,76 +287,22 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     closedForStaking: false,
   },
 
-  /*  Tomb2SHARESRebates: {
-    name: 'Bond 2SHARES, earn 3OMB',
+  MasterNode: {
+    name: 'Generate FUDGE with Nodes',
     poolId: 0,
     sectionInUI: 3,
-    contract: 'TombFtmRewardPool',
-    depositTokenName: '2SHARES',
-    earnTokenName: '3OMB',
-    finished: true,
-    multiplier: '10000x',
-    buyLink: '',
-    site: '',
-    sort: 5,
+    contract: 'MasterNode',
+    depositTokenName: 'FUDGE',
+    earnTokenName: 'FUDGE',
+    finished: false,
+    multiplier: 'NODE',
+    site: 'sundaefinance.app',
+    buyLink: 'https://traderjoexyz.com/trade#/0xD9FF12172803c072a36785DeFea1Aa981A6A0C18',
+    sort: 2,
     closedForStaking: false,
   },
-  Tomb2SHARESFTMRebates: {
-    name: 'Bond 2SHARES-WFTM LP, earn 3OMB',
-    poolId: 1,
-    sectionInUI: 3,
-    contract: 'TombFtmRewardPool',
-    depositTokenName: '2SHARES-WFTM LP',
-    earnTokenName: '3OMB',
-    finished: true,
-    multiplier: '12000x',
-    buyLink: '',
-    site: '',
-    sort: 4,
-    closedForStaking: false,
-  },
-  Tomb3OMBFTMRebates: {
-    name: 'Bond 3OMB-WFTM LP, earn 3OMB',
-    poolId: 2,
-    sectionInUI: 3,
-    contract: 'TombFtmRewardPool',
-    depositTokenName: '3OMB-WFTM LP',
-    earnTokenName: '3OMB',
-    finished: true,
-    multiplier: '6000x',
-    buyLink: '',
-    site: '',
-    sort: 1,
-    closedForStaking: false,
-  },
-  Tomb3SHARESRebates: {
-    name: 'Bond 3SHARES, earn 3OMB',
-    poolId: 3,
-    sectionInUI: 3,
-    contract: 'TombFtmRewardPool',
-    depositTokenName: '3SHARES',
-    earnTokenName: '3OMB',
-    finished: true,
-    multiplier: '5000x',
-    buyLink: '',
-    site: '',
-    sort: 3,
-    closedForStaking: false,
-  }, */
-  //Tomb3SHARESFTMRebates: {
-  // name: 'Bond 3SHARES-WFTM LP, earn 3OMB',
-  // poolId: 4,
-  // sectionInUI: 3,
-  //  contract: 'TombFtmRewardPool',
-  //  depositTokenName: '3SHARES-WFTM LP',
-  //  earnTokenName: '3OMB',
-  //  finished: false,
-  //  multiplier: '6000x',
-  //  buyLink: '',
-  //   site: '',
-  //   sort: 2,
-  //   closedForStaking: false,
-  // },
+
+
 };
 
 export default configurations['production'];
