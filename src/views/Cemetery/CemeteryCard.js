@@ -87,6 +87,7 @@ const CemeteryCard = ({ bank }) => {
 
   const [onPresentDeposit, onDismissDeposit] = useModal(
     <DepositModal
+      bank={bank}
       max={tokenBalance}
       decimals={bank.depositToken.decimal}
       onConfirm={(amount) => {

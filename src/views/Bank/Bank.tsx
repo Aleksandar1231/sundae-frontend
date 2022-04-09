@@ -99,6 +99,9 @@ const Bank: React.FC = () => {
         <Grid container justify="center" spacing={3} style={{ marginBottom: '50px' }}>
           {bank.sectionInUI === 3 &&
             <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
+               <StyledOutlineWrapper>
+                  <StyledOutline />
+              
               <Card >
                 <CardContent style={{ textAlign: 'center', alignItems: 'center', display:'flex', flexDirection:'column', position: 'relative', backgroundColor: 'white' }}>
                   <Typography>Node Type</Typography>
@@ -109,6 +112,7 @@ const Bank: React.FC = () => {
                   </Select>
                 </CardContent>
               </Card>
+              </StyledOutlineWrapper>
             </Grid>
           }
 
@@ -159,10 +163,12 @@ const Bank: React.FC = () => {
             </div>
             :
             hasNodes ?
-              <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row' }}>
-                <Card >
-                  <CardContent>
-                    <StyledTitle>Nodes</StyledTitle>
+            <Grid container justify="center" spacing={3} style={{ marginBottom: '50px' }}>
+                
+                <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
+                  <Card>
+                    <CardContent style={{ textAlign: 'center', boxShadow: 'none !important', position: 'relative', backgroundColor: 'white' }}>
+                    <h2>Nodes</h2>
                     {nodes.map((num, id) => {
                       return num.gt(0)
                         ?
@@ -178,24 +184,31 @@ const Bank: React.FC = () => {
                     })}
                   </CardContent>
                 </Card>
-                <Card>
-                  <CardContent>
-                    <StyledTitle>Claimed</StyledTitle>
+                </Grid>
+
+
+                <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
+                  <Card>
+                    <CardContent style={{ textAlign: 'center', boxShadow: 'none !important', position: 'relative', backgroundColor: 'white' }}>
+                    <h2>Claimed</h2>
                     <Text style={{ fontSize: '1rem', marginTop: '8px' }}>
                       {getDisplayBalance(claimBalance, 18, 2)} FUDGE
                     </Text>
                   </CardContent>
                 </Card>
-                <Card >
-                  <CardContent>
-                    <StyledTitle>Max Payout</StyledTitle>
-                    <Text style={{ fontSize: '1rem', marginTop: '8px' }}>
-                      {getDisplayBalance(maxPayout, 18, 0)} FUDGE
-                    </Text>
-                  </CardContent>
-                </Card>
+                </Grid>
 
-              </div>
+                <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
+                  <Card>
+                    <CardContent style={{ textAlign: 'center', boxShadow: 'none !important', position: 'relative', backgroundColor: 'white' }}>
+                      <h2>Max Payout</h2>
+                      <Text style={{ fontSize: '1rem', marginTop: '8px' }}>
+                        {getDisplayBalance(maxPayout, 18, 0)} FUDGE
+                      </Text>
+                    </CardContent>
+                  </Card>
+                </Grid>
+            </Grid>
               : null
 
           }
@@ -299,7 +312,7 @@ const StyledTitle = styled.h1`
 `;
 
 const StyledOutline = styled.div`
-  background: #1d48b6;
+  background: #e534eb;
   background-size: 300% 300%;
   border-radius: 0px;
   filter: blur(8px);
@@ -313,19 +326,19 @@ const StyledOutline = styled.div`
 
 const StyledOutlineWrapper = styled.div`    
     position: relative;
-    background: #08090d;
-    border-radius: 0px;
+    background: #e534eb;
+    border-radius: 14px;
     box-shadow: 0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 1px 1px rgba(25, 19, 38, 0.05)
 `;
 
 const StyledMenuItem = withStyles({
   root: {
-    backgroundColor: '#08090d',
-    color: '#dddfee',
+    backgroundColor: '#fff',
+    color: '#000',
     textAlign: 'center',
     '&:hover': {
-      backgroundColor: 'black',
-      color: '#1d48b6',
+      backgroundColor: 'white',
+      color: '#e534eb !important',
     },
     selected: {
       backgroundColor: 'white',
