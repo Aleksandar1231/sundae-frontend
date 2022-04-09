@@ -99,19 +99,19 @@ const Bank: React.FC = () => {
         <Grid container justify="center" spacing={3} style={{ marginBottom: '50px' }}>
           {bank.sectionInUI === 3 &&
             <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-               <StyledOutlineWrapper>
-                  <StyledOutline />
-              
-              <Card >
-                <CardContent style={{ textAlign: 'center', alignItems: 'center', display:'flex', flexDirection:'column', position: 'relative', backgroundColor: 'white' }}>
-                  <Typography>Node Type</Typography>
-                  <Select variant='outlined' onChange={handleChangeLockup} style={{ height: '2.5rem', color: '#1d48b6', fontSize: '16px', fontWeight: 'bold', textAlign: 'center', marginBottom: '-16px' }} labelId="label" id="select" value={poolId}>
-                    <StyledMenuItem value={0}>{getNodeText(0)}</StyledMenuItem>
-                    <StyledMenuItem value={1}>{getNodeText(1)}</StyledMenuItem>
-                    <StyledMenuItem value={2}>{getNodeText(2)}</StyledMenuItem>
-                  </Select>
-                </CardContent>
-              </Card>
+              <StyledOutlineWrapper>
+                <StyledOutline />
+
+                <Card >
+                  <CardContent style={{ textAlign: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column', position: 'relative', backgroundColor: 'white' }}>
+                    <Typography>Node Type</Typography>
+                    <Select variant='outlined' onChange={handleChangeLockup} style={{ height: '2.5rem', color: '#1d48b6', fontSize: '16px', fontWeight: 'bold', textAlign: 'center', marginBottom: '-16px' }} labelId="label" id="select" value={poolId}>
+                      <StyledMenuItem value={0}>{getNodeText(0)}</StyledMenuItem>
+                      <StyledMenuItem value={1}>{getNodeText(1)}</StyledMenuItem>
+                      <StyledMenuItem value={2}>{getNodeText(2)}</StyledMenuItem>
+                    </Select>
+                  </CardContent>
+                </Card>
               </StyledOutlineWrapper>
             </Grid>
           }
@@ -163,52 +163,54 @@ const Bank: React.FC = () => {
             </div>
             :
             hasNodes ?
-            <Grid container justify="center" spacing={3} style={{ marginBottom: '50px' }}>
-                
-                <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
+              <Grid container justify="center" spacing={3} style={{ marginBottom: '50px' }}>
+
+                <Grid item xs={12} md={4} style={{ display: 'flex' }}>
                   <Card>
                     <CardContent style={{ textAlign: 'center', boxShadow: 'none !important', position: 'relative', backgroundColor: 'white' }}>
-                    <h2>Nodes</h2>
-                    {nodes.map((num, id) => {
-                      return num.gt(0)
-                        ?
-                        <Text style={{ display: 'flex', fontSize: '1rem', marginTop: '8px' }} key={id}>
-                          <b style={{ color: 'rgb(29, 72, 182)', marginRight: '8px' }}>
-                            {num.toString()}x
-                          </b>
-                          <div>
-                            {getNodeText(id)}{num.gt(1) ? 's' : ''}
-                          </div>
-                        </Text>
-                        : null;
-                    })}
-                  </CardContent>
-                </Card>
-                </Grid>
-
-
-                <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                  <Card>
-                    <CardContent style={{ textAlign: 'center', boxShadow: 'none !important', position: 'relative', backgroundColor: 'white' }}>
-                    <h2>Claimed</h2>
-                    <Text style={{ fontSize: '1rem', marginTop: '8px' }}>
-                      {getDisplayBalance(claimBalance, 18, 2)} FUDGE
-                    </Text>
-                  </CardContent>
-                </Card>
-                </Grid>
-
-                <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                  <Card>
-                    <CardContent style={{ textAlign: 'center', boxShadow: 'none !important', position: 'relative', backgroundColor: 'white' }}>
-                      <h2>Max Payout</h2>
-                      <Text style={{ fontSize: '1rem', marginTop: '8px' }}>
-                        {getDisplayBalance(maxPayout, 18, 0)} FUDGE
-                      </Text>
+                      <h2>Nodes</h2>
+                      {nodes.map((num, id) => {
+                        return num.gt(0)
+                          ?
+                          <Text style={{ display: 'flex', fontSize: '1rem', marginTop: '8px' }} key={id}>
+                            <b style={{ color: 'rgb(29, 72, 182)', marginRight: '8px' }}>
+                              {num.toString()}x
+                            </b>
+                            <div>
+                              {getNodeText(id)}{num.gt(1) ? 's' : ''}
+                            </div>
+                          </Text>
+                          : null;
+                      })}
                     </CardContent>
                   </Card>
                 </Grid>
-            </Grid>
+
+                <Grid item xs={12} md={4} style={{ display: 'flex', flexDirection: "column" }}>
+
+                  <Grid item xs={12} style={{ marginBottom: '10px' }}>
+                    <Card>
+                      <CardContent style={{ textAlign: 'center', boxShadow: 'none !important', position: 'relative', backgroundColor: 'white' }}>
+                        <h2>Claimed</h2>
+                        <Text style={{ fontSize: '1rem', marginTop: '8px' }}>
+                          {getDisplayBalance(claimBalance, 18, 2)} FUDGE
+                        </Text>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+
+                  <Grid item xs={12} >
+                    <Card>
+                      <CardContent style={{ textAlign: 'center', boxShadow: 'none !important', position: 'relative', backgroundColor: 'white' }}>
+                        <h2>Max Payout</h2>
+                        <Text style={{ fontSize: '1rem', marginTop: '8px' }}>
+                          {getDisplayBalance(maxPayout, 18, 0)} FUDGE
+                        </Text>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                </Grid>
+              </Grid>
               : null
 
           }
