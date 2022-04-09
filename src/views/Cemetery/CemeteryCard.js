@@ -74,10 +74,9 @@ const CemeteryCard = ({ bank }) => {
     [tokenStats],
   );
   const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
-
-  const stakedBalance = useStakedBalance(bank.contract, bank.poolId);
+  const stakedBalance = useStakedBalance(bank.contract, bank.poolId, bank.sectionInUI);
   const stakedTokenPriceInDollars = useStakedTokenPriceInDollars(bank.depositTokenName, bank.depositToken);
-  
+
   const stakedInDollars = (
     Number(stakedTokenPriceInDollars) * Number(getDisplayBalance(stakedBalance, bank.depositToken.decimal))
   ).toFixed(2);
@@ -116,16 +115,16 @@ const CemeteryCard = ({ bank }) => {
     < Grid item xs={12} md={4} lg={4} >
       <Card>
         <CardContent style={{ position: 'relative', backgroundColor: 'white' }}>
-          <Grid style={{ display: 'flex', margin: '10px',justifyContent: "space-between" }}>
+          <Grid style={{ display: 'flex', margin: '10px', justifyContent: "space-between" }}>
             <Grid>
               <TokenSymbol symbol={bank.depositTokenName} />
             </Grid>
             <Grid mt={2} mb={4} >
               <Box>
-              <h2 style={{ marginBottom: '10px', color: 'black', textAlign:'right' }}>{bank.depositTokenName}</h2>
-              <div style={{ display: 'flex', justifyContent: 'right', alignItems: 'right' }}>
-                <h3 style={{ marginBottom: '10px', color: 'black' }}>{bank.multiplier}</h3>
-              </div>
+                <h2 style={{ marginBottom: '10px', color: 'black', textAlign: 'right' }}>{bank.depositTokenName}</h2>
+                <div style={{ display: 'flex', justifyContent: 'right', alignItems: 'right' }}>
+                  <h3 style={{ marginBottom: '10px', color: 'black' }}>{bank.multiplier}</h3>
+                </div>
               </Box>
             </Grid>
           </Grid>
@@ -243,7 +242,7 @@ const CemeteryCard = ({ bank }) => {
 
 
 
- 
+
 };
 
 export default CemeteryCard;
