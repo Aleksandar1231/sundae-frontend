@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 import { useWallet } from 'use-wallet';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Box, Button, Card, CardContent, Typography, Grid, Select, withStyles, MenuItem } from '@material-ui/core';
-
+import { Box, Button, CardContent, Typography, Grid, Select, withStyles, MenuItem } from '@material-ui/core';
+import Card from '../../components/Card';
 import PageHeader from '../../components/PageHeader';
 import Spacer from '../../components/Spacer';
 import UnlockWallet from '../../components/UnlockWallet';
@@ -55,7 +55,7 @@ const Bank: React.FC = () => {
   const claimBalance = useClaimedBalance(bank.contract, bank.sectionInUI, account);
   const maxPayout = useStakedBalance(bank.contract, bank.poolId, bank.sectionInUI, account).mul(4);
   const [width, setWidth] = useState(window.innerWidth);
-  
+
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
   }
@@ -69,7 +69,7 @@ const Bank: React.FC = () => {
   const isMobile = width <= 768
   const nodeStartTime = 0;
   const isNodeStart = bank.sectionInUI !== 3 || Date.now() / 1000 >= nodeStartTime;
-  
+
   const handleChangeLockup = (event: any) => {
     const value = event.target.value;
     setPoolId(Number(value));
@@ -93,30 +93,27 @@ const Bank: React.FC = () => {
           ? `Deposit ${bank?.depositTokenName} and earn ${bank?.earnTokenName}`
           : `Purchase nodes to generate FUDGE`
         }
-        title= {bank?.name}
+        title={bank?.name}
       />
       <Box>
         <Grid container justify="center" spacing={3} style={{ marginBottom: '50px' }}>
-        {bank.sectionInUI === 3 &&
+          {bank.sectionInUI === 3 &&
             <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-              <StyledOutlineWrapper>
-                <StyledOutline />
-                <Card className={classes.gridItem}>
-                  <CardContent style={{ textAlign: 'center' }}>
-                    <Typography>Node Type</Typography>
-                    <Select variant='outlined' onChange={handleChangeLockup} style={{ height: '2.5rem', color: '#1d48b6', fontSize: '16px', fontWeight: 'bold', textAlign: 'center', marginLeft: '1rem', marginBottom: '-16px' }} labelId="label" id="select" value={poolId}>
-                      <StyledMenuItem value={0}>{getNodeText(0)}</StyledMenuItem>
-                      <StyledMenuItem value={1}>{getNodeText(1)}</StyledMenuItem>
-                      <StyledMenuItem value={2}>{getNodeText(2)}</StyledMenuItem>
-                    </Select>
-                  </CardContent>
-                </Card>
-              </StyledOutlineWrapper>
+              <Card >
+                <CardContent style={{ textAlign: 'center', alignItems: 'center', display:'flex', flexDirection:'column' }}>
+                  <Typography>Node Type</Typography>
+                  <Select variant='outlined' onChange={handleChangeLockup} style={{ height: '2.5rem', color: '#1d48b6', fontSize: '16px', fontWeight: 'bold', textAlign: 'center', marginBottom: '-16px' }} labelId="label" id="select" value={poolId}>
+                    <StyledMenuItem value={0}>{getNodeText(0)}</StyledMenuItem>
+                    <StyledMenuItem value={1}>{getNodeText(1)}</StyledMenuItem>
+                    <StyledMenuItem value={2}>{getNodeText(2)}</StyledMenuItem>
+                  </Select>
+                </CardContent>
+              </Card>
             </Grid>
           }
 
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-            <Card className={classes.gridItem} style={{ border: '1px solid var(--white)', backgroundColor: 'rgba(229, 152, 155, 0.1)', boxShadow: 'none' }}>
+            <Card>
               <CardContent style={{ textAlign: 'center', boxShadow: 'none !important' }}>
                 <Typography>APR</Typography>
                 <Typography>{bank.closedForStaking ? '0.00' : statsOnPool?.yearlyAPR}%</Typography>
@@ -124,7 +121,7 @@ const Bank: React.FC = () => {
             </Card>
           </Grid>
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-            <Card className={classes.gridItem} style={{ border: '1px solid var(--white)', backgroundColor: 'rgba(229, 152, 155, 0.1)', boxShadow: 'none' }}>
+            <Card >
               <CardContent style={{ textAlign: 'center' }}>
                 <Typography>Daily APR</Typography>
                 <Typography>{bank.closedForStaking ? '0.00' : statsOnPool?.dailyAPR}%</Typography>
@@ -132,7 +129,7 @@ const Bank: React.FC = () => {
             </Card>
           </Grid>
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-            <Card className={classes.gridItem} style={{ border: '1px solid var(--white)', backgroundColor: 'rgba(229, 152, 155, 0.1)', boxShadow: 'none' }}>
+            <Card >
               <CardContent style={{ textAlign: 'center' }}>
                 <Typography>TVL</Typography>
                 <Typography>${statsOnPool?.TVL}</Typography>
@@ -162,8 +159,8 @@ const Bank: React.FC = () => {
             </div>
             :
             hasNodes ?
-              <div style={{ display: 'flex',  flexDirection: isMobile ? 'column' : 'row' }}>
-                <Card style={{ backgroundColor: '#08090d' }}>
+              <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row' }}>
+                <Card >
                   <CardContent>
                     <StyledTitle>Nodes</StyledTitle>
                     {nodes.map((num, id) => {
@@ -181,7 +178,7 @@ const Bank: React.FC = () => {
                     })}
                   </CardContent>
                 </Card>
-                <Card style={{ marginLeft: isMobile ? '0' : '1.5rem', marginTop: isMobile ? '1.5rem' : '0'}}>
+                <Card>
                   <CardContent>
                     <StyledTitle>Claimed</StyledTitle>
                     <Text style={{ fontSize: '1rem', marginTop: '8px' }}>
@@ -189,7 +186,7 @@ const Bank: React.FC = () => {
                     </Text>
                   </CardContent>
                 </Card>
-                <Card style={{ marginLeft: isMobile ? '0' : '1.5rem', marginTop: isMobile ? '1.5rem' : '0'}}>
+                <Card >
                   <CardContent>
                     <StyledTitle>Max Payout</StyledTitle>
                     <Text style={{ fontSize: '1rem', marginTop: '8px' }}>
@@ -198,8 +195,8 @@ const Bank: React.FC = () => {
                   </CardContent>
                 </Card>
 
-          </div>
-          : null
+              </div>
+              : null
 
           }
           <Spacer size="lg" />

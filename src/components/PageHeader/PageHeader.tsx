@@ -31,13 +31,14 @@ const StyledPageHeader = styled.div`
 const StyledTitle = styled.h1`
   color: ${(props) => props.theme.color.black};
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 600;
+  text-align: center;
   margin: 0;
   padding: 0;
 `;
 
 const StyledSubtitle = styled.h3`
-  color: ${(props) => props.theme.color.grey[700]};
+  color: ${(props) => props.theme.color.black};
   font-size: 18px;
   font-weight: 400;
   margin: 0;
