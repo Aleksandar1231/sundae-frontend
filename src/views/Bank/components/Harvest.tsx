@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
-import { Button, Card, CardContent } from '@material-ui/core';
+import { Button, Card, CardContent, Typography } from '@material-ui/core';
 // import Button from '../../../components/Button';
 // import Card from '../../../components/Card';
 // import CardContent from '../../../components/CardContent';
@@ -36,7 +36,7 @@ const Harvest: React.FC<HarvestProps> = ({ bank }) => {
   );
   const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
   return (
-    <Card style={{ boxShadow: 'none !important', border: '1px solid var(--white)', backgroundColor: 'rgba(229, 152, 155, 0.1)' }}>
+    <Card>
       <CardContent>
         <StyledCardContentInner>
           <StyledCardHeader>
@@ -44,8 +44,14 @@ const Harvest: React.FC<HarvestProps> = ({ bank }) => {
               <TokenSymbol symbol={bank.earnToken.symbol} />
             </CardIcon>
             <Value value={getDisplayBalance(earnings)} />
-            <Label text={`≈ $${earnedInDollars}`} />
-            <Label text={`${tokenName} Earned`} />
+            <Typography style={{ textTransform: 'uppercase', color: '#fffff' }}>
+              {`≈ $${earnedInDollars}`}
+            </Typography>
+            {/* <Label text={`≈ $${earnedInDollars}`} /> */}
+            <Typography style={{ textTransform: 'uppercase', color: '#1d48b6' }}>
+              {`${tokenName} ${bank.sectionInUI === 3 ? 'Generated' : 'Earned'}`}
+            </Typography>
+            {/* <Label text={`${tokenName} Earned`} /> */}
           </StyledCardHeader>
           <StyledCardActions>
             <Button onClick={onReward} disabled={earnings.eq(0)} color="primary" variant="contained">

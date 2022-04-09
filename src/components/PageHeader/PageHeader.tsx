@@ -30,10 +30,10 @@ const StyledPageHeader = styled.div`
 
 const StyledTitle = styled.h1`
   color: ${(props) => props.theme.color.black};
-  font-size: 36px;
-  font-weight: 600;
+  font-size: 3rem !important;
+  font-weight: 400;
   text-align: center;
-  margin: 0;
+  margin-bottom: 0.35em;
   padding: 0;
 `;
 

@@ -2,7 +2,7 @@ import React, { useMemo, useContext } from 'react';
 import styled from 'styled-components';
 
 // import Button from '../../../components/Button';
-import { Button, Card, CardContent } from '@material-ui/core';
+import { Button, Card, CardContent, Typography } from '@material-ui/core';
 // import Card from '../../../components/Card';
 // import CardContent from '../../../components/CardContent';
 import CardIcon from '../../../components/CardIcon';
@@ -31,6 +31,7 @@ import ZapModal from './ZapModal';
 import TokenSymbol from '../../../components/TokenSymbol';
 import { Bank } from '../../../tomb-finance';
 
+
 interface StakeProps {
   bank: Bank;
 }
@@ -38,7 +39,6 @@ interface StakeProps {
 const Stake: React.FC<StakeProps> = ({ bank }) => {
   const [approveStatus, approve] = useApprove(bank.depositToken, bank.address);
 
-  const { color: themeColor } = useContext(ThemeContext);
   const tokenBalance = useTokenBalance(bank.depositToken);
   const { account } = useWallet();
   const stakedBalance = useStakedBalance(bank.contract, bank.poolId, bank.sectionInUI, account);
@@ -59,6 +59,7 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
 
   const [onPresentDeposit, onDismissDeposit] = useModal(
     <DepositModal
+      bank={bank}
       max={tokenBalance}
       decimals={bank.depositToken.decimal}
       onConfirm={(amount) => {
@@ -96,16 +97,20 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
   );
 
   return (
-    <Card style={{ boxShadow: 'none !important', backgroundColor: 'rgba(229, 152, 155, 0.1)' }}>
+    <Card >
       <CardContent>
         <StyledCardContentInner>
           <StyledCardHeader>
             <CardIcon>
-              <TokenSymbol symbol={bank.depositToken.symbol} size={54} />
+            <TokenSymbol symbol={bank.sectionInUI !== 3 ? bank.depositToken.symbol : 'NODE'} size={54} />
             </CardIcon>
-            <Value value={getDisplayBalance(stakedBalance, bank.depositToken.decimal)} />
-            <Label text={`≈ $${earnedInDollars}`} />
-            <Label text={`${bank.depositTokenName} Staked`} />
+            <Value value={getDisplayBalance(bank.sectionInUI !== 3 ? stakedBalance : nodePrice, bank.depositToken.decimal, bank.sectionInUI === 3 ? 0 : 4)} />
+            <Typography style={{ textTransform: 'uppercase', color: '#fffff' }}>
+              {`≈ $${earnedInDollars}`}
+            </Typography>
+            <Typography style={{ textTransform: 'uppercase', color: '#1d48b6' }}>
+              {`${bank.sectionInUI !== 3 ? bank.depositTokenName : getNodeText(bank.poolId)} ${bank.sectionInUI !== 3 ? 'Staked' : 'Price'}`}
+            </Typography>
           </StyledCardHeader>
           <StyledCardActions>
             {approveStatus !== ApprovalState.APPROVED ? (
@@ -124,17 +129,21 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
               </Button>
             ) : (
               <>
-                <IconButton onClick={onPresentWithdraw}>
+                {bank.sectionInUI !== 3 && <><IconButton onClick={onPresentWithdraw}>
                   <RemoveIcon />
                 </IconButton>
-                <StyledActionSpacer />
-                {/* <IconButton
-                  disabled={bank.closedForStaking || bank.depositTokenName === 'TOMB-FTM-LP'}
-                  onClick={() => (bank.closedForStaking ? null : onPresentZap())}
-                >
-                  <FlashOnIcon style={{ color: themeColor.grey[400] }} />
-                </IconButton> */}
-                <StyledActionSpacer />
+                  <StyledActionSpacer />
+                  <IconButton
+                    disabled={
+                      bank.closedForStaking ||
+                      bank.depositTokenName === 'FUDGE-STRAW-LP' ||
+                      bank.depositTokenName === 'FUDGE'
+                    }
+                    onClick={() => (bank.closedForStaking ? null : onPresentZap())}
+                  >
+                    <FlashOnIcon />
+                  </IconButton>
+                  <StyledActionSpacer /> </>}
                 <IconButton
                   disabled={bank.closedForStaking}
                   onClick={() => (bank.closedForStaking ? null : onPresentDeposit())}

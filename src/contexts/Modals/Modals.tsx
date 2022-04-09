@@ -65,7 +65,6 @@ const StyledModalWrapper = styled.div`
 `;
 
 const StyledModalBackdrop = styled.div`
-  background-color: #00000088;
   position: absolute;
   top: 0;
   right: 0;
