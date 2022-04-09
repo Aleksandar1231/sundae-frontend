@@ -100,7 +100,7 @@ const Bank: React.FC = () => {
           {bank.sectionInUI === 3 &&
             <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
               <Card >
-                <CardContent style={{ textAlign: 'center', alignItems: 'center', display:'flex', flexDirection:'column' }}>
+                <CardContent style={{ textAlign: 'center', alignItems: 'center', display:'flex', flexDirection:'column', position: 'relative', backgroundColor: 'white' }}>
                   <Typography>Node Type</Typography>
                   <Select variant='outlined' onChange={handleChangeLockup} style={{ height: '2.5rem', color: '#1d48b6', fontSize: '16px', fontWeight: 'bold', textAlign: 'center', marginBottom: '-16px' }} labelId="label" id="select" value={poolId}>
                     <StyledMenuItem value={0}>{getNodeText(0)}</StyledMenuItem>
@@ -114,7 +114,7 @@ const Bank: React.FC = () => {
 
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
             <Card>
-              <CardContent style={{ textAlign: 'center', boxShadow: 'none !important' }}>
+              <CardContent style={{ textAlign: 'center', boxShadow: 'none !important', position: 'relative', backgroundColor: 'white' }}>
                 <Typography>APR</Typography>
                 <Typography>{bank.closedForStaking ? '0.00' : statsOnPool?.yearlyAPR}%</Typography>
               </CardContent>
@@ -122,7 +122,7 @@ const Bank: React.FC = () => {
           </Grid>
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
             <Card >
-              <CardContent style={{ textAlign: 'center' }}>
+              <CardContent style={{ textAlign: 'center', position: 'relative', backgroundColor: 'white' }}>
                 <Typography>Daily APR</Typography>
                 <Typography>{bank.closedForStaking ? '0.00' : statsOnPool?.dailyAPR}%</Typography>
               </CardContent>
@@ -130,7 +130,7 @@ const Bank: React.FC = () => {
           </Grid>
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
             <Card >
-              <CardContent style={{ textAlign: 'center' }}>
+              <CardContent style={{ textAlign: 'center', position: 'relative', backgroundColor: 'white' }}>
                 <Typography>TVL</Typography>
                 <Typography>${statsOnPool?.TVL}</Typography>
               </CardContent>
