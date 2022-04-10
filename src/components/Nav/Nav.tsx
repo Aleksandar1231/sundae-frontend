@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     'backdrop-filter': 'blur(10px)',
     // borderBottom: `1px solid ${theme.palette.divider}`,
     padding: '0 10px',
-    marginBottom: '3rem',
     position: 'sticky',
   },
   drawer: {

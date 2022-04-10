@@ -96,8 +96,8 @@ const Home = () => {
   const [banks] = useBanks();
   const activeBanks = banks.filter((bank) => !bank.finished);
   const creamAvaxBank = activeBanks[0];
-  const cshareAvaxBank = activeBanks[1];
-  const cshareCreamBank = activeBanks[3];
+  const cshareAvaxBank = activeBanks[1]; //
+  const cshareCreamBank = activeBanks[3]; // fudge
   const stakedBalanceCreamAvax = useStakedBalance(creamAvaxBank.contract, creamAvaxBank.poolId);
   const stakedBalanceCshareAvax = useStakedBalance(cshareAvaxBank.contract, cshareAvaxBank.poolId);
   const stakedBalanceCshareCream = useStakedBalance(cshareCreamBank.contract, cshareCreamBank.poolId);
