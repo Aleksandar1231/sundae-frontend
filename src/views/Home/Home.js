@@ -95,67 +95,68 @@ const Home = () => {
 
   const [banks] = useBanks();
   const activeBanks = banks.filter((bank) => !bank.finished);
-  const creamAvaxBank = activeBanks[0];
-  const cshareAvaxBank = activeBanks[1]; //
-  const cshareCreamBank = activeBanks[3]; // fudge
-  const stakedBalanceCreamAvax = useStakedBalance(creamAvaxBank.contract, creamAvaxBank.poolId);
-  const stakedBalanceCshareAvax = useStakedBalance(cshareAvaxBank.contract, cshareAvaxBank.poolId);
-  const stakedBalanceCshareCream = useStakedBalance(cshareCreamBank.contract, cshareCreamBank.poolId);
-  const stakedTokenPriceInDollarsCreamAvax = useStakedTokenPriceInDollars(
-    creamAvaxBank.depositTokenName,
-    creamAvaxBank.depositToken,
+  const fudgeBank = banks.filter((bank) => bank.contract === "FudgeLPTShareRewardPool")[0]
+  const fudgeDaiBank = banks.filter((bank) => bank.contract === "FudgeDaiLPTShareRewardPool")[0]
+  const strawAvaxBank = banks.filter((bank) => bank.contract === "StrawAvaxLPTShareRewardPool")[0]
+
+  const stakedBalanceFudge = useStakedBalance(fudgeBank.contract, fudgeBank.poolId, 2);
+  const stakedBalanceFudgeDai = useStakedBalance(fudgeDaiBank.contract, fudgeDaiBank.poolId, 2);
+  const stakedBalanceStrawAvax = useStakedBalance(strawAvaxBank.contract, strawAvaxBank.poolId, 2);
+  const stakedTokenPriceInDollarsFudge = useStakedTokenPriceInDollars(
+    fudgeBank.depositTokenName,
+    fudgeBank.depositToken,
   );
-  const stakedTokenPriceInDollarsCshareAvax = useStakedTokenPriceInDollars(
-    cshareAvaxBank.depositTokenName,
-    cshareAvaxBank.depositToken,
+  const stakedTokenPriceInDollarsFudgeDai = useStakedTokenPriceInDollars(
+    fudgeDaiBank.depositTokenName,
+    fudgeDaiBank.depositToken,
   );
-  const stakedTokenPriceInDollarsCshareCream = useStakedTokenPriceInDollars(
-    cshareCreamBank.depositTokenName,
-    cshareCreamBank.depositToken,
+  const stakedTokenPriceInDollarsStrawAvax = useStakedTokenPriceInDollars(
+    strawAvaxBank.depositTokenName,
+    strawAvaxBank.depositToken,
   );
-  const stakedInDollarsCreamAvax = (
-    Number(stakedTokenPriceInDollarsCreamAvax) *
-    Number(getDisplayBalance(stakedBalanceCreamAvax, creamAvaxBank.depositToken.decimal))
+  const stakedInDollarsFudge = (
+    Number(stakedTokenPriceInDollarsFudge) *
+    Number(getDisplayBalance(stakedBalanceFudge, fudgeBank.depositToken.decimal))
   ).toFixed(2);
-  const stakedInDollarsCshareAvax = (
-    Number(stakedTokenPriceInDollarsCshareAvax) *
-    Number(getDisplayBalance(stakedBalanceCshareAvax, cshareAvaxBank.depositToken.decimal))
+  const stakedInDollarsFudgeDai = (
+    Number(stakedTokenPriceInDollarsFudgeDai) *
+    Number(getDisplayBalance(stakedBalanceFudgeDai, fudgeDaiBank.depositToken.decimal))
   ).toFixed(2);
-  const stakedInDollarsCshareCream = (
-    Number(stakedTokenPriceInDollarsCshareCream) *
-    Number(getDisplayBalance(stakedBalanceCshareCream, cshareCreamBank.depositToken.decimal))
+  const stakedInDollarsStrawAvax = (
+    Number(stakedTokenPriceInDollarsStrawAvax) *
+    Number(getDisplayBalance(stakedBalanceStrawAvax, strawAvaxBank.depositToken.decimal))
   ).toFixed(2);
-  const earningsCreamAvax = useEarnings(creamAvaxBank.contract, creamAvaxBank.earnTokenName, creamAvaxBank.poolId);
-  const earningsCshareAvax = useEarnings(cshareAvaxBank.contract, cshareAvaxBank.earnTokenName, cshareAvaxBank.poolId);
-  const earningsCshareCream = useEarnings(
-    cshareCreamBank.contract,
-    cshareCreamBank.earnTokenName,
-    cshareCreamBank.poolId,
+  const earningsFudge = useEarnings(fudgeBank.contract, fudgeBank.earnTokenName, fudgeBank.poolId);
+  const earningsFudgeDai = useEarnings(fudgeDaiBank.contract, fudgeDaiBank.earnTokenName, fudgeDaiBank.poolId);
+  const earningsStrawAvax = useEarnings(
+    strawAvaxBank.contract,
+    strawAvaxBank.earnTokenName,
+    strawAvaxBank.poolId,
   );
-  const tokenStatsCreamAvax = creamAvaxBank.earnTokenName === 'STRAW' ? tShareStats : tombStats;
-  const tokenStatsCshareAvax = cshareAvaxBank.earnTokenName === 'STRAW' ? tShareStats : tombStats;
-  const tokenStatsCshareCream = cshareAvaxBank.earnTokenName === 'STRAW' ? tShareStats : tombStats;
-  const tokenPriceInDollarsCreamAvax = useMemo(
-    () => (tokenStatsCreamAvax ? Number(tokenStatsCreamAvax.priceInDollars).toFixed(2) : null),
-    [tokenStatsCreamAvax],
+  const tokenStatsFudge = fudgeBank.earnTokenName === 'STRAW' ? tShareStats : tombStats;
+  const tokenStatsFudgeDai = fudgeDaiBank.earnTokenName === 'STRAW' ? tShareStats : tombStats;
+  const tokenStatsStrawAvax = strawAvaxBank.earnTokenName === 'STRAW' ? tShareStats : tombStats;
+  const tokenPriceInDollarsFudge = useMemo(
+    () => (tokenStatsFudge ? Number(tokenStatsFudge.priceInDollars).toFixed(2) : null),
+    [tokenStatsFudge],
   );
-  const tokenPriceInDollarsCshareAvax = useMemo(
-    () => (tokenStatsCshareAvax ? Number(tokenStatsCshareAvax.priceInDollars).toFixed(2) : null),
-    [tokenStatsCshareAvax],
+  const tokenPriceInDollarsFudgeDai = useMemo(
+    () => (tokenStatsFudgeDai ? Number(tokenStatsFudgeDai.priceInDollars).toFixed(2) : null),
+    [tokenStatsFudgeDai],
   );
-  const tokenPriceInDollarsCshareCream = useMemo(
-    () => (tokenStatsCshareCream ? Number(tokenStatsCshareCream.priceInDollars).toFixed(2) : null),
-    [tokenStatsCshareCream],
+  const tokenPriceInDollarsStrawAvax = useMemo(
+    () => (tokenStatsStrawAvax ? Number(tokenStatsStrawAvax.priceInDollars).toFixed(2) : null),
+    [tokenStatsStrawAvax],
   );
-  const earnedInDollarsCreamAvax = (
-    Number(tokenPriceInDollarsCreamAvax) * Number(getDisplayBalance(earningsCreamAvax))
+  const earnedInDollarsFudge = (
+    Number(tokenPriceInDollarsFudge) * Number(getDisplayBalance(earningsFudge))
   ).toFixed(2);
 
-  const earnedInDollarsCshareAvax = (
-    Number(tokenPriceInDollarsCshareAvax) * Number(getDisplayBalance(earningsCshareAvax))
+  const earnedInDollarsFudgeDai = (
+    Number(tokenPriceInDollarsFudgeDai) * Number(getDisplayBalance(earningsFudgeDai))
   ).toFixed(2);
-  const earnedInDollarsCshareCream = (
-    Number(tokenPriceInDollarsCshareCream) * Number(getDisplayBalance(earningsCshareCream))
+  const earnedInDollarsStrawAvax = (
+    Number(tokenPriceInDollarsStrawAvax) * Number(getDisplayBalance(earningsStrawAvax))
   ).toFixed(2);
 
 
@@ -561,7 +562,7 @@ const Home = () => {
                         }}
                       >
                         <h4>Staked Amount:</h4>
-                        <h4>{`≈ $${stakedInDollarsCreamAvax}`}</h4>
+                        <h4>{`≈ $${stakedInDollarsFudgeDai}`}</h4>
 
                       </div>
                       <div
@@ -573,7 +574,7 @@ const Home = () => {
                         }}
                       >
                         <h4>Rewards Earned:</h4>
-                        <h4>{`≈ $${earnedInDollarsCreamAvax}`}</h4>
+                        <h4>{`≈ $${earnedInDollarsFudgeDai}`}</h4>
 
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
@@ -598,7 +599,7 @@ const Home = () => {
                         }}
                       >
                         <h4>Staked Amount:</h4>
-                        <h4>{`≈ $${stakedInDollarsCshareAvax}`}</h4>
+                        <h4>{`≈ $${stakedInDollarsStrawAvax}`}</h4>
 
                       </div>
                       <div
@@ -610,7 +611,7 @@ const Home = () => {
                         }}
                       >
                         <h4>Rewards Earned:</h4>
-                        <h4>{`≈ $${earnedInDollarsCshareAvax}`}</h4>
+                        <h4>{`≈ $${earnedInDollarsStrawAvax}`}</h4>
 
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
@@ -621,7 +622,7 @@ const Home = () => {
                     </div>
                   </div>
                   <div style={{ display: 'flex', marginTop: '20px' }}>
-                    <div style={{ width: '40%',  display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                       <TokenSymbol symbol="FUDGE" style={{ backgroundColor: 'transparent !important' }} />
                       <h4>FUDGE</h4>
                     </div>
@@ -635,7 +636,7 @@ const Home = () => {
                         }}
                       >
                         <h4>Staked Amount:</h4>
-                        <h4>{`≈ $${stakedInDollarsCshareCream}`}</h4>
+                        <h4>{`≈ $${stakedInDollarsFudge}`}</h4>
                       </div>
                       <div
                         style={{
@@ -646,7 +647,7 @@ const Home = () => {
                         }}
                       >
                         <h4>Rewards Earned:</h4>
-                        <h4>{`≈ $${earnedInDollarsCshareCream}`}</h4>
+                        <h4>{`≈ $${earnedInDollarsFudge}`}</h4>
                       </div>
                     </div>
                   </div>
