@@ -546,7 +546,7 @@ const Home = () => {
                     <h2>Rewards</h2>
                   </div>
                   <div style={{ display: 'flex', marginTop: '10px' }}>
-                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'space-between' }}>
+                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
                       <TokenSymbol symbol="FUDGE-DAI LP" style={{ backgroundColor: 'transparent !important' }} />
                       <h4>FUDGE-DAI LP</h4>
@@ -584,7 +584,7 @@ const Home = () => {
                     </div>
                   </div>
                   <div style={{ display: 'flex', marginTop: '20px' }}>
-                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'space-between' }}>
+                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                       <TokenSymbol symbol="STRAW-AVAX LP" style={{ backgroundColor: 'transparent !important' }} />
                       <h4>STRAW-AVAX LP</h4>
                     </div>
@@ -621,7 +621,7 @@ const Home = () => {
                     </div>
                   </div>
                   <div style={{ display: 'flex', marginTop: '20px' }}>
-                    <div style={{ width: '40%',  display: 'flex', flexDirection: 'column', alignItems: 'space-between' }}>
+                    <div style={{ width: '40%',  display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                       <TokenSymbol symbol="FUDGE" style={{ backgroundColor: 'transparent !important' }} />
                       <h4>FUDGE</h4>
                     </div>
