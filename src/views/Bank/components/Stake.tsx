@@ -144,12 +144,15 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
                     <FlashOnIcon />
                   </IconButton>
                   <StyledActionSpacer /> </>}
-                <IconButton
+                <Button
+                  color="primary"
+                  variant="contained"
+                  style={{ marginTop: '20px' }}
                   disabled={bank.closedForStaking}
                   onClick={() => (bank.closedForStaking ? null : onPresentDeposit())}
                 >
-                  <AddIcon />
-                </IconButton>
+                  Purchase Node
+                </Button>
               </>
             )}
           </StyledCardActions>

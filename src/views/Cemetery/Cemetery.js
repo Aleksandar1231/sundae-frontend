@@ -83,7 +83,7 @@ const Cemetery = () => {
                 {/* UNCOMMENT THIS AFTER GP ENDS  */}
 
 
-                <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 0).length === 0}>
+{/*                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 0).length === 0}>
                   <Typography
                     color="textPrimary"
                     variant="h4"
@@ -106,7 +106,7 @@ const Cemetery = () => {
                         </React.Fragment>
                       ))}
                   </Grid>
-                </div>
+                </div> */}
               </Box>
             </Container>
           ) : (

@@ -57,7 +57,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ bank, max, decimals, onConf
   return (
     <Modal>
       <ReactTooltip effect="solid" clickable type="dark" place="bottom" />
-      <ModalTitle text={bank.sectionInUI !== 3 ? `Deposit ${tokenName}` : `Purchase ${getNodeText(bank.poolId)}s`} />
+      <ModalTitle text={bank.sectionInUI !== 3 ? `Deposit ${tokenName}` : `Purchase ${getNodeText(bank.poolId)}s Node`} />
       {/* {node && <div style={{ display: 'flex' }}>
         <div style={{ margin: 'auto auto' }}>{' '}</div>
         <div style={{ color: '#bdbdbd', fontSize: '14px', fontWeight: '700' }}>RESETS LOCK TIME</div>

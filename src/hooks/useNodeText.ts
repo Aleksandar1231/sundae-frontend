@@ -11,8 +11,8 @@ const useNodeText = () => {
       case 0: return 'Single Scoop';
       case 1: return 'Double Scoop';
       case 2: return 'Triple Scoop';
-/*       case 3: return 'Mega Node';
-      case 4: return 'Giga Node'; */
+      case 3: return 'Quad Scoop';
+      case 4: return 'Sundae';
         default: return '';
     }
   }

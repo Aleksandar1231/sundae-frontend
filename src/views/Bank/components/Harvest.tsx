@@ -53,13 +53,13 @@ const Harvest: React.FC<HarvestProps> = ({ bank }) => {
             {/* <Label text={`${tokenName} Earned`} /> */}
           </StyledCardHeader>
           <StyledCardActions>
-            <Button 
-            onClick={onReward} 
-            disabled={earnings.eq(0)} 
-            color="primary" 
-            variant="contained">
-              
-            Claim
+          <Button
+              onClick={onReward}
+              disabled={earnings.eq(0)}
+              color="primary" 
+              variant="contained"
+            >
+              Claim
             </Button>
           </StyledCardActions>
         </StyledCardContentInner>

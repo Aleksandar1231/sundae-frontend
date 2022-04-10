@@ -264,7 +264,7 @@ const Home = () => {
   const [onPresentModal] = useModal(
     <Modal>
       <Box p={4}>
-        <h2 style={{ color: '#000' }}>Welcome to</h2>
+        <h2 style={{ color: '#ff0093' }}>Welcome to</h2>
         <h2>Sundae Finance</h2>
         <p>Algo stablecoin on Avalanche C Chain, pegged to the price of 1 DAI via seigniorage.</p>
         <p>
@@ -341,7 +341,7 @@ const Home = () => {
           <Grid container item xs={12} sm={7} spacing={3}>
             <Grid item xs={12}>
               <Card>
-                <CardContent style={{ position: 'relative', backgroundColor: 'white' }}>
+                <CardContent style={{ position: 'relative' }}>
                   <Grid container style={{ display: 'flex', padding: '15px' }}>
                     <Grid item xs={3}
                       style={{
@@ -408,7 +408,7 @@ const Home = () => {
 
             <Grid item xs={12}>
               <Card>
-                <CardContent style={{ position: 'relative', backgroundColor: 'white' }}>
+                <CardContent style={{ position: 'relative' }}>
                   <Grid container style={{ display: 'flex', padding: '15px' }}>
                     <Grid item xs={3}
                       style={{
@@ -474,7 +474,7 @@ const Home = () => {
 
             <Grid item xs={12}>
               <Card>
-                <CardContent style={{ position: 'relative', backgroundColor: 'white' }}>
+                <CardContent style={{ position: 'relative' }}>
                   <Grid container style={{ display: 'flex', padding: '15px' }}>
                     <Grid item xs={3}
                       style={{
@@ -512,7 +512,7 @@ const Home = () => {
                         <Grid xs={12} sm={6} style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end' }}>
 
                           <Link style={{ textDecoration: "none" }} to="/bonds">
-                            <Button variant="contained" color="primary" style={{ marginTop: '30px', backgroundColor: '#21ad8f' }}>
+                            <Button variant="contained" color="primary" style={{ marginTop: '30px', backgroundColor: '#ff0093' }}>
                               View BONDS
                             </Button>
                           </Link>
@@ -529,7 +529,7 @@ const Home = () => {
 
           <Grid item style={{ margin: '20px' }} sm={4} xs={12}>
             <Card xs={12}>
-              <CardContent style={{ backgroundColor: 'white' }}>
+              <CardContent >
 
                 <div
                   style={{
@@ -546,7 +546,7 @@ const Home = () => {
                     <h2>Rewards</h2>
                   </div>
                   <div style={{ display: 'flex', marginTop: '10px' }}>
-                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'space-between' }}>
 
                       <TokenSymbol symbol="FUDGE-DAI LP" style={{ backgroundColor: 'transparent !important' }} />
                       <h4>FUDGE-DAI LP</h4>
@@ -584,7 +584,7 @@ const Home = () => {
                     </div>
                   </div>
                   <div style={{ display: 'flex', marginTop: '20px' }}>
-                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'space-between' }}>
                       <TokenSymbol symbol="STRAW-AVAX LP" style={{ backgroundColor: 'transparent !important' }} />
                       <h4>STRAW-AVAX LP</h4>
                     </div>
@@ -621,7 +621,7 @@ const Home = () => {
                     </div>
                   </div>
                   <div style={{ display: 'flex', marginTop: '20px' }}>
-                    <div style={{ width: '40%',  display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div style={{ width: '40%',  display: 'flex', flexDirection: 'column', alignItems: 'space-between' }}>
                       <TokenSymbol symbol="FUDGE" style={{ backgroundColor: 'transparent !important' }} />
                       <h4>FUDGE</h4>
                     </div>

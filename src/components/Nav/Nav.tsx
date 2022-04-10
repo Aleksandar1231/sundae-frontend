@@ -67,17 +67,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '15px',
     margin: theme.spacing(10, 1, 1, 2),
     textDecoration: 'none',
-    '&:hover': {
-      color: '#571EB1',
-    },
+
   },
   brandLink: {
     textDecoration: 'none',
     color: '#000',
     alignItems:'left',
-    '&:hover': {
-      textDecoration: 'none',
-    },
   },
 }));
 

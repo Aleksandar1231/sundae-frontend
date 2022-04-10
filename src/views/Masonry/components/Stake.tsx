@@ -99,13 +99,24 @@ const Stake: React.FC = () => {
               ) : (
                 <>
                   <StyledCardActions2>
-                    <IconButton disabled={!canWithdrawFromMasonry} onClick={onPresentWithdraw}>
-                      <RemoveIcon />
-                    </IconButton>
+                    <Button 
+                    color="primary"
+                    variant="contained"
+                    style={{ borderRadius: '10px', marginTop:'20px' }}
+                    disabled={!canWithdrawFromMasonry} 
+                    onClick={onPresentWithdraw}
+                    >
+                    -
+                    </Button>
                     <StyledActionSpacer />
-                    <IconButton onClick={onPresentDeposit}>
-                      <AddIcon />
-                    </IconButton>
+                    <Button 
+                     color="primary"
+                     variant="contained"
+                     style={{ borderRadius: '10px', marginTop:'20px' }}
+                     onClick={onPresentDeposit}
+                     >
+                     +
+                    </Button>
                   </StyledCardActions2>
                 </>
               )}

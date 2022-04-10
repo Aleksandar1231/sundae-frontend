@@ -80,7 +80,7 @@ const Masonry = () => {
                 <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent align="center">
                     <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>Current Epoch</h3>
-                    <h2 style={{ fontWeight: 'lighter' }}>{Number(currentEpoch)}</h2>
+                    <h2 style={{ fontWeight: 'lighter', display: 'flex', fontSize: '1.5rem', marginTop: '8px', justifyContent:'center' }}>{Number(currentEpoch)}</h2>
 
                   </CardContent>
                 </Card>
@@ -91,33 +91,33 @@ const Masonry = () => {
                     <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>
                       Current TWAP
                     </h3>
-                    <h2 style={{ fontWeight: 'lighter' }}>{scalingFactor}</h2>
+                    <h2 style={{ fontWeight: 'lighter', display: 'flex', fontSize: '1.5rem', marginTop: '8px', justifyContent:'center' }}>{scalingFactor}</h2>
                   </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={3} className={classes.gridItem}>
                 <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent align="center">
-                    <Grid container style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
-                      <Grid xs={4}>
+                    {/* <Grid container style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}> */}
+{/*                       <Grid xs={4}>
 
                         <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>APR</h3>
-                        <h2 style={{ fontSize: '20px', fontWeight: 'lighter' }}>{masonryAPR.toFixed(2)}%</h2>
-                      </Grid>
-                      <Grid xs={4}>
+                        <h2 style={{ fontWeight: 'lighter', display: 'flex', fontSize: '1.5rem', marginTop: '8px', justifyContent:'center' }}>{masonryAPR.toFixed(2)}%</h2>
+                      </Grid> */}
+                      {/* <Grid xs={4}> */}
 
-                        <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>Daily</h3>
-                        <h2 style={{ fontSize: '20px', fontWeight: 'lighter' }}>{(masonryAPR / 365).toFixed(2)}%</h2>
-                      </Grid>
+                        <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>Daily APR</h3>
+                        <h2 style={{ fontWeight: 'lighter', display: 'flex', fontSize: '1.5rem', marginTop: '8px', justifyContent:'center' }}>{(masonryAPR / 365).toFixed(2)}%</h2>
+                      {/* </Grid> */}
 
-                      <Grid xs={4}>
+{/*                       <Grid xs={4}>
 
                         <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>Epoch</h3>
-                        <h2 style={{ fontSize: '20px', fontWeight: 'lighter' }}>{(masonryAPR / 365 / 4).toFixed(2)}%</h2>
-                      </Grid>
+                        <h2 style={{ fontWeight: 'lighter', display: 'flex', fontSize: '1.5rem', marginTop: '8px', justifyContent:'center' }}>{(masonryAPR / 365 / 4).toFixed(2)}%</h2>
+                      </Grid> */}
 
 
-                    </Grid>
+                    {/* </Grid> */}
                   </CardContent>
                 </Card>
               </Grid>
@@ -125,7 +125,7 @@ const Masonry = () => {
                 <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent align="center">
                     <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>STRAW Staked</h3>
-                    <h2 style={{ fontWeight: 'lighter' }}>{getDisplayBalance(totalStaked)}</h2>
+                    <h2 style={{ fontWeight: 'lighter', display: 'flex', fontSize: '1.5rem', marginTop: '8px', justifyContent:'center' }}>{getDisplayBalance(totalStaked)}</h2>
                   </CardContent>
                 </Card>
               </Grid>

@@ -387,8 +387,8 @@ contract Node {
     
 
     IERC20 public constant TOKEN = IERC20(0xD9FF12172803c072a36785DeFea1Aa981A6A0C18);
-    uint256[] public tierAllocPoints = [1 ether, 2.5 ether, 6.5 ether];
-    uint256[] public tierAmounts = [100 ether, 500 ether, 1000 ether];
+    uint256[] public tierAllocPoints = [1 ether, 2.1 ether, 4.41 ether, 9.261 ether, 19.4481 ether];
+    uint256[] public tierAmounts = [1 ether, 4 ether, 8 ether, 16 ether, 30 ether];
     struct User {
         uint256 total_deposits;
         uint256 total_claims;

@@ -211,7 +211,8 @@ const CemeteryCard = ({ bank }) => {
                           </Button>
                         </Grid>
                         <Grid item >
-                          <Button color="primary"
+                          <Button 
+                            color="primary"
                             variant="contained"
                             style={{ borderRadius: '10px' }}
                             className="shinyButtonSecondary" disabled={bank.closedForStaking}
