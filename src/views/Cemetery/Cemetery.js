@@ -69,6 +69,11 @@ const Cemetery = () => {
                   <Typography color="textPrimary" variant="h4" gutterBottom style={{ marginTop: '20px' }}>
                     Earn STRAW by staking LP
                   </Typography>
+                    <Alert variant="filled" severity="warning" style={{ color: '#fff', marginTop: '25px',marginBottom:'25px' }}>
+
+                      Please be aware of the 0.5% Deposit tax!
+
+                    </Alert>
                   <Grid container spacing={3} style={{ marginTop: '20px' }}>
                     {activeBanks
                       .filter((bank) => bank.sectionInUI === 2)

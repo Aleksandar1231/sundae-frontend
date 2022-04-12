@@ -233,10 +233,21 @@ const CemeteryCard = ({ bank }) => {
             height: 1
           }} />
           <Grid style={{ display: 'flex', marginTop: '20px', justifyContent: "space-between" }}>
-            <h3 style={{ marginBottom: '10px', color: 'black' }}>Total Value Locked</h3>
+            <h3 style={{ color: 'black' }}>Total Value Locked</h3>
             <h4 style={{ color: 'black' }}>${statsOnPool?.TVL}</h4>
           </Grid>
         </CardContent>
+        <CardActions style={{ justifyContent: 'center' }}>
+          <Button color="primary"
+            className="shinyButtonSecondary"
+            style={{ borderRadius: '10px', marginBottom:'10px' }}
+            variant="contained"
+            target="_blank"
+            href={`${bank.buyLink}`}
+          >
+            Create LP
+          </Button>
+        </CardActions>
       </Card >
     </Grid >
   );
