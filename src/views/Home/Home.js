@@ -578,9 +578,9 @@ const Home = () => {
 
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                        <Button color="primary" onClick={onPresentTombZap} variant="contained">
+{/*                         <Button color="primary" onClick={onPresentTombZap} variant="contained">
                           Zap In
-                        </Button>
+                        </Button> */}
                       </div>
                     </div>
                   </div>
@@ -615,9 +615,9 @@ const Home = () => {
 
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                        <Button color="primary" onClick={onPresentTshareZap} variant="contained">
+{/*                         <Button color="primary" onClick={onPresentTshareZap} variant="contained">
                           Zap In
-                        </Button>
+                        </Button> */}
                       </div>
                     </div>
                   </div>
