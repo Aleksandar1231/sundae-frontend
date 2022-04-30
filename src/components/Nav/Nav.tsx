@@ -131,7 +131,7 @@ const Nav = () => {
              {/* <Link color="textPrimary" to="/regulations" className={classes.link}>
                 Regulations
               </Link> */}
-              <a href="https://yieldwolf.finance/avalanche/sundaefinance" target="_blank" className='nav-link'>
+              <a href="https://icecreamfinancial.gitbook.io/sundae-finance/" target="_blank" className='nav-link'>
                 Vaults
               </a>
              {/*  <a href="" target="_blank" className='nav-link'>
@@ -193,9 +193,9 @@ const Nav = () => {
                 <ListItemLink primary="Boardroom" to="/boardroom" />
                 <ListItemLink primary="Bonds" to="/bonds" />
                  <ListItemLink primary="Nodes" to="/farms/MasterNode" /> 
-                <ListItem button component="a" href="https://yieldwolf.finance/avalanche/sundaefinance">
-                  <ListItemText disableTypography style={{ color: '#FFFFFF' }}>
-                    Vaults (Coming)
+                <ListItem button component="a" href="https://icecreamfinancial.gitbook.io/sundae-finance/">
+                  <ListItemText disableTypography style={{ color: '#000' }}>
+                    Vaults
                   </ListItemText>
                 </ListItem>
 {/*                 <ListItem button component="a" href="">
@@ -204,12 +204,12 @@ const Nav = () => {
                   </ListItemText>
                 </ListItem> */}
                 <ListItem button component="a" href="">
-                  <ListItemText disableTypography style={{ color: '#FFFFFF' }}>
+                  <ListItemText disableTypography style={{ color: '#000' }}>
                     Docs
                   </ListItemText>
                 </ListItem>
                 <ListItem button component="a" href="https://icecreamfinance.app">
-                  <ListItemText disableTypography style={{ color: '#FFFFFF' }}>
+                  <ListItemText disableTypography style={{ color: '#000' }}>
                     IceCream Finance
                   </ListItemText>
                 </ListItem>
