@@ -214,7 +214,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     buyLink: 'https://traderjoexyz.com/pool/AVAX/0xf8D0C6c3ddC03F43A0687847f2b34bfd6941C2A2',
     site: '/',
     sort: 9,
-    closedForStaking: false,
+    closedForStaking: true,
   },
   StrawDaiLPTShareRewardPool: {
     name: 'Earn STRAW by STRAW-DAI LP',
