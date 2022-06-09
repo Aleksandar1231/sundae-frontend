@@ -21,4 +21,26 @@ const useAllowance = (token: ERC20, spender: string, pendingApproval?: boolean) 
   return allowance;
 };
 
+// Retrieve lottery allowance
+export const useLotteryAllowance = () => {
+  const [allowance, setAllowance] = useState(BigNumber.from(0))
+  const { account } = useWeb3React()
+  const lydContract = useLyd()
+  const { fastRefresh } = useRefresh()
+
+  useEffect(() => {
+    const fetchAllowance = async () => {
+      const res = await lydContract.methods.allowance(account, getLotteryAddress()).call()
+      setAllowance(BigNumber.from(res))
+    }
+
+    if (account) {
+      fetchAllowance()
+    }
+  }, [account, lydContract, fastRefresh])
+
+  return allowance
+}
+
+
 export default useAllowance;

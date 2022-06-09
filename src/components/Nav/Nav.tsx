@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   brandLink: {
     textDecoration: 'none',
     color: '#000',
-    alignItems:'left',
+    alignItems: 'left',
   },
 }));
 
@@ -94,7 +94,7 @@ const Nav = () => {
       <Toolbar className={classes.toolbar}>
         {matches ? (
           <>
-            <Typography  variant="h5" color="inherit" noWrap className='toolbar-title'>
+            <Typography variant="h5" color="inherit" noWrap className='toolbar-title'>
               Sundae Finance
               {/*               <Link to="/" color="inherit" className={classes.brandLink}>
                 <img alt="sundae.finance" src={sundaeLogo} height="90px" width="200px" />
@@ -128,13 +128,16 @@ const Nav = () => {
               <Link color="textPrimary" to="/farms/MasterNode" className='nav-link'>
                 Nodes
               </Link>
-             {/* <Link color="textPrimary" to="/regulations" className={classes.link}>
+              <Link color="textPrimary" to="/lottery" className='nav-link'>
+                Lottery
+              </Link>
+              {/* <Link color="textPrimary" to="/regulations" className={classes.link}>
                 Regulations
               </Link> */}
               <a href="https://froyo.farm/#/avax" target="_blank" className='nav-link'>
                 Vaults
               </a>
-             {/*  <a href="" target="_blank" className='nav-link'>
+              {/*  <a href="" target="_blank" className='nav-link'>
                 Social Club
               </a> */}
               <a href="https://icecreamfinancial.gitbook.io/sundae-finance/" target="_blank" className='nav-link'>
@@ -172,8 +175,8 @@ const Nav = () => {
 
             <Drawer
               className={classes.drawer}
-/*               onEscapeKeyDown={handleDrawerClose}
-              onBackdropClick={handleDrawerClose} */
+              /*               onEscapeKeyDown={handleDrawerClose}
+                            onBackdropClick={handleDrawerClose} */
               variant="temporary"
               anchor="left"
               open={open}
@@ -192,13 +195,14 @@ const Nav = () => {
                 <ListItemLink primary="Farm" to="/farms" />
                 <ListItemLink primary="Boardroom" to="/boardroom" />
                 <ListItemLink primary="Bonds" to="/bonds" />
-                 <ListItemLink primary="Nodes" to="/farms/MasterNode" /> 
+                <ListItemLink primary="Nodes" to="/farms/MasterNode" />
+                <ListItemLink primary="Lottery" to="/lottery" />
                 <ListItem button component="a" href="https://froyo.farm/#/avax">
                   <ListItemText disableTypography style={{ color: '#000' }}>
                     Vaults
                   </ListItemText>
                 </ListItem>
-{/*                 <ListItem button component="a" href="">
+                {/*                 <ListItem button component="a" href="">
                   <ListItemText disableTypography style={{ color: '#FFFFFF' }}>
                     Social Club
                   </ListItemText>
