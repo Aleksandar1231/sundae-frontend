@@ -182,4 +182,8 @@ code {
   text-decoration-thickness: 2px;
 }
 
+.a {
+  fill: #000 !important
+}
+
 
