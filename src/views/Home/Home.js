@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 
 const buyfudgeAddress = 'https://traderjoexyz.com/trade?outputCurrency=0xD9FF12172803c072a36785DeFea1Aa981A6A0C18#/';
 const viewFudgeAddress = 'https://dexscreener.com/avalanche/0xe367414f29e247b2d92edd610aa6dd5a7fd631ba';
-const viewStrawAddress = 'https://dexscreener.com/avalanche/0x5eef38855090ccc49a1b7391f4c7b9efbdfe1456';
+const viewStrawAddress = 'https://dexscreener.com/avalanche/0xf71149502bc064a7da58c4e275da7896ed3f14f3';
 const buystrawAddress = 'https://traderjoexyz.com/trade?outputCurrency=0xf8D0C6c3ddC03F43A0687847f2b34bfd6941C2A2#/';
 
 const Home = () => {
