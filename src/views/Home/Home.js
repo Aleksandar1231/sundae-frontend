@@ -312,7 +312,7 @@ const Home = () => {
         {/* Explanation text */}
         <Grid container direction="column" alignItems="center" justifyContent="center">
           <Grid item xs={12} sm={8}>
-            <Box p={4} justifyContent="center" alignItems="center" >
+            <Box p={4} justifyContent="center" alignItems="center" style={{marginTop:'50px'}}>
               <Typography variant="h3" fontWeight="bold" align="center">
                 The sweetest protocol on Avalanche!
               </Typography>
