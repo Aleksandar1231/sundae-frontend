@@ -253,7 +253,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'STRAW',
     finished: false,
     multiplier: '6875x',
-    buyLink: 'https://traderjoexyz.com/trade#/0xD9FF12172803c072a36785DeFea1Aa981A6A0C18',
+    buyLink: 'https://app.bogged.finance/avax/swap?tokenIn=0xd586E7F844cEa2F87f50152665BCbc2C279D8d70&tokenOut=0xD9FF12172803c072a36785DeFea1Aa981A6A0C18',
     site: 'https://2omb.finance',
     sort: 11,
     closedForStaking: false,

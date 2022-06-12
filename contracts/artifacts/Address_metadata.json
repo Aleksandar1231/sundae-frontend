@@ -1,0 +1,46 @@
+{
+	"compiler": {
+		"version": "0.6.12+commit.27d51765"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Collection of functions related to the address type",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Super-Zap.sol": "Address"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Super-Zap.sol": {
+			"keccak256": "0xee5d5d1fe214e4bfa712a77489b17e5303d030f83c8ab065e503ffdaaa9edb2c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://29fc440f26b8a73b828d578b001d3da74fb455ce05265a52d18fe7703a2fcfb8",
+				"dweb:/ipfs/QmYB7XVBAvA9YpCQcDGWTsUaoyN2F1Mu3KKctpZ26SGMAG"
+			]
+		}
+	},
+	"version": 1
+}

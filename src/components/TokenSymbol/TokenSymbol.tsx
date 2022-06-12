@@ -23,6 +23,7 @@ import nodeLogo from '../../assets/img/node.png';
 import fcLogo from '../../assets/img/fudge-cream.png';
 import csLogo from '../../assets/img/cream-straw.png';
 import saLogo from '../../assets/img/straw-avax.png';
+import zapperLogo from '../../assets/img/superzapper.png';
 
 
 const logosBySymbol: { [title: string]: string } = {
@@ -53,8 +54,8 @@ const logosBySymbol: { [title: string]: string } = {
   'FUDGE-AVAX LP':faLogo,
   'FUDGE-CREAM LP':fcLogo,
   'CREAM-STRAW LP':csLogo,
-  'STRAW-AVAX LP':saLogo
-
+  'STRAW-AVAX LP':saLogo,
+  'ZAPPER': zapperLogo
 };
 
 type LogoProps = {
@@ -68,11 +69,11 @@ const TokenSymbol: React.FC<LogoProps> = ({symbol}) => {
   }
   if(symbol === 'TOMB' || symbol === 'TSHARE' || symbol === 'TBOND'  || symbol === 'FUDGE-DAI' || symbol === 'FUDGE-AVAX'){
     return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={80} height={80} />;
-  } else if( symbol === 'FUDGE-DAI LP'|| symbol === 'STRAW-AVAX LP'){
+  } else if( symbol === 'FUDGE-DAI LP'|| symbol === 'STRAW-AVAX LP' || symbol === 'STRAW-DAI LP'){
     return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={90} height={90} />;
-  }/* else if( symbol === 'CREAM'){
-    return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={100} height={89} />;
-  } */else if( symbol === 'CARAML' ||symbol === 'FUDGE'){
+  } else if( symbol === 'ZAPPER'){
+    return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={225} height={75} />;
+  } else if( symbol === 'CARAML' ||symbol === 'FUDGE'){
     return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={90} height={90} />;
   }else{
     return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={100} height={100} />;

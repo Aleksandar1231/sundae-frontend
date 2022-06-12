@@ -1,15 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import Page from '../../components/Page';
-import HomeImage from '../../assets/img/home.png';
-import CashImage from '../../assets/img/3OMB.svg';
-import Image from 'material-ui-image';
 import styled from 'styled-components';
-import Label from '../../components/Label';
-import { Alert } from '@material-ui/lab';
-import { createGlobalStyle } from 'styled-components';
 import CountUp from 'react-countup';
 import { useWallet } from 'use-wallet';
-import CardIcon from '../../components/CardIcon';
 import TokenSymbol from '../../components/TokenSymbol';
 import useTombStats from '../../hooks/useTombStats';
 import useLpStats from '../../hooks/useLpStats';
@@ -27,28 +20,19 @@ import useStakedTokenPriceInDollars from '../../hooks/useStakedTokenPriceInDolla
 import useEarnings from '../../hooks/useEarnings';
 import { tomb as tombTesting, tShare as tShareTesting } from '../../tomb-finance/deployments/deployments.testing.json';
 import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.mainnet.json';
-import useTotalTreasuryBalance from '../../hooks/useTotalTreasuryBalance.js';
-import useRebateTreasury from '../../hooks/useRebateTreasury';
+import kycLogo from '../../assets/img/ASSURE.png';
 import { useMediaQuery } from '@material-ui/core';
 import { Box, Button, CardContent, Grid, Paper, Typography } from '@material-ui/core';
 import ZapModal from '../Bank/components/ZapModal';
 import Modal from '../../components/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 import useTombFinance from '../../hooks/useTombFinance';
-import { isMobile } from 'react-device-detect';
 import Card from '../../components/Card';
-import Bonds from '../Pit';
 import { Link } from 'react-router-dom';
-
-// const BackgroundImage = createGlobalStyle`
-//   body {
-//     background-color: var(--black);
-// }
-
-// * {
-//     border-radius: 0 !important;
-// }
-// `;
+import Slider from '@mui/material/Slider';
+import CircularProgress from '@mui/material/CircularProgress';
+import useStrategy from '../../hooks/useStrategy';
+import useApproveStrategy, { ApprovalState } from '../../hooks/useApproveStrategy';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -63,41 +47,50 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const buyfudgeAddress = 'https://traderjoexyz.com/trade?outputCurrency=0xD9FF12172803c072a36785DeFea1Aa981A6A0C18#/';
+const buyfudgeAddress = 'https://app.bogged.finance/avax/swap?tokenIn=0xd586E7F844cEa2F87f50152665BCbc2C279D8d70&tokenOut=0xD9FF12172803c072a36785DeFea1Aa981A6A0C18';
 const viewFudgeAddress = 'https://dexscreener.com/avalanche/0xe367414f29e247b2d92edd610aa6dd5a7fd631ba';
 const viewStrawAddress = 'https://dexscreener.com/avalanche/0xf71149502bc064a7da58c4e275da7896ed3f14f3';
-const buystrawAddress = 'https://traderjoexyz.com/trade?outputCurrency=0xf8D0C6c3ddC03F43A0687847f2b34bfd6941C2A2#/';
+const buystrawAddress = 'https://app.bogged.finance/avax/swap?tokenIn=0xd586E7F844cEa2F87f50152665BCbc2C279D8d70&tokenOut=0xf8D0C6c3ddC03F43A0687847f2b34bfd6941C2A2';
 
 const Home = () => {
+  // strategy logic //
+  const [approvalStateStrategy, approveStrategy] = useApproveStrategy();
+  const { onStrategy } = useStrategy()
+  const [strategyValue, setStrategyValue] = useState(80);
+  const [boardroomValue, setBoardroomValue] = useState(20);
+  const [loading, setLoading] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [expanded, setExpanded] = useState(false);
+  // end strategy //
   const matches = useMediaQuery('(min-width:900px)');
-  const rebateStats = useRebateTreasury();
+  // const rebateStats = useRebateTreasury();
   const classes = useStyles();
   const TVL = useTotalValueLocked();
   const tombFtmLpStats = useLpStats('FUDGE-DAI LP');
-  const tShareFtmLpStats = useLpStats('STRAW-AVAX LP');
+  const tShareFtmLpStats = useLpStats('STRAW-DAI LP');
   const tombStats = useTombStats();
   const tShareStats = usetShareStats();
   const tBondStats = useBondStats();
   const tombFinance = useTombFinance();
   const { price: ftmPrice, marketCap: ftmMarketCap, priceChange: ftmPriceChange } = useFantomPrice();
-  const { balance: rebatesTVL } = useTotalTreasuryBalance();
-  const {
-    balance,
-    balance_2shares_wftm,
-    balance_3omb_wftm,
-    balance_3shares_wftm,
-    balance_3omb,
-    balance_3shares,
-    balance_2shares,
-  } = useTotalTreasuryBalance();
-  const totalTVL = TVL + rebatesTVL;
+  // const { balance: rebatesTVL } = useTotalTreasuryBalance();
+  // const {
+  //   balance,
+  //   balance_2shares_wftm,
+  //   balance_3omb_wftm,
+  //   balance_3shares_wftm,
+  //   balance_3omb,
+  //   balance_3shares,
+  //   balance_2shares,
+  // } = useTotalTreasuryBalance();
+  // const totalTVL = TVL + rebatesTVL;
   const { account } = useWallet();
 
   const [banks] = useBanks();
   const activeBanks = banks.filter((bank) => !bank.finished);
   const fudgeBank = banks.filter((bank) => bank.contract === "FudgeLPTShareRewardPool")[0]
   const fudgeDaiBank = banks.filter((bank) => bank.contract === "FudgeDaiLPTShareRewardPool")[0]
-  const strawAvaxBank = banks.filter((bank) => bank.contract === "StrawAvaxLPTShareRewardPool")[0]
+  const strawAvaxBank = banks.filter((bank) => bank.contract === "StrawDaiLPTShareRewardPool")[0]
 
   const stakedBalanceFudge = useStakedBalance(fudgeBank.contract, fudgeBank.poolId, 2);
   const stakedBalanceFudgeDai = useStakedBalance(fudgeDaiBank.contract, fudgeDaiBank.poolId, 2);
@@ -208,7 +201,7 @@ const Home = () => {
   );
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
   const tombLpZap = useZap({ depositTokenName: 'FUDGE-DAI LP' });
-  const tshareLpZap = useZap({ depositTokenName: 'STRAW-AVAX LP' });
+  const tshareLpZap = useZap({ depositTokenName: 'STRAW-DAI LP' });
 
 
   const tombBalance = useTokenBalance(tombFinance.TOMB);
@@ -241,9 +234,9 @@ const Home = () => {
   const [onPresentTombZap, onDissmissTombZap] = useModal(
     <ZapModal
       decimals={18}
-      onConfirm={(zappingToken, tokenName, amount) => {
+      onConfirm={(zappingToken, tokenName, amount, slippageBp) => {
         if (Number(amount) <= 0 || isNaN(Number(amount))) return;
-        tombLpZap.onZap(zappingToken, tokenName, amount);
+        tombLpZap.onZap(zappingToken, tokenName, amount, slippageBp);
         onDissmissTombZap();
       }}
       tokenName={'FUDGE-DAI LP'}
@@ -253,12 +246,12 @@ const Home = () => {
   const [onPresentTshareZap, onDissmissTshareZap] = useModal(
     <ZapModal
       decimals={18}
-      onConfirm={(zappingToken, tokenName, amount) => {
+      onConfirm={(zappingToken, tokenName, amount, slippageBp) => {
         if (Number(amount) <= 0 || isNaN(Number(amount))) return;
-        tshareLpZap.onZap(zappingToken, tokenName, amount);
+        tshareLpZap.onZap(zappingToken, tokenName, amount, slippageBp);
         onDissmissTshareZap();
       }}
-      tokenName={'STRAW-AVAX LP'}
+      tokenName={'STRAW-DAI LP'}
     />,
   );
 
@@ -272,37 +265,44 @@ const Home = () => {
           Stake your FUDGE-DAI LP in the Farms to earn STRAW rewards. Then stake your earned STRAW in the Boardroom to
           earn more FUDGE!
         </p>
+        <Button
+          target="_blank"
+          href="https://www.assuredefi.io/projects/icecream-finance/"
+        >
+        <img src={kycLogo} alt={'Assured-DeFi'} height='50px'/>
+        </Button>
       </Box>
     </Modal>,
   );
 
-  // const handleMouseOverFudge = () => {
-  //   setIsHoveringFudge(true);
-  // };
+  // SUPER ZAPPER LOGIC //
+  async function executeApprovals() {
+    try {
+      setLoading(true);
+      await approveStrategy();
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  }
+  async function executeStrategy() {
+    try {
+      setLoading(true);
+      await onStrategy(strategyValue, boardroomValue);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  }
 
-  // const handleMouseOutFudge = () => {
-  //   setIsHoveringFudge(false);
-  // };
-
-  // const handleMouseOverStraw = () => {
-  //   setIsHoveringStraw(true);
-  // };
-
-  // const handleMouseOutStraw = () => {
-  //   setIsHoveringStraw(false);
-  // };
-
-  // const handleMouseOverCaraml = () => {
-  //   setIsHoveringCaraml(true);
-  // };
-
-  // const handleMouseOutCaraml = () => {
-  //   setIsHoveringCaraml(false);
-  // };
-
-  // const [isHoveringFudge, setIsHoveringFudge] = useState(false);
-  // const [isHoveringStraw, setIsHoveringStraw] = useState(false);
-  // const [isHoveringCaraml, setIsHoveringCaraml] = useState(false);
+  const handleStrategyChange = (event, newValue) => {
+    setStrategyValue(Number(newValue));
+  };
+  const handleBoardroomChange = (event, newValue) => {
+    setBoardroomValue(Number(newValue));
+  };
 
   return (
     <Page>
@@ -578,16 +578,16 @@ const Home = () => {
 
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-{/*                         <Button color="primary" onClick={onPresentTombZap} variant="contained">
+                        <Button color="primary" onClick={onPresentTombZap} variant="contained">
                           Zap In
-                        </Button> */}
+                        </Button>
                       </div>
                     </div>
                   </div>
                   <div style={{ display: 'flex', marginTop: '20px' }}>
                     <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                      <TokenSymbol symbol="STRAW-AVAX LP" style={{ backgroundColor: 'transparent !important' }} />
-                      <h4>STRAW-AVAX LP</h4>
+                      <TokenSymbol symbol="STRAW-DAI LP" style={{ backgroundColor: 'transparent !important' }} />
+                      <h4>STRAW-DAI LP</h4>
                     </div>
                     <div style={{ width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                       <div
@@ -615,9 +615,9 @@ const Home = () => {
 
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-{/*                         <Button color="primary" onClick={onPresentTshareZap} variant="contained">
+                        <Button color="primary" onClick={onPresentTshareZap} variant="contained">
                           Zap In
-                        </Button> */}
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -654,166 +654,95 @@ const Home = () => {
                 </div>
               </CardContent>
             </Card>
+
+                        {/* // SuperZapper */}
+          <Card xs={12}>
+            <CardContent align="center">
+              <Box mt={2}>
+                <TokenSymbol symbol="ZAPPER" />
+              </Box>
+              <Box sx={{ width: 225 }}>
+                <Typography
+                  flexDirection={'row'}
+                  flexGrow={1}
+                  flexBasis={'space-between'}
+                  display={'flex'}
+                  sx={{ marginTop: '8px', whiteSpace: 'nowrap' }}
+                  fontSize='8px'
+                  gutterBottom>
+                  <div style={{ flexDirection: 'column', textAlign: 'left' }}>
+                    <b style={{ fontSize: '14px' }}>{boardroomValue}%</b>
+                    <div>BOARDROOM</div>
+                  </div>
+                  <div style={{ width: '100%' }}>{' '}</div>
+                  <div style={{ flexDirection: 'column', textAlign: 'right' }}>
+                    <b style={{ fontSize: '14px' }}>{100 - boardroomValue}%</b>
+                    <div>FARMS</div>
+                  </div>
+                </Typography>
+                <Slider
+                  // size='large'
+                  aria-label="Stake boardroom"
+                  defaultValue={20}
+                  getAriaValueText={(t) => `${t}%`}
+                  valueLabelDisplay="off"
+                  value={boardroomValue}
+                  onChange={handleBoardroomChange}
+                  step={5}
+                  marks
+                  min={0}
+                  max={40}
+                />
+                <Slider
+                  // size='large'
+                  aria-label="Zap ratio"
+                  defaultValue={80}
+                  getAriaValueText={(t) => `${t}%`}
+                  valueLabelDisplay="off"
+                  value={strategyValue}
+                  onChange={handleStrategyChange}
+                  step={5}
+                  marks
+                  min={60}
+                  max={100}
+                />
+                <Typography
+                  flexDirection={'row'}
+                  flexGrow={1}
+                  flexBasis={'space-between'}
+                  display={'flex'}
+                  sx={{ marginTop: '0', whiteSpace: 'nowrap' }}
+                  fontSize='18px'
+                  gutterBottom>
+                  <div style={{ flexDirection: 'column', textAlign: 'left' }}>
+                    <div>FUDGE-DAI</div>
+                    <b style={{ fontSize: '14px' }}>{strategyValue}%</b>
+                  </div>
+                  <div style={{ width: '100%' }}>{' '}</div>
+                  <div style={{ flexDirection: 'column', textAlign: 'right' }}>
+                    <div>STRAW-DAI</div>
+                    <b style={{ fontSize: '14px' }}>{100 - strategyValue}%</b>
+                  </div>
+                </Typography>
+                <Box mt={1}>
+                  {!loading ?
+                    <Button onClick={() => approvalStateStrategy === ApprovalState.APPROVED ? executeStrategy() : executeApprovals()} color='primary' variant='contained'>
+                      {approvalStateStrategy === ApprovalState.APPROVED ? 'Zap In' : 'Approve'}
+                    </Button>
+                    
+                    :
+                    <div style={{ flexDirection: 'column', flexGrow: 1 }}>
+                      <CircularProgress color='inherit' />
+                      <div style={{ fontSize: '12px', marginTop: '12px', color: '#000' }}><i>Submitting multiple transactions...</i></div>
+                    </div>
+                  }
+                </Box>
+              </Box>
+            </CardContent>
+          </Card>
+          
           </Grid>
-
-          {/* LP POOLS */}
-
-          {/* <Grid item xs={12} sm={6}>
-          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
-            <CardContent align="center">
-              <h2>3OMB-WFTM Spooky LP</h2>
-              <Box mt={2}>
-                <CardIcon>
-                  <TokenSymbol symbol="TOMB-FTM-LP" />
-                </CardIcon>
-              </Box>
-
-              <Box mt={2}>
-                <Button color="primary" disabled={true} onClick={onPresentTombZap} variant="contained">
-                  Zap In
-                </Button>
-              </Box>
-              <Box mt={2}>
-                <span style={{ fontSize: '26px' }}>
-                  {tombLPStats?.tokenAmount ? tombLPStats?.tokenAmount : '-.--'} 3OMB /{' '}
-                  {tombLPStats?.ftmAmount ? tombLPStats?.ftmAmount : '-.--'} FTM
-                </span>
-              </Box>
-              <Box>${tombLPStats?.priceOfOne ? tombLPStats.priceOfOne : '-.--'}</Box>
-              <span style={{ fontSize: '12px' }}>
-                Liquidity: ${tombLPStats?.totalLiquidity ? tombLPStats.totalLiquidity : '-.--'} <br />
-                Total supply: {tombLPStats?.totalSupply ? tombLPStats.totalSupply : '-.--'}
-              </span>
-            </CardContent>
-          </Card>
-        </Grid> */}
-
-          {/* <Grid item xs={12} sm={6}>
-          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
-            <CardContent align="center">
-              <h2>3SHARES-WFTM Spooky LP</h2>
-              <Box mt={2}>
-                <CardIcon>
-                  <TokenSymbol symbol="TSHARE-FTM-LP" />
-                </CardIcon>
-              </Box>
-              <Box mt={2}>
-                <Button color="primary" onClick={onPresentTshareZap} variant="contained">
-                  Zap In
-                </Button>
-            </Box>
-              <Box mt={2}>
-                <span style={{ fontSize: '26px' }}>
-                  {tshareLPStats?.tokenAmount ? tshareLPStats?.tokenAmount : '-.--'} 3SHARE /{' '}
-                  {tshareLPStats?.ftmAmount ? tshareLPStats?.ftmAmount : '-.--'} FTM
-                </span>
-              </Box>
-              <Box>${tshareLPStats?.priceOfOne ? tshareLPStats.priceOfOne : '-.--'}</Box>
-              <span style={{ fontSize: '12px' }}>
-                Liquidity: ${tshareLPStats?.totalLiquidity ? tshareLPStats.totalLiquidity : '-.--'}
-                <br />
-                Total supply: {tshareLPStats?.totalSupply ? tshareLPStats.totalSupply : '-.--'}
-              </span>
-            </CardContent>
-          </Card>
-        </Grid> */}
         </Grid>
-
-        {/*  <Box mt={2} style={{ marginTop: '50px' }}>
-        <Typography align="center" variant="h4" gutterBottom style={{ marginBottom: '50px' }}>
-          Protocol Owned Liquidity
-        </Typography>
-        <Grid container justify="center" align="center" spacing={3}>
-          <Grid item xs={12} md={4} lg={4} className={classes.gridItem}>
-            <Card
-              style={{
-                height: '100%',
-                backgroundColor: 'rgba(229, 152, 155, 0.1)',
-                boxShadow: 'none',
-                border: '1px solid var(--white)',
-              }}
-            >
-              <CardContent align="center">
-                <Typography variant="h5">CREAM-AVAX LP:</Typography>
-                <CountUp style={{ fontSize: '25px' }} end={balance_3omb_wftm} separator="," prefix="$" />
-              </CardContent>
-              <CardContent align="center">
-                <Typography variant="h5">CSHARE-AVAX LP:</Typography>
-                <CountUp style={{ fontSize: '25px' }} end={balance_3shares_wftm} separator="," prefix="$" />
-              </CardContent>
-              <CardContent align="center">
-                <Typography variant="h5">CREAM-CSHARE LP:</Typography>
-                <CountUp style={{ fontSize: '25px' }} end={balance_2shares_wftm} separator="," prefix="$" />
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4} lg={4} className={classes.gridItem}>
-            <Card
-              style={{
-                height: '100%',
-                backgroundColor: 'rgba(229, 152, 155, 0.1)',
-                boxShadow: 'none',
-                border: '1px solid var(--white)',
-              }}
-            >
-              <CardContent align="center">
-                <Typography variant="h5">FUDGE:</Typography>
-                <CountUp style={{ fontSize: '25px' }} end={balance_3omb} separator="," prefix="$" />
-              </CardContent>
-              <CardContent align="center">
-                <Typography variant="h5">STRAW:</Typography>
-                <CountUp style={{ fontSize: '25px' }} end={balance_3shares} separator="," prefix="$" />
-              </CardContent>
-              <CardContent align="center">
-                <Typography variant="h5">CARAML:</Typography>
-                <CountUp style={{ fontSize: '25px' }} end={balance_2shares} separator="," prefix="$" />
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4} lg={4} justify="center" className={classes.gridItem}>
-            <Card
-              style={{
-                height: 'auto',
-                marginBottom: '10px',
-                backgroundColor: 'rgba(229, 152, 155, 0.1)',
-                boxShadow: 'none',
-                border: '1px solid var(--white)',
-              }}
-            >
-              <CardContent align="center">
-                <Typography variant="h5">TWAP:</Typography>
-                <Typography style={{ fontSize: '25px' }}>{tombPriceInFTM ? tombPriceInFTM : '-.----'} DAI</Typography>
-              </CardContent>
-            </Card>
-            <Card
-              justify="center"
-              style={{ height: '100%' }}
-              style={{
-                marginBottom: '10px',
-                backgroundColor: 'rgba(229, 152, 155, 0.1)',
-                boxShadow: 'none',
-                border: '1px solid var(--white)',
-              }}
-            >
-              <CardContent align="center">
-                <Typography variant="h5">Total Value Burned:</Typography>
-                <CountUp style={{ fontSize: '25px' }} end={balance_3omb} separator="," prefix="$" />
-              </CardContent>
-            </Card>
-            <Card
-              style={{
-                height: 'auto',
-                backgroundColor: 'rgba(229, 152, 155, 0.1)',
-                boxShadow: 'none',
-                border: '1px solid var(--white)',
-              }}
-            >
-              <CardContent align="center">
-                <Typography variant="h5">Total Treasury Balance:</Typography>
-                <CountUp style={{ fontSize: '25px' }} end={balance} separator="," prefix="$" />
-              </CardContent>
-            </Card>
-          </Grid>*/}
       </Grid>
     </Page >
   );

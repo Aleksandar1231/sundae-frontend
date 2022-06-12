@@ -7,6 +7,7 @@ import { ReactComponent as IconTwitter } from '../../assets/img/twitter.svg';
 import { ReactComponent as IconGithub } from '../../assets/img/github.svg';
 import { ReactComponent as IconDiscord } from '../../assets/img/discord.svg';
 import { ReactComponent as IconGitbook } from '../../assets/img/gitbooklite.svg';
+import kycLogo from '../../assets/img/ASSURE.png';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -56,7 +57,7 @@ const Footer = () => {
               {new Date().getFullYear()}
             </Typography>
           </Grid>
-          <Grid item xs={12} style={{ textAlign: 'center', marginTop: '10px' }}>
+          <Grid item xs={12} style={{ textAlign: 'center', marginTop: '10px', marginBottom:'10px' }}>
             <a
               href="https://twitter.com/icecreamfinance"
               rel="noopener noreferrer"

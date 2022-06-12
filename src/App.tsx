@@ -22,7 +22,7 @@ import Particles from 'react-tsparticles'; //'react-particles-js';
 const Home = lazy(() => import('./views/Home'));
 const Farms = lazy(() => import('./views/Cemetery'));
 const Boardroom = lazy(() => import('./views/Masonry'));
-const Rebates = lazy(() => import('./views/Rebates'));
+// const Rebates = lazy(() => import('./views/Rebates'));
 const Bonds = lazy(() => import('./views/Pit'));
 const Treasury = lazy(() => import('./views/Treasury'));
 // const SBS = lazy(() => import('./views/Sbs'));

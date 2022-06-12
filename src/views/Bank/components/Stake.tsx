@@ -30,6 +30,7 @@ import WithdrawModal from './WithdrawModal';
 import ZapModal from './ZapModal';
 import TokenSymbol from '../../../components/TokenSymbol';
 import { Bank } from '../../../tomb-finance';
+import { BigNumber } from 'ethers';
 
 
 interface StakeProps {
@@ -53,7 +54,7 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
     Number(tokenPriceInDollars) * Number(getDisplayBalance(bank.sectionInUI !== 3 ? stakedBalance : nodePrice, bank.depositToken.decimal))
   ).toFixed(2);
   const { onStake } = useStake(bank);
-  const { onZap } = useZap(bank);
+  const { onZapIn } = useZap(bank);
   const { onWithdraw } = useWithdraw(bank);
 
 
@@ -74,9 +75,9 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
   const [onPresentZap, onDissmissZap] = useModal(
     <ZapModal
       decimals={bank.depositToken.decimal}
-      onConfirm={(zappingToken, tokenName, amount) => {
+      onConfirm={(zappingToken, tokenName, amount, slippageBp) => {
         if (Number(amount) <= 0 || isNaN(Number(amount))) return;
-        onZap(zappingToken, tokenName, amount);
+        onZapIn(zappingToken, tokenName, amount, slippageBp, BigNumber.from(0), onStake);
         onDissmissZap();
       }}
       tokenName={bank.depositTokenName}

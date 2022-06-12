@@ -45,30 +45,19 @@ const Cemetery = () => {
          {/*  <BackgroundImage /> */}
           {!!account ? (
             <Container maxWidth="lg">
-              <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
+              <Typography color="textPrimary" align="center" variant="h3" gutterBottom style={{marginTop:'50px'}}>
                 Farms
               </Typography>
+              <Typography color="textPrimary" align="center" variant="h5" gutterBottom style={{marginTop:'25px'}}>
+                Earn STRAW by staking LP tokens
+              </Typography>
 
-              <Box mt={5}>
-                {/*                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 2).length === 0}>
-                  <Typography color="textPrimary" variant="h4" gutterBottom>
-                    Earn STRAW by staking LP Tokens
-                  </Typography>
-                  <Grid container spacing={3}>
-                    {activeBanks
-                      .filter((bank) => bank.sectionInUI === 2)
-                      .map((bank) => (
-                        <React.Fragment key={bank.name}>
-                          <CemeteryCard bank={bank} />
-                        </React.Fragment>
-                      ))}
-                  </Grid>
-                </div> */}
+              <Box mt={5} style={{ marginTop: '75px' }}>
 
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 2).length === 0}>
-                  <Typography color="textPrimary" variant="h4" gutterBottom style={{ marginTop: '20px' }}>
+                  {/* <Typography color="textPrimary" variant="h4" gutterBottom style={{ marginTop: '20px' }}>
                     Earn STRAW by staking LP
-                  </Typography>
+                  </Typography> */}
                     <Alert variant="filled" severity="warning" style={{ color: '#fff', marginTop: '25px',marginBottom:'25px' }}>
 
                       Please be aware of the 0.5% Deposit tax!

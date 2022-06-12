@@ -13,7 +13,7 @@ import IUniswapV2PairABI from './IUniswapV2Pair.abi.json';
 import config, { bankDefinitions } from '../config';
 import moment from 'moment';
 import { parseUnits } from 'ethers/lib/utils';
-import { FTM_TICKER, SPOOKY_ROUTER_ADDR, TOMB_TICKER } from '../utils/constants';
+import { FTM_TICKER, SPOOKY_ROUTER_ADDR, TOMB_TICKER, AVAX_TICKER, TSHARE_TICKER } from '../utils/constants';
 /**
  * An API module of 2omb Finance contracts.
  * All contract-interacting domain logic should be defined in here.
@@ -1166,15 +1166,29 @@ export class TombFinance {
     return bondsAmount.length;
   }
 
+  async zapStrategy(from: string, amount: string | BigNumber, percentFudgeLP: string | number | BigNumber, gasLimit?: BigNumber): Promise<TransactionResponse> {
+    const { SuperZapper } = this.contracts;
+    if (gasLimit)
+      return await SuperZapper.zapStrategy(from, amount, percentFudgeLP, { gasLimit: gasLimit.toNumber() });
+    else
+      return await SuperZapper.zapStrategy(from, amount, percentFudgeLP);
+  }
+
   async estimateZapIn(tokenName: string, lpName: string, amount: string): Promise<number[]> {
-    const { zapper } = this.contracts;
+    const { Zapper } = this.contracts;
     const lpToken = this.externalTokens[lpName];
     let estimate;
-    if (tokenName === FTM_TICKER) {
-      estimate = await zapper.estimateZapIn(lpToken.address, SPOOKY_ROUTER_ADDR, parseUnits(amount, 18));
+    if (tokenName === AVAX_TICKER) {
+      estimate = await Zapper.estimateZapIn(lpToken.address, SPOOKY_ROUTER_ADDR, parseUnits(amount, 18));
     } else {
-      const token = tokenName === TOMB_TICKER ? this.TOMB : this.TSHARE;
-      estimate = await zapper.estimateZapInToken(
+      let token: ERC20;
+      switch (tokenName) {
+        case TOMB_TICKER: token = this.TOMB; break;
+        case TSHARE_TICKER: token = this.TSHARE; break;
+        case FTM_TICKER: token = this.FTM; break;
+        default: token = null;
+      }
+      estimate = await Zapper.estimateZapInToken(
         token.address,
         lpToken.address,
         SPOOKY_ROUTER_ADDR,
@@ -1183,22 +1197,30 @@ export class TombFinance {
     }
     return [estimate[0] / 1e18, estimate[1] / 1e18];
   }
-  async zapIn(tokenName: string, lpName: string, amount: string): Promise<TransactionResponse> {
-    const { zapper } = this.contracts;
+  async zapIn(tokenName: string, lpName: string, amount: string, slippageBp: string): Promise<TransactionResponse> {
+    const { Zapper } = this.contracts;
     const lpToken = this.externalTokens[lpName];
-    if (tokenName === FTM_TICKER) {
+    if (tokenName === AVAX_TICKER) {
       let overrides = {
         value: parseUnits(amount, 18),
+        gasLimit: '1500000'
       };
-      return await zapper.zapIn(lpToken.address, SPOOKY_ROUTER_ADDR, this.myAccount, overrides);
+      return await Zapper.zapAVAXToLP(lpToken.address, overrides);
+
     } else {
-      const token = tokenName === TOMB_TICKER ? this.TOMB : this.TSHARE;
-      return await zapper.zapInToken(
+      let token: ERC20;
+      switch (tokenName) {
+        case TOMB_TICKER: token = this.TOMB; break;
+        case TSHARE_TICKER: token = this.TSHARE; break;
+        case FTM_TICKER: token = this.FTM; break;
+        default: token = null;
+      }
+
+      return await Zapper.zapTokenToLP(
         token.address,
         parseUnits(amount, 18),
         lpToken.address,
-        SPOOKY_ROUTER_ADDR,
-        this.myAccount,
+        { gasLimit: '1500000' }
       );
     }
   }

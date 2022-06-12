@@ -76,14 +76,14 @@ const Pit: React.FC = () => {
         {!!account ? (
           <>
             <Route exact path={path}>
-              <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
+              <Typography color="textPrimary" align="center" variant="h3" gutterBottom style={{marginTop:'50px'}}>
                 Bonds
               </Typography>
-              <Typography color="textPrimary" align="center" variant="h5" gutterBottom>
+              <Typography color="textPrimary" align="center" variant="h5" gutterBottom style={{marginTop:'25px'}}>
                 Earn premiums upon redemption
               </Typography>
             </Route>
-            <StyledBond style={{ marginTop: '40px' }}>
+            <StyledBond style={{ marginTop: '75px' }}>
               <StyledCardWrapper>
                 <ExchangeCard
                   action="Purchase"
@@ -115,14 +115,14 @@ const Pit: React.FC = () => {
                 <StyledSupplyWrapper>
                   <Card>
                     <CardContent>
-                      <Typography variant="h4" style={{ textAlign: 'center' }}>{Number(bondStat?.totalSupply)}</Typography>
+                      <Typography variant="body1" style={{ fontSize: '20px', fontWeight:'700', textAlign: 'center', marginBottom:'8px' }}>{Number(bondStat?.totalSupply)}</Typography>
                       <Typography style={{ textAlign: 'center' }}>CARAML Supply</Typography>
                     </CardContent>
                   </Card>
                   <Spacer size="md" />
                   <Card>
                     <CardContent>
-                      <Typography variant="h4" style={{ textAlign: 'center' }}>{tombBalance}</Typography>
+                      <Typography variant="body1" style={{ fontSize: '20px', fontWeight:'700', textAlign: 'center', marginBottom:'8px' }}>{tombBalance}</Typography>
                       <Typography style={{ textAlign: 'center' }}>FUDGE Reserves</Typography>
                     </CardContent>
                   </Card>

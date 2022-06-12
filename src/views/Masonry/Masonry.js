@@ -63,11 +63,15 @@ const Masonry = () => {
     < Page >
       {!!account ? (
         <>
-          <Typography color="primary.black" align="center" variant="h3" gutterBottom>
+          <Typography color="textPrimary" align="center" variant="h3" gutterBottom style={{marginTop:'50px'}}>
             Boardroom
           </Typography>
+
+          <Typography color="textPrimary" align="center" variant="h5" gutterBottom style={{marginTop:'25px'}}>
+                Earn FUDGE by staking STRAW
+              </Typography>
           <Box mt={5}>
-            <Grid container justify="center" spacing={3}>
+            <Grid container justify="center" spacing={3} style={{ marginTop: '75px' }}>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
                 <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent>

@@ -186,4 +186,8 @@ code {
   fill: #000 !important
 }
 
+.MuiInputBase-input{
+  border: 10px !important
+}
+
 
