@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import Button from '../../../components/Button';
+import { Button } from '@material-ui/core';
 import Modal, { ModalProps } from '../../../components/Modal';
 import ModalActions from '../../../components/ModalActions';
 import ModalTitle from '../../../components/ModalTitle';
@@ -46,9 +46,11 @@ const ExchangeModal: React.FC<ExchangeModalProps> = ({
         symbol={tokenName}
       />
       <Label text={description} />
-      <ModalActions>
-        <Button text="Cancel" variant="default" onClick={onDismiss} />
-        <Button text={action} onClick={() => onConfirm(val)} />
+      <ModalActions >
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Button color="primary" variant="contained" onClick={onDismiss}>Cancel</Button>
+          <Button color="primary" variant="contained" onClick={() => onConfirm(val)}>{action}</Button>
+        </div>
       </ModalActions>
     </Modal>
   );
