@@ -269,7 +269,7 @@ const Home = () => {
           target="_blank"
           href="https://www.assuredefi.io/projects/icecream-finance/"
         >
-        <img src={kycLogo} alt={'Assured-DeFi'} height='50px'/>
+          <img src={kycLogo} alt={'Assured-DeFi'} height='50px' />
         </Button>
       </Box>
     </Modal>,
@@ -338,7 +338,7 @@ const Home = () => {
           </Box>
         </Grid>
 
-        <Grid container justifyContent="space-around" alignItems="center" xs={12} sm={12} style={{ marginTop: '20px' }}>
+        <Grid container spacing={2} justifyContent="space-around" alignContent="center" xs={12} sm={12} style={{ marginTop: '20px' }}>
           <Grid container item xs={12} sm={7} spacing={3}>
             <Grid item xs={12}>
               <Card>
@@ -528,225 +528,217 @@ const Home = () => {
           </Grid>
 
 
-          <Grid item style={{ margin: '20px' }} sm={4} xs={12}>
-            <Card xs={12}>
-              <CardContent >
+          <Grid container item style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }} sm={4} xs={12}>
 
-                <div
-                  style={{
-                    display: 'flex',
-                    padding: '20px',
-                    paddingTop: '0px',
-                    flexDirection: 'column',
-                    height: '100%',
-                    justifyContent: 'space-evenly',
+            <Grid item style={{ margin: '10px 0 10px 0' }}>
+              <Card >
+                <CardContent >
 
-                  }}
-                >
-                  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '15px' }}>
-                    <h2>Rewards</h2>
-                  </div>
-                  <div style={{ display: 'flex', marginTop: '10px' }}>
-                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      padding: '20px',
+                      paddingTop: '0px',
+                      flexDirection: 'column',
+                      height: '100%',
+                      justifyContent: 'space-evenly',
 
-                      <TokenSymbol symbol="FUDGE-DAI LP" style={{ backgroundColor: 'transparent !important' }} />
-                      <h4>FUDGE-DAI LP</h4>
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '15px' }}>
+                      <h2>Rewards</h2>
                     </div>
-                    <div style={{ width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignContent: 'space-between',
-                          justifyContent: 'space-between',
-                          width: '100%',
-                        }}
-                      >
-                        <h4>Staked Amount:</h4>
-                        <h4>{`≈ $${stakedInDollarsFudgeDai}`}</h4>
+                    <div style={{ display: 'flex', marginTop: '10px' }}>
+                      <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
+                        <TokenSymbol symbol="FUDGE-DAI LP" style={{ backgroundColor: 'transparent !important' }} />
+                        <h4>FUDGE-DAI LP</h4>
                       </div>
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignContent: 'space-between',
-                          justifyContent: 'space-between',
-                          width: '100%',
-                        }}
-                      >
-                        <h4>Rewards Earned:</h4>
-                        <h4>{`≈ $${earnedInDollarsFudgeDai}`}</h4>
+                      <div style={{ width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignContent: 'space-between',
+                            justifyContent: 'space-between',
+                            width: '100%',
+                          }}
+                        >
+                          <h4>Staked Amount:</h4>
+                          <h4>{`≈ $${stakedInDollarsFudgeDai}`}</h4>
 
+                        </div>
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignContent: 'space-between',
+                            justifyContent: 'space-between',
+                            width: '100%',
+                          }}
+                        >
+                          <h4>Rewards Earned:</h4>
+                          <h4>{`≈ $${earnedInDollarsFudgeDai}`}</h4>
+
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+                          <Button color="primary" onClick={onPresentTombZap} variant="contained">
+                            Zap In
+                          </Button>
+                        </div>
                       </div>
-                      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                        <Button color="primary" onClick={onPresentTombZap} variant="contained">
-                          Zap In
+                    </div>
+                    <div style={{ display: 'flex', marginTop: '20px' }}>
+                      <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <TokenSymbol symbol="STRAW-DAI LP" style={{ backgroundColor: 'transparent !important' }} />
+                        <h4>STRAW-DAI LP</h4>
+                      </div>
+                      <div style={{ width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignContent: 'space-between',
+                            justifyContent: 'space-between',
+                            width: '100%',
+                          }}
+                        >
+                          <h4>Staked Amount:</h4>
+                          <h4>{`≈ $${stakedInDollarsStrawAvax}`}</h4>
+
+                        </div>
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignContent: 'space-between',
+                            justifyContent: 'space-between',
+                            width: '100%',
+                          }}
+                        >
+                          <h4>Rewards Earned:</h4>
+                          <h4>{`≈ $${earnedInDollarsStrawAvax}`}</h4>
+
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+                          <Button color="primary" onClick={onPresentTshareZap} variant="contained">
+                            Zap In
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', marginTop: '20px' }}>
+                      <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <TokenSymbol symbol="FUDGE" style={{ backgroundColor: 'transparent !important' }} />
+                        <h4>FUDGE</h4>
+                      </div>
+                      <div style={{ width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignContent: 'space-between',
+                            justifyContent: 'space-between',
+                            width: '100%',
+                          }}
+                        >
+                          <h4>Staked Amount:</h4>
+                          <h4>{`≈ $${stakedInDollarsFudge}`}</h4>
+                        </div>
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignContent: 'space-between',
+                            justifyContent: 'space-between',
+                            width: '100%',
+                          }}
+                        >
+                          <h4>Rewards Earned:</h4>
+                          <h4>{`≈ $${earnedInDollarsFudge}`}</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Grid>
+
+            {/* // SuperZapper */}
+            <Grid item >
+              <Card>
+                <CardContent align="center">
+                  <Box mt={2}>
+                    <TokenSymbol symbol="ZAPPER" />
+                  </Box>
+                  <Box sx={{ width: 225 }}>
+                    <Box sx={{ width: 225 }} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <Box style={{ flexDirection: 'column', textAlign: 'left' }}>
+                        <b style={{ fontSize: '14px' }}>{boardroomValue}%</b>
+                        <div>BOARDROOM</div>
+                      </Box>
+                      <Box style={{ flexDirection: 'column', textAlign: 'right' }}>
+                        <b style={{ fontSize: '14px' }}>{100 - boardroomValue}%</b>
+                        <div>FARMS</div>
+                      </Box>
+                    </Box>
+                    <Slider
+                      // size='large'
+                      aria-label="Stake boardroom"
+                      defaultValue={20}
+                      getAriaValueText={(t) => `${t}%`}
+                      valueLabelDisplay="off"
+                      value={boardroomValue}
+                      onChange={handleBoardroomChange}
+                      step={5}
+                      marks
+                      min={0}
+                      max={40}
+                      color='secondary'
+                    />
+                    <Slider
+                      // size='large'
+                      aria-label="Zap ratio"
+                      defaultValue={80}
+                      getAriaValueText={(t) => `${t}%`}
+                      valueLabelDisplay="off"
+                      value={strategyValue}
+                      onChange={handleStrategyChange}
+                      step={5}
+                      marks
+                      min={60}
+                      max={100}
+                      color='secondary'
+                    />
+                    <Box sx={{ width: 225 }} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <Box style={{ flexDirection: 'column', textAlign: 'left' }}>
+                        <div>FUDGE-DAI</div>
+                        <b style={{ fontSize: '14px' }}>{strategyValue}%</b>
+                      </Box>
+                      <Box style={{ flexDirection: 'column', textAlign: 'right' }}>
+                        <div>STRAW-DAI</div>
+                        <b style={{ fontSize: '14px' }}>{100 - strategyValue}%</b>
+                      </Box>
+                    </Box>
+                    <Box mt={1}>
+                      {!loading ?
+                        <Button onClick={() => approvalStateStrategy === ApprovalState.APPROVED ? executeStrategy() : executeApprovals()} color='primary' variant='contained'>
+                          {approvalStateStrategy === ApprovalState.APPROVED ? 'Zap In' : 'Approve'}
                         </Button>
-                      </div>
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', marginTop: '20px' }}>
-                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                      <TokenSymbol symbol="STRAW-DAI LP" style={{ backgroundColor: 'transparent !important' }} />
-                      <h4>STRAW-DAI LP</h4>
-                    </div>
-                    <div style={{ width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignContent: 'space-between',
-                          justifyContent: 'space-between',
-                          width: '100%',
-                        }}
-                      >
-                        <h4>Staked Amount:</h4>
-                        <h4>{`≈ $${stakedInDollarsStrawAvax}`}</h4>
 
-                      </div>
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignContent: 'space-between',
-                          justifyContent: 'space-between',
-                          width: '100%',
-                        }}
-                      >
-                        <h4>Rewards Earned:</h4>
-                        <h4>{`≈ $${earnedInDollarsStrawAvax}`}</h4>
-
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                        <Button color="primary" onClick={onPresentTshareZap} variant="contained">
-                          Zap In
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', marginTop: '20px' }}>
-                    <div style={{ width: '40%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                      <TokenSymbol symbol="FUDGE" style={{ backgroundColor: 'transparent !important' }} />
-                      <h4>FUDGE</h4>
-                    </div>
-                    <div style={{ width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignContent: 'space-between',
-                          justifyContent: 'space-between',
-                          width: '100%',
-                        }}
-                      >
-                        <h4>Staked Amount:</h4>
-                        <h4>{`≈ $${stakedInDollarsFudge}`}</h4>
-                      </div>
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignContent: 'space-between',
-                          justifyContent: 'space-between',
-                          width: '100%',
-                        }}
-                      >
-                        <h4>Rewards Earned:</h4>
-                        <h4>{`≈ $${earnedInDollarsFudge}`}</h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-                        {/* // SuperZapper */}
-          <Card xs={12}>
-            <CardContent align="center">
-              <Box mt={2}>
-                <TokenSymbol symbol="ZAPPER" />
-              </Box>
-              <Box sx={{ width: 225 }}>
-                <Typography
-                  flexDirection={'row'}
-                  flexGrow={1}
-                  flexBasis={'space-between'}
-                  display={'flex'}
-                  sx={{ marginTop: '8px', whiteSpace: 'nowrap' }}
-                  fontSize='8px'
-                  gutterBottom>
-                  <div style={{ flexDirection: 'column', textAlign: 'left' }}>
-                    <b style={{ fontSize: '14px' }}>{boardroomValue}%</b>
-                    <div>BOARDROOM</div>
-                  </div>
-                  <div style={{ width: '100%' }}>{' '}</div>
-                  <div style={{ flexDirection: 'column', textAlign: 'right' }}>
-                    <b style={{ fontSize: '14px' }}>{100 - boardroomValue}%</b>
-                    <div>FARMS</div>
-                  </div>
-                </Typography>
-                <Slider
-                  // size='large'
-                  aria-label="Stake boardroom"
-                  defaultValue={20}
-                  getAriaValueText={(t) => `${t}%`}
-                  valueLabelDisplay="off"
-                  value={boardroomValue}
-                  onChange={handleBoardroomChange}
-                  step={5}
-                  marks
-                  min={0}
-                  max={40}
-                />
-                <Slider
-                  // size='large'
-                  aria-label="Zap ratio"
-                  defaultValue={80}
-                  getAriaValueText={(t) => `${t}%`}
-                  valueLabelDisplay="off"
-                  value={strategyValue}
-                  onChange={handleStrategyChange}
-                  step={5}
-                  marks
-                  min={60}
-                  max={100}
-                />
-                <Typography
-                  flexDirection={'row'}
-                  flexGrow={1}
-                  flexBasis={'space-between'}
-                  display={'flex'}
-                  sx={{ marginTop: '0', whiteSpace: 'nowrap' }}
-                  fontSize='18px'
-                  gutterBottom>
-                  <div style={{ flexDirection: 'column', textAlign: 'left' }}>
-                    <div>FUDGE-DAI</div>
-                    <b style={{ fontSize: '14px' }}>{strategyValue}%</b>
-                  </div>
-                  <div style={{ width: '100%' }}>{' '}</div>
-                  <div style={{ flexDirection: 'column', textAlign: 'right' }}>
-                    <div>STRAW-DAI</div>
-                    <b style={{ fontSize: '14px' }}>{100 - strategyValue}%</b>
-                  </div>
-                </Typography>
-                <Box mt={1}>
-                  {!loading ?
-                    <Button onClick={() => approvalStateStrategy === ApprovalState.APPROVED ? executeStrategy() : executeApprovals()} color='primary' variant='contained'>
-                      {approvalStateStrategy === ApprovalState.APPROVED ? 'Zap In' : 'Approve'}
-                    </Button>
-                    
-                    :
-                    <div style={{ flexDirection: 'column', flexGrow: 1 }}>
-                      <CircularProgress color='inherit' />
-                      <div style={{ fontSize: '12px', marginTop: '12px', color: '#000' }}><i>Submitting multiple transactions...</i></div>
-                    </div>
-                  }
-                </Box>
-              </Box>
-            </CardContent>
-          </Card>
-          
+                        :
+                        <div style={{ flexDirection: 'column', flexGrow: 1 }}>
+                          <CircularProgress color='inherit' />
+                          <div style={{ fontSize: '12px', marginTop: '12px', color: '#000' }}><i>Submitting multiple transactions...</i></div>
+                        </div>
+                      }
+                    </Box>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
     </Page >
   );
 };
+
+
 const StyledValue = styled.div`
   //color: ${(props) => props.theme.color.grey[300]};
         font-size: 30px;
