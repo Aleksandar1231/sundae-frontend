@@ -23,14 +23,14 @@ function useApproveZapper(zappingToken: string): [ApprovalState, () => Promise<v
   if (zappingToken === FTM_TICKER) token = tombFinance.FTM;
   else if (zappingToken === TOMB_TICKER) token = tombFinance.TOMB;
   else if (zappingToken === TSHARE_TICKER) token = tombFinance.TSHARE;
-  else if (zappingToken === AVAX_TICKER) token = tombFinance.externalTokens[AVAX_TICKER];
+  // else if (zappingToken === AVAX_TICKER) token = tombFinance.externalTokens[AVAX_TICKER];
   const pendingApproval = useHasPendingApproval(token.address, ZAPPER_ROUTER_ADDR);
   const currentAllowance = useAllowance(token, ZAPPER_ROUTER_ADDR, pendingApproval);
 
   // check the current approval status
   const approvalState: ApprovalState = useMemo(() => {
     // we might not have enough data to know whether or not we need to approve
-    if (token === tombFinance.FTM) return ApprovalState.APPROVED;
+    if (token === tombFinance.WAVAX) return ApprovalState.APPROVED;
     if (!currentAllowance) return ApprovalState.UNKNOWN;
 
     // amountToApprove will be defined if currentAllowance is

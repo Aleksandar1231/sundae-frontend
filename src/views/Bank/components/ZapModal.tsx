@@ -15,7 +15,7 @@ import useTokenBalance from '../../../hooks/useTokenBalance';
 import useTombFinance from '../../../hooks/useTombFinance';
 import { useWallet } from 'use-wallet';
 import useApproveZapper, { ApprovalState } from '../../../hooks/useApproveZapper';
-import { TOMB_TICKER, TSHARE_TICKER, WFTM_TICKER, FTM_TICKER, AVAX_TICKER} from '../../../utils/constants';
+import { TOMB_TICKER, TSHARE_TICKER, WFTM_TICKER, FTM_TICKER, AVAX_TICKER } from '../../../utils/constants';
 
 interface ZapProps extends ModalProps {
   onConfirm: (zapAsset: string, lpName: string, amount: string, slippageBp: string) => void;
@@ -117,11 +117,11 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
       <ModalTitle text={`Zap in ${tokenName}`} />
 
       <StyledActionSpacer />
-      <InputLabel style={{ fontWeight:'700', color: '#000', marginBottom: '-1rem' }} id="label">
+      <InputLabel style={{ fontWeight: '700', color: '#000', marginBottom: '1rem' }} id="label">
         Select Token
       </InputLabel>
       <br />
-      <Select variant="outlined" onChange={handleChangeAsset} style={{ borderRadius:'10px', color: 'black', background: 'rgb(8, 9, 13, 1, 0.9)' }} labelId="label" id="select" value={zappingToken}>
+      <Select onChange={handleChangeAsset} style={{ border: '1px solid black', borderRadius: '10px', background: 'rgb(8, 9, 13, 1, 0.9)', padding: '10px' }} labelId="label" id="select" value={zappingToken}>
         <StyledMenuItem value={FTM_TICKER}>DAI</StyledMenuItem>
         {/* <StyledMenuItem value={AVAX_TICKER}>AVAX</StyledMenuItem> */}
         <StyledMenuItem value={TSHARE_TICKER}>STRAW</StyledMenuItem>
@@ -154,7 +154,7 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
             {Number(estimate.token1)} {tokenName.startsWith(TSHARE_TICKER) ? FTM_TICKER : TSHARE_TICKER}){' '}
           </StyledDescriptionText>}
       </>}
-      <InputLabel style={{ color: '#1d48b6', marginBottom: '1rem' }} id="label">
+      <InputLabel style={{ color: '#1d48b6', marginBottom: '1rem', marginTop: '1rem' }} id="label">
         Slippage Tolerance
       </InputLabel>
       <Input
@@ -163,9 +163,9 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
         onBlur={() => !(slippage && isNumeric(slippage)) && setSlippage('2')}
         onChange={(e: any) => setSlippage(!!e.currentTarget.value && isNumeric(e.currentTarget.value) ? e.currentTarget.value : '')}
         placeholder="0"
-        endAdornment={<div style={{ marginBottom: '1px' }}>%</div>}
+        endAdornment={<div style={{ padding: '1px' }}>%</div>}
         fullWidth={false}
-        style={{ maxWidth: '2.5rem', marginLeft: '14px' }}
+        style={{ maxWidth: '3rem', marginLeft: '14px', border: '1px solid black', borderRadius: '10px', padding: '10px' }}
       />
       <ModalActions>
         <Button
