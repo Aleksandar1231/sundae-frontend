@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Page from '../../components/Page';
 import PitImage from '../../assets/img/none.png';
 import { createGlobalStyle } from 'styled-components';
@@ -18,7 +18,9 @@ import useTokenBalance from '../../hooks/useTokenBalance';
 import useBondsPurchasable from '../../hooks/useBondsPurchasable';
 import { getDisplayBalance } from '../../utils/formatBalance';
 import { BOND_REDEEM_PRICE, BOND_REDEEM_PRICE_BN } from '../../tomb-finance/constants';
-import { Box, Card, CardContent, /* Button ,*/ Typography, Grid } from '@material-ui/core';
+import { Box, CardContent, /* Button ,*/ Typography, Grid } from '@material-ui/core';
+import Card from '../../components/Card';
+import useTombStats from '../../hooks/useTombStats';
 /* const BackgroundImage = createGlobalStyle`
   body {
     background: url(${PitImage}) no-repeat !important;
@@ -36,7 +38,7 @@ const Pit: React.FC = () => {
   const bondsPurchasable = useBondsPurchasable();
 
   const bondBalance = useTokenBalance(tombFinance?.TBOND);
-
+  const [tombBalance, setTombBalance] = useState('0')
   const handleBuyBonds = useCallback(
     async (amount: string) => {
       const tx = await tombFinance.buyBonds(amount);
@@ -46,6 +48,16 @@ const Pit: React.FC = () => {
     },
     [tombFinance, addTransaction],
   );
+
+  useEffect(() => {
+    const getTombBalance = async () => {
+      const { Treasury } = tombFinance.contracts
+      const tombBalance = await tombFinance.TOMB.balanceOf(Treasury.address);
+      setTombBalance(getDisplayBalance(tombBalance, 18, 0));
+    }
+    getTombBalance();
+  })
+
 
   const handleRedeemBonds = useCallback(
     async (amount: string) => {
@@ -64,14 +76,14 @@ const Pit: React.FC = () => {
         {!!account ? (
           <>
             <Route exact path={path}>
-            <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
+              <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
                 Bonds
               </Typography>
               <Typography color="textPrimary" align="center" variant="h5" gutterBottom>
                 Earn premiums upon redemption
               </Typography>
             </Route>
-            <StyledBond style={{marginTop:'40px'}}>
+            <StyledBond style={{ marginTop: '40px' }}>
               <StyledCardWrapper>
                 <ExchangeCard
                   action="Purchase"
@@ -100,6 +112,21 @@ const Pit: React.FC = () => {
                   description="Current Price: (FUDGE)^2"
                   price={Number(bondStat?.tokenInFtm).toFixed(2) || '-'}
                 />
+                <StyledSupplyWrapper>
+                  <Card>
+                    <CardContent>
+                      <Typography variant="h4" style={{ textAlign: 'center' }}>{Number(bondStat?.totalSupply)}</Typography>
+                      <Typography style={{ textAlign: 'center' }}>CARAML Supply</Typography>
+                    </CardContent>
+                  </Card>
+                  <Spacer size="md" />
+                  <Card>
+                    <CardContent>
+                      <Typography variant="h4" style={{ textAlign: 'center' }}>{tombBalance}</Typography>
+                      <Typography style={{ textAlign: 'center' }}>FUDGE Reserves</Typography>
+                    </CardContent>
+                  </Card>
+                </StyledSupplyWrapper>
               </StyledStatsWrapper>
               <StyledCardWrapper>
                 <ExchangeCard
@@ -152,6 +179,13 @@ const StyledStatsWrapper = styled.div`
     width: 80%;
     margin: 16px 0;
   }
+`;
+
+const StyledSupplyWrapper = styled.div`
+  display: flex;
+  flex: 0.8;
+  margin: 20px 0 0 0;
+  flex-direction: row;
 `;
 
 export default Pit;
