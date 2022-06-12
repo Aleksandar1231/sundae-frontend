@@ -530,7 +530,7 @@ const Home = () => {
 
           <Grid container item style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }} sm={4} xs={12}>
 
-            <Grid item style={{ margin: '10px 0 10px 0' }}>
+            <Grid item >
               <Card >
                 <CardContent >
 
@@ -659,7 +659,7 @@ const Home = () => {
             </Grid>
 
             {/* // SuperZapper */}
-            <Grid item >
+            <Grid item style={{marginTop:'15px'}}>
               <Card>
                 <CardContent align="center">
                   <Box mt={2}>
