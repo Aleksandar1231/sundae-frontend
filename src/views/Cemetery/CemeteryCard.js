@@ -123,7 +123,7 @@ const CemeteryCard = ({ bank }) => {
               <Box>
                 <h2 style={{ marginBottom: '10px', color: 'black', textAlign: 'right' }}>{bank.depositTokenName}</h2>
                 <div style={{ display: 'flex', justifyContent: 'right', alignItems: 'right' }}>
-                  <h3 style={{ marginBottom: '10px', color: 'black' }}>{bank.multiplier}</h3>
+                  <h3 style={{ marginBottom: '10px', color: 'black' }}>Pool Weight: {bank.multiplier}</h3>
                 </div>
               </Box>
             </Grid>
