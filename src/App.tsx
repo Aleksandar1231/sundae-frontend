@@ -129,13 +129,13 @@ const App: React.FC = () => {
               <Route path="/treasury" component={Treasury} />
               {/* <Route path="/sbs">
               <SBS />
-            </Route>
+            </Route> */}
             <Route path="/regulations">
               <Regulations />
             </Route>
-            <Route path="/liquidity">
+            {/* <Route path="/liquidity">
               <Liquidity />
-            </Route> */}
+            </Route>  */}
               <Route path="*" component={NoMatch} />
             </Switch>
           </Suspense>

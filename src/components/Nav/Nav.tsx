@@ -113,24 +113,12 @@ const Nav = () => {
               <Link color="textPrimary" to="/bonds" className='nav-link'>
                 Bonds
               </Link>
-              {/* <Link color="textPrimary" to="/rebates" className={classes.link}>
-                DAO
-              </Link> */}
-              {/* <Link color="textPrimary" to="/treasury" className={classes.link}>
-                Treasury
-              </Link>
-              <a href="/" target="_blank" className={classes.link}>
-                Vaults
-              </a> */}
-              {/* <Link color="textPrimary" to="/sbs" className={classes.link}>
-                SBS
-              </Link> */}
               <Link color="textPrimary" to="/farms/MasterNode" className='nav-link'>
                 Nodes
               </Link>
-             {/* <Link color="textPrimary" to="/regulations" className={classes.link}>
+             <Link color="textPrimary" to="/regulations" className='nav-link'>
                 Regulations
-              </Link> */}
+              </Link>
               <a href="https://froyo.farm/#/avax" target="_blank" className='nav-link'>
                 Vaults
               </a>

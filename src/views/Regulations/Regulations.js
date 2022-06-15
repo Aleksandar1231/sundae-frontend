@@ -4,16 +4,9 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 
 import Page from '../../components/Page';
-import RegulationsImage from '../../assets/img/regulations_bg.png';
 import { createGlobalStyle } from 'styled-components';
 import useTombFinance from '../../hooks/useTombFinance';
 
-const BackgroundImage = createGlobalStyle`
-  body, html {
-    background: url(${RegulationsImage}) no-repeat !important;
-    background-size: cover !important;
-  }
-`;
 const StyledTableCell = withStyles((theme) => ({
   head: {
     fontSize: 18,
@@ -43,13 +36,18 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
+
+// {getDisplayBalance(cashPrice, 18, 4)}
+
 const Regulations = () => {
+  const cashPrice = useCashPriceInLastTWAP();
   const classes = useStyles();
   const tombFinance = useTombFinance();
   const [rows, setRows] = useState(null);
-  function createData(epoch, dao, dev, masonry, bondsBought, bondsRedeemed) {
+  function createData(epoch, dao, dev, masonry, bondsBought, bondsRedeemed, price) {
     var sum = (Number(dao) + Number(dev) + Number(masonry)).toFixed(2);
-    return { epoch, dao, dev, masonry, sum, bondsBought, bondsRedeemed };
+    var price = Number(cashPrice).toFixed(4);
+    return { epoch, price, bondsBought, bondsRedeemed, sum };
   }
   useEffect(() => {
     if (tombFinance) {
@@ -61,11 +59,10 @@ const Regulations = () => {
             .map((element) =>
               createData(
                 element.epoch,
-                element.daoFund,
-                element.devFund,
-                element.masonryFund,
+                element.price,
                 element.bondsBought,
                 element.bondsRedeemed,
+                element.sum,
               ),
             ),
         );
@@ -75,21 +72,23 @@ const Regulations = () => {
 
   return (
     <Page>
-      <BackgroundImage />
-      <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
-        Graveyard regulations
+       <Typography color="textPrimary" align="center" variant="h3" gutterBottom style={{marginTop:'50px'}}>
+        Regulations
+      </Typography>
+
+      
+      <Typography color="textPrimary" align="center" variant="h5" gutterBottom style={{marginTop:'25px'}}>
+                The distribution of FUDGE during expansion and contraction
       </Typography>
       <TableContainer>
-        <Table className={classes.table} aria-label="simple table">
+        <Table className={classes.table} aria-label="simple table" style={{ marginTop: '75px' }}>
           <TableHead>
             <TableRow>
               <StyledTableCell align="center">Epoch</StyledTableCell>
-              <StyledTableCell align="center">Masonry funding</StyledTableCell>
-              <StyledTableCell align="center">DAO funding</StyledTableCell>
-              <StyledTableCell align="center">DEV funding</StyledTableCell>
-              <StyledTableCell align="center">Total</StyledTableCell>
-              <StyledTableCell align="center">Bonds Bought</StyledTableCell>
-              <StyledTableCell align="center">Bonds Redeemed</StyledTableCell>
+              <StyledTableCell align="center">Price</StyledTableCell>
+              <StyledTableCell align="center">Redeemed</StyledTableCell>
+              <StyledTableCell align="center">Bond</StyledTableCell>
+              <StyledTableCell align="center">Expand</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -101,12 +100,11 @@ const Regulations = () => {
                 <StyledTableCell style={{ color: '#2c2560' }} align="center" component="th" scope="row">
                   {row.epoch}
                 </StyledTableCell>
-                <StyledTableCell align="center">{row.masonry}</StyledTableCell>
-                <StyledTableCell align="center">{row.dao}</StyledTableCell>
-                <StyledTableCell align="center">{row.dev}</StyledTableCell>
-                <StyledTableCell align="center">{row.sum}</StyledTableCell>
+                <StyledTableCell align="center">{row.epoch}</StyledTableCell>
+                <StyledTableCell align="center">{row.price}</StyledTableCell>
                 <StyledTableCell align="center">{row.bondsBought}</StyledTableCell>
                 <StyledTableCell align="center">{row.bondsRedeemed}</StyledTableCell>
+                <StyledTableCell align="center">{row.sum}</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
