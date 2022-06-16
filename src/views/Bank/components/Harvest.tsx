@@ -46,11 +46,9 @@ const Harvest: React.FC<HarvestProps> = ({ bank }) => {
             <Typography style={{ textTransform: 'uppercase', color: '#fffff' }}>
               {`≈ $${earnedInDollars}`}
             </Typography>
-            {/* <Label text={`≈ $${earnedInDollars}`} /> */}
             <Typography style={{ textTransform: 'uppercase', color: '#1d48b6' }}>
               {`${tokenName} ${bank.sectionInUI === 3 ? 'Generated' : 'Earned'}`}
             </Typography>
-            {/* <Label text={`${tokenName} Earned`} /> */}
           </StyledCardHeader>
           <StyledCardActions>
           <Button

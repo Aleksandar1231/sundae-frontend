@@ -40,13 +40,13 @@ const StyledTableRow = withStyles((theme) => ({
 // {getDisplayBalance(cashPrice, 18, 4)}
 
 const Regulations = () => {
-  const cashPrice = useCashPriceInLastTWAP();
+  const cashPrice = useCashPriceInLastTWAP(); //price per last twap
   const classes = useStyles();
   const tombFinance = useTombFinance();
   const [rows, setRows] = useState(null);
   function createData(epoch, dao, dev, masonry, bondsBought, bondsRedeemed, price) {
     var sum = (Number(dao) + Number(dev) + Number(masonry)).toFixed(2);
-    var price = Number(cashPrice).toFixed(4);
+    var price = Number(cashPrice).toFixed(4); //assign price
     return { epoch, price, bondsBought, bondsRedeemed, sum };
   }
   useEffect(() => {
@@ -59,10 +59,10 @@ const Regulations = () => {
             .map((element) =>
               createData(
                 element.epoch,
-                element.price,
+                element.price, //last price
                 element.bondsBought,
                 element.bondsRedeemed,
-                element.sum,
+                element.sum, //sum of dao , dev and distribution
               ),
             ),
         );
@@ -86,7 +86,7 @@ const Regulations = () => {
             <TableRow>
               <StyledTableCell align="center">Epoch</StyledTableCell>
               <StyledTableCell align="center">Price</StyledTableCell>
-              <StyledTableCell align="center">Redeemed</StyledTableCell>
+              <StyledTableCell align="center">Redeem</StyledTableCell>
               <StyledTableCell align="center">Bond</StyledTableCell>
               <StyledTableCell align="center">Expand</StyledTableCell>
             </TableRow>

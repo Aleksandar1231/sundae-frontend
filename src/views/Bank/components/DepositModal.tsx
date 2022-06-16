@@ -1,7 +1,6 @@
 import React, { useCallback,useEffect, useMemo, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { Button } from '@material-ui/core';
-// import Button from '../../../components/Button'
 import Modal, { ModalProps } from '../../../components/Modal';
 import ModalActions from '../../../components/ModalActions';
 import ModalTitle from '../../../components/ModalTitle';
@@ -58,12 +57,6 @@ const DepositModal: React.FC<DepositModalProps> = ({ bank, max, decimals, onConf
     <Modal>
       <ReactTooltip effect="solid" clickable type="dark" place="bottom" />
       <ModalTitle text={bank.sectionInUI !== 3 ? `Deposit ${tokenName}` : `Purchase ${getNodeText(bank.poolId)}s Node`} />
-      {/* {node && <div style={{ display: 'flex' }}>
-        <div style={{ margin: 'auto auto' }}>{' '}</div>
-        <div style={{ color: '#bdbdbd', fontSize: '14px', fontWeight: '700' }}>RESETS LOCK TIME</div>
-        <div style={{ margin: 'auto auto' }}>{' '}</div>
-      </div>
-      } */}
       {bank.sectionInUI !== 3 ? <><TokenInput
         value={val}
         onSelectMax={handleSelectMax}
@@ -72,7 +65,6 @@ const DepositModal: React.FC<DepositModalProps> = ({ bank, max, decimals, onConf
         symbol={tokenName}
       />
         <ModalActions>
-          {/* <Button color="secondary" variant="outlined" onClick={onDismiss}>Cancel</Button> */}
           <Button color="primary" variant="contained" onClick={() => onConfirm(val)}>
             Confirm
           </Button>

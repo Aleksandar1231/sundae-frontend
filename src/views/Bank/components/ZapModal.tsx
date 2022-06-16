@@ -123,7 +123,6 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
       <br />
       <Select onChange={handleChangeAsset} style={{ border: '1px solid black', borderRadius: '10px', background: 'rgb(8, 9, 13, 1, 0.9)', padding: '10px' }} labelId="label" id="select" value={zappingToken}>
         <StyledMenuItem value={FTM_TICKER}>DAI</StyledMenuItem>
-        {/* <StyledMenuItem value={AVAX_TICKER}>AVAX</StyledMenuItem> */}
         <StyledMenuItem value={TSHARE_TICKER}>STRAW</StyledMenuItem>
         <StyledMenuItem value={TOMB_TICKER}>FUDGE</StyledMenuItem>
       </Select>
@@ -180,11 +179,6 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
           {approveZapperStatus !== ApprovalState.APPROVED ? 'Approve' : "Zap"}
         </Button>
       </ModalActions>
-
-      {/* <StyledActionSpacer />
-      <Alert variant="outlined" severity="info">
-        New feature. Use at your own risk!
-      </Alert> */}
     </Modal>
   );
 };
