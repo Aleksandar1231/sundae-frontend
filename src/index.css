@@ -1,5 +1,3 @@
-
-
 :root {
   --black: #16191e;
   --white: #e6e9ee;
@@ -18,6 +16,7 @@ h1 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 h2 {
   margin: 0;
   font-family: 'Gilroy', sans-serif !important;
@@ -27,6 +26,7 @@ h2 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 h3 {
   margin: 0;
   font-family: 'Gilroy', sans-serif !important;
@@ -36,6 +36,7 @@ h3 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 h4 {
   margin: 0;
   font-family: 'Gilroy', sans-serif !important;
@@ -80,8 +81,9 @@ h1 {
     sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 60px!important;
+  font-size: 60px !important;
 }
+
 h2 {
   margin: 0;
   font-family: 'Gilroy', sans-serif !important;
@@ -91,6 +93,7 @@ h2 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 h3 {
   margin: 0;
   font-family: 'Gilroy', sans-serif !important;
@@ -100,6 +103,7 @@ h3 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 h4 {
   margin: 0;
   font-family: 'Gilroy', sans-serif !important;
@@ -109,9 +113,10 @@ h4 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 h5,
 h6 {
-  font-family: 'Gilroy', !important;
+  font-family: 'Gilroy',  !important;
 }
 
 .footer {
@@ -121,7 +126,8 @@ h6 {
 .MuiToolbar-regular {
   color: #1b1b1b;
 }
-.MuiButton-root{
+
+.MuiButton-root {
   border-radius: 8px !important;
 }
 
@@ -146,6 +152,7 @@ code {
   justify-content: flex-start !important;
   text-transform: none !important;
 }
+
 .wallet-button:hover {
   background-color: black;
   color: #757ce8 !important;
@@ -155,13 +162,13 @@ code {
 
 .toolbar-title {
   font-family: "Gilroy";
-  font-size: 30px!important;
+  font-size: 30px !important;
   flex-grow: 1;
   background-color: #000;
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
-  -webkit-text-fill-color: transparent; 
+  -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
 }
 
@@ -170,14 +177,15 @@ code {
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
-  -webkit-text-fill-color: transparent; 
+  -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
   text-transform: uppercase;
   font-size: 14px;
   margin: 10px;
   font-weight: bold;
 }
-.nav-link:hover{
+
+.nav-link:hover {
   text-decoration: underline #000;
   text-decoration-thickness: 2px;
 }
@@ -186,8 +194,6 @@ code {
   fill: #000 !important
 }
 
-.MuiInputBase-input{
+.MuiInputBase-input {
   border: 10px !important
 }
-
-
