@@ -1,64 +1,74 @@
-import React, { useMemo } from 'react';
+import React, {useMemo} from 'react';
 import styled from 'styled-components';
 
-import { Button, CardContent, Typography } from '@material-ui/core';
-// import Button from '../../../components/Button';
-import Card from '../../../components/Card';
-// import CardContent from '../../../components/CardContent';
+import {Button, Card, CardContent, Typography} from '@material-ui/core';
 import CardIcon from '../../../components/CardIcon';
 import Label from '../../../components/Label';
 import Value from '../../../components/Value';
-
 import useEarnings from '../../../hooks/useEarnings';
 import useHarvest from '../../../hooks/useHarvest';
-
-import { getDisplayBalance } from '../../../utils/formatBalance';
+import useCompound from '../../../hooks/useCompound';
+import {getDisplayBalance} from '../../../utils/formatBalance';
 import TokenSymbol from '../../../components/TokenSymbol';
-import { Bank } from '../../../tomb-finance';
 import useTombStats from '../../../hooks/useTombStats';
 import useShareStats from '../../../hooks/usetShareStats';
+import useNodePrice from '../../../hooks/useNodePrice';
 
-interface HarvestProps {
-  bank: Bank;
-}
-
-const Harvest: React.FC<HarvestProps> = ({ bank }) => {
+const Harvest = ({bank}) => {
   const earnings = useEarnings(bank.contract, bank.earnTokenName, bank.poolId);
-  const { onReward } = useHarvest(bank);
   const tombStats = useTombStats();
   const tShareStats = useShareStats();
 
-  const tokenName = bank.earnTokenName === 'STRAW' ? 'STRAW' : 'FUDGE';
-  const tokenStats = bank.earnTokenName === 'STRAW' ? tShareStats : tombStats;
+  let tokenStats = 0;
+  if (bank.earnTokenName === 'STRAW') {
+    tokenStats = tShareStats;
+  }else if(bank.earnTokenName === 'FUDGE') {
+    tokenStats = tombStats;
+  }
+
+  const nodePrice = useNodePrice(bank.contract, bank.poolId, bank.sectionInUI);
   const tokenPriceInDollars = useMemo(
     () => (tokenStats ? Number(tokenStats.priceInDollars).toFixed(2) : null),
     [tokenStats],
   );
+  
   const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
+  const { onReward } = useHarvest(bank);
+  const { onCompound } = useCompound(bank);
+
   return (
     <Card>
-      <CardContent style={{ position: 'relative', backgroundColor: 'white' }}>
+      <CardContent>
         <StyledCardContentInner>
           <StyledCardHeader>
-
-              <TokenSymbol symbol={bank.earnToken.symbol} />
-            <Value value={getDisplayBalance(earnings)} />
-            <Typography style={{ textTransform: 'uppercase', color: '#fffff' }}>
-              {`≈ $${earnedInDollars}`}
+            <CardIcon>
+              <TokenSymbol symbol={bank.earnTokenName} />
+            </CardIcon>
+            <Typography style={{textTransform: 'uppercase', color: '#930993'}}>
+              <Value value={getDisplayBalance(earnings)} />
             </Typography>
-            {/* <Label text={`≈ $${earnedInDollars}`} /> */}
-            {/* <Label text={`${tokenName} Earned`} /> */}
+            <Label text={`≈ $${earnedInDollars}`} />
+            <Typography style={{textTransform: 'uppercase', color: '#fff'}}>{bank.earnTokenName} Earned</Typography>
           </StyledCardHeader>
           <StyledCardActions>
           <Button
               onClick={onReward}
               disabled={earnings.eq(0)}
-              color="primary" 
-              variant="contained"
+              className={earnings.eq(0) ? 'shinyButtonDisabled' : 'shinyButton'}
             >
               Claim
             </Button>
           </StyledCardActions>
+         
+          <Button
+          style={{marginTop: '20px'}}
+              onClick={onCompound}
+              disabled={Number(earnings) < Number(nodePrice)}
+              className={Number(earnings) < Number(nodePrice) ? 'shinyButtonDisabled' : 'shinyButton'}
+            >
+              Compound {(Number(earnings)/Number(nodePrice))|0} Nodes
+          </Button>
+
         </StyledCardContentInner>
       </CardContent>
     </Card>
@@ -73,7 +83,7 @@ const StyledCardHeader = styled.div`
 const StyledCardActions = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${(props) => props.theme.spacing[6]}px;
+  margin-top: 10px;
   width: 100%;
 `;
 

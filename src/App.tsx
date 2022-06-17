@@ -22,9 +22,8 @@ import Particles from 'react-tsparticles'; //'react-particles-js';
 const Home = lazy(() => import('./views/Home'));
 const Farms = lazy(() => import('./views/Cemetery'));
 const Boardroom = lazy(() => import('./views/Masonry'));
-// const Rebates = lazy(() => import('./views/Rebates'));
 const Bonds = lazy(() => import('./views/Pit'));
-const Treasury = lazy(() => import('./views/Treasury'));
+const Nodes = lazy(() => import ('./views/Nodes'));
 // const SBS = lazy(() => import('./views/Sbs'));
 // const Liquidity = lazy(() => import('./views/Liquidity'));
 
@@ -122,11 +121,8 @@ const App: React.FC = () => {
               <Route exact path="/" component={Home} />
               <Route path="/farms" component={Farms} />
               <Route path="/boardroom" component={Boardroom} />
-              {/* <Route path="/rebates">
-              <Rebates />
-            </Route> */}
               <Route path="/bonds" component={Bonds} />
-              <Route path="/treasury" component={Treasury} />
+              <Route path="/nodes" component={Nodes}/>
               {/* <Route path="/sbs">
               <SBS />
             </Route>
@@ -156,7 +152,7 @@ const Providers: React.FC = ({ children }) => {
             walletlink: {
               url: config.defaultProvider,
               appName: 'Sundae Finance',
-              appLogoUrl: './sundaefinance.png',
+              appLogoUrl: './fudge.png',
             },
           }}
         >

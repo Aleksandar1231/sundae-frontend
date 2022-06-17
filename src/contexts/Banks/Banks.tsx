@@ -20,7 +20,6 @@ const Banks: React.FC = ({children}) => {
         const balance = await tombFinance.stakedBalanceOnBank(
           bankInfo.contract,
           bankInfo.poolId,
-          bankInfo.sectionInUI,
           tombFinance.myAccount,
         );
         if (balance.lte(0)) {

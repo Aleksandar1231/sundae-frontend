@@ -21,8 +21,6 @@ import useStakedBalance from '../../../hooks/useStakedBalance';
 import useStakedTokenPriceInDollars from '../../../hooks/useStakedTokenPriceInDollars';
 import useTokenBalance from '../../../hooks/useTokenBalance';
 import useWithdraw from '../../../hooks/useWithdraw';
-import useNodePrice from '../../../hooks/useNodePrice';
-import useNodeText from '../../../hooks/useNodeText';
 import { getDisplayBalance } from '../../../utils/formatBalance';
 import useWallet from 'use-wallet';
 import DepositModal from './DepositModal';
@@ -43,15 +41,13 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
   const tokenBalance = useTokenBalance(bank.depositToken);
   const { account } = useWallet();
   const stakedBalance = useStakedBalance(bank.contract, bank.poolId, bank.sectionInUI, account);
-  const nodePrice = useNodePrice(bank.contract, bank.poolId, bank.sectionInUI);
-  const { getNodeText } = useNodeText();
   const stakedTokenPriceInDollars = useStakedTokenPriceInDollars(bank.depositTokenName, bank.depositToken);
   const tokenPriceInDollars = useMemo(
     () => (stakedTokenPriceInDollars ? stakedTokenPriceInDollars : null),
     [stakedTokenPriceInDollars],
   );
   const earnedInDollars = (
-    Number(tokenPriceInDollars) * Number(getDisplayBalance(bank.sectionInUI !== 3 ? stakedBalance : nodePrice, bank.depositToken.decimal))
+    Number(tokenPriceInDollars) * Number(getDisplayBalance(stakedBalance, bank.depositToken.decimal))
   ).toFixed(2);
   const { onStake } = useStake(bank);
   const { onZapIn } = useZap(bank);
@@ -60,7 +56,6 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
 
   const [onPresentDeposit, onDismissDeposit] = useModal(
     <DepositModal
-      bank={bank}
       max={tokenBalance}
       decimals={bank.depositToken.decimal}
       onConfirm={(amount) => {
@@ -103,14 +98,14 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
         <StyledCardContentInner>
           <StyledCardHeader>
             <CardIcon>
-            <TokenSymbol symbol={bank.sectionInUI !== 3 ? bank.depositToken.symbol : 'NODE'} size={54} />
+            <TokenSymbol symbol={bank.depositToken.symbol} size={54} />
             </CardIcon>
-            <Value value={getDisplayBalance(bank.sectionInUI !== 3 ? stakedBalance : nodePrice, bank.depositToken.decimal, bank.sectionInUI === 3 ? 0 : 4)} />
+            <Value value={getDisplayBalance(stakedBalance, bank.depositToken.decimal)} />
             <Typography style={{ textTransform: 'uppercase', color: '#fffff' }}>
               {`≈ $${earnedInDollars}`}
             </Typography>
             <Typography style={{ textTransform: 'uppercase', color: '#1d48b6' }}>
-              {`${bank.sectionInUI !== 3 ? bank.depositTokenName : getNodeText(bank.poolId)} ${bank.sectionInUI !== 3 ? 'Staked' : 'Price'}`}
+            {`${bank.depositTokenName} Staked`}
             </Typography>
           </StyledCardHeader>
           <StyledCardActions>
@@ -130,7 +125,7 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
               </Button>
             ) : (
               <>
-                {bank.sectionInUI !== 3 && <><IconButton onClick={onPresentWithdraw}>
+                <IconButton onClick={onPresentWithdraw}>
                   <RemoveIcon />
                 </IconButton>
                   <StyledActionSpacer />
@@ -144,16 +139,7 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
                   >
                     <FlashOnIcon />
                   </IconButton>
-                  <StyledActionSpacer /> </>}
-                <Button
-                  color="primary"
-                  variant="contained"
-                  style={{ marginTop: '20px' }}
-                  disabled={bank.closedForStaking}
-                  onClick={() => (bank.closedForStaking ? null : onPresentDeposit())}
-                >
-                  Purchase Node
-                </Button>
+                  <StyledActionSpacer />
               </>
             )}
           </StyledCardActions>

@@ -23,8 +23,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AccountButton from './AccountButton';
-import DiscordImage from '../../assets/img/discord.svg';
-import sundaeLogo from '../../assets/img/sundaelogo.png';
 const useStyles = makeStyles((theme) => ({
   '@global': {
     ul: {
@@ -37,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
     color: 'var(--white)',
     'background-color': 'transparent!important',
     'backdrop-filter': 'blur(10px)',
-    // borderBottom: `1px solid ${theme.palette.divider}`,
     padding: '0 10px',
     position: 'sticky',
   },
@@ -96,9 +93,6 @@ const Nav = () => {
           <>
             <Typography  variant="h5" color="inherit" noWrap className='toolbar-title'>
               Sundae Finance
-              {/*               <Link to="/" color="inherit" className={classes.brandLink}>
-                <img alt="sundae.finance" src={sundaeLogo} height="90px" width="200px" />
-              </Link> */}
             </Typography>
             <Box mr={5}>
               <Link color="color" to="/" className='nav-link'>
@@ -113,19 +107,7 @@ const Nav = () => {
               <Link color="textPrimary" to="/bonds" className='nav-link'>
                 Bonds
               </Link>
-              {/* <Link color="textPrimary" to="/rebates" className={classes.link}>
-                DAO
-              </Link> */}
-              {/* <Link color="textPrimary" to="/treasury" className={classes.link}>
-                Treasury
-              </Link>
-              <a href="/" target="_blank" className={classes.link}>
-                Vaults
-              </a> */}
-              {/* <Link color="textPrimary" to="/sbs" className={classes.link}>
-                SBS
-              </Link> */}
-              <Link color="textPrimary" to="/farms/MasterNode" className='nav-link'>
+              <Link color="textPrimary" to="/nodes" className='nav-link'>
                 Nodes
               </Link>
              {/* <Link color="textPrimary" to="/regulations" className={classes.link}>
@@ -146,14 +128,6 @@ const Nav = () => {
             </Box>
 
             <AccountButton text="Connect" />
-            {/*   <img alt='logo4' style={{ width: 50 }} src={String(logo4)} />
-            <span style={{ fontSize: '16px', color: '#000000', marginRight: '15px', marginLeft: '10px' }}>${tombPriceInDollars ? tombPriceInDollars : '-.--'}</span>
-            <img alt='logoshare' style={{ width: 50 }} src={String(logohshare2)} />
-            <span style={{ fontSize: '16px', color: '#000000', marginRight: '30px', marginLeft: '10px' }}>${tSharePriceInDollars ? tSharePriceInDollars : '-.--'}</span>
-            <Button href="https://discord.gg/KbHU9hrayQ" variant="contained" color='secondary' style={{ marginRight: '25px', borderRadius: '14px', width: '60px' }}>
-              <img alt='discordlogo' style={{ width: 22 }} src={String(DiscordImage)} />
-            </Button> */}
-
           </>
         ) : (
           <>
@@ -172,8 +146,6 @@ const Nav = () => {
 
             <Drawer
               className={classes.drawer}
-/*               onEscapeKeyDown={handleDrawerClose}
-              onBackdropClick={handleDrawerClose} */
               variant="temporary"
               anchor="left"
               open={open}
@@ -192,7 +164,7 @@ const Nav = () => {
                 <ListItemLink primary="Farm" to="/farms" />
                 <ListItemLink primary="Boardroom" to="/boardroom" />
                 <ListItemLink primary="Bonds" to="/bonds" />
-                 <ListItemLink primary="Nodes" to="/farms/MasterNode" /> 
+                 <ListItemLink primary="Nodes" to="/nodes" /> 
                 <ListItem button component="a" href="https://froyo.farm/#/avax">
                   <ListItemText disableTypography style={{ color: '#000' }}>
                     Vaults

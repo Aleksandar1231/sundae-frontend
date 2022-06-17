@@ -19,7 +19,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Super-Zap.sol": "SafeMath"
+			"contracts/FudgeNode.sol": "SafeMath"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -27,18 +27,18 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Super-Zap.sol": {
-			"keccak256": "0xee5d5d1fe214e4bfa712a77489b17e5303d030f83c8ab065e503ffdaaa9edb2c",
+		"contracts/FudgeNode.sol": {
+			"keccak256": "0x1671e30a38cd8c25e89869c4646ba14cf0903b396b3e3a57d9141bfc8677237d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://29fc440f26b8a73b828d578b001d3da74fb455ce05265a52d18fe7703a2fcfb8",
-				"dweb:/ipfs/QmYB7XVBAvA9YpCQcDGWTsUaoyN2F1Mu3KKctpZ26SGMAG"
+				"bzz-raw://2dab7d55fdeddcba760b7a765b7dd5f5243eba129214f9a6fc2e33904c863489",
+				"dweb:/ipfs/QmRWUNHJsTAjnKd2tjw1jWvRUUqsp8GVctMwLfEjC2Dfku"
 			]
 		}
 	},
