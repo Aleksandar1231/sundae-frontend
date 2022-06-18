@@ -183,7 +183,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'FUDGE',
     finished: false,
     multiplier:null,
-    site: 'sundaefinance.app',
+    site: null,
     buyLink: 'https://traderjoexyz.com/trade#/0xD9FF12172803c072a36785DeFea1Aa981A6A0C18',
     sort: 2,
     closedForStaking: false,
