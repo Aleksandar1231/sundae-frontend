@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 const Nodes = () => {
   const { bankId } = useParams();
 
-  const bank = useBank(bankId);
+  const bank = useBank("FudgeNode");
   const { account } = useWallet();
   const classes = useStyles();
   const statsOnPool = useStatsForPool(bank);
