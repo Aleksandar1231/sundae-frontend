@@ -1,7 +1,8 @@
 import React, {useMemo} from 'react';
 import styled from 'styled-components';
 
-import {Button, Card, CardContent, Typography} from '@material-ui/core';
+import {Button, CardContent, Grid, Typography} from '@material-ui/core';
+import Card from '../../../components/Card';
 import CardIcon from '../../../components/CardIcon';
 import Label from '../../../components/Label';
 import Value from '../../../components/Value';
@@ -41,9 +42,9 @@ const Harvest = ({bank}) => {
       <CardContent>
         <StyledCardContentInner>
           <StyledCardHeader>
-            <CardIcon>
+            <Grid>
               <TokenSymbol symbol={bank.earnTokenName} />
-            </CardIcon>
+            </Grid>
             <Typography style={{textTransform: 'uppercase', color: '#930993'}}>
               <Value value={getDisplayBalance(earnings)} />
             </Typography>
@@ -52,19 +53,23 @@ const Harvest = ({bank}) => {
           </StyledCardHeader>
           <StyledCardActions>
           <Button
+              color= "primary"
+              variant= "contained"
               onClick={onReward}
               disabled={earnings.eq(0)}
-              className={earnings.eq(0) ? 'shinyButtonDisabled' : 'shinyButton'}
+              className={earnings.eq(0) ? 'shinyButtonDisabled' : 'shinyButtonSecondary'}
             >
               Claim
             </Button>
           </StyledCardActions>
          
           <Button
-          style={{marginTop: '20px'}}
+              color= "primary"
+              variant= "contained"
+              style={{marginTop: '20px'}}
               onClick={onCompound}
               disabled={Number(earnings) < Number(nodePrice)}
-              className={Number(earnings) < Number(nodePrice) ? 'shinyButtonDisabled' : 'shinyButton'}
+              className={Number(earnings) < Number(nodePrice) ? 'shinyButtonDisabled' : 'shinyButtonSecondary'}
             >
               Compound {(Number(earnings)/Number(nodePrice))|0} Nodes
           </Button>

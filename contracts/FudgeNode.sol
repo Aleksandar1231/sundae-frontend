@@ -419,7 +419,7 @@ contract Node {
 
 
     constructor(uint256 _startTime) public {
-        maxReturnPercent = 500; 
+        maxReturnPercent = 400; 
         dripRate = 2400000; 
         treasuryFeePercent = 20; 
 

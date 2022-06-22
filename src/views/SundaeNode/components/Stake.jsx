@@ -1,11 +1,9 @@
 import React, {useMemo} from 'react';
 import styled from 'styled-components';
-import {Button, Card, CardContent, Typography} from '@material-ui/core';
+import {Button, CardContent, Grid, Typography} from '@material-ui/core';
+import Card from '../../../components/Card';
 import DepositModal from './DepositModal';
 
-import CardIcon from '../../../components/CardIcon';
-import {AddIcon} from '../../../components/icons';
-import IconButton from '../../../components/IconButton';
 import Label from '../../../components/Label';
 import Value from '../../../components/Value';
 
@@ -55,20 +53,22 @@ const Stake = ({bank}) => {
       <CardContent>    
         <StyledCardContentInner>         
           <StyledCardHeader>        
-            <CardIcon>
+            <Grid>
               <TokenSymbol symbol={'NODE'} size={54} />
-            </CardIcon>
+            </Grid>
             <Typography style={{textTransform: 'uppercase', color: '#930993'}}>
               <Value value={getDisplayBalance(nodePrice, bank.depositToken.decimal, 1)} />
             </Typography>
 
             <Label text={`≈ $${earnedInDollars}`} />
 
-            <Typography style={{textTransform: 'uppercase', color: '#fff'}}>{`${bank.earnTokenName} NODE COST`}</Typography>
+            <Typography style={{textTransform: 'uppercase', color: '#fff'}}>{`NODE COST`}</Typography>
           </StyledCardHeader>
           <StyledCardActions>
             {approveStatus !== ApprovalState.APPROVED ? (
                 <Button
+                  color= "primary"
+                  variant= "contained"
                   disabled={
                     bank.closedForStaking ||
                     approveStatus === ApprovalState.PENDING ||
@@ -80,19 +80,21 @@ const Stake = ({bank}) => {
                     approveStatus === ApprovalState.PENDING ||
                     approveStatus === ApprovalState.UNKNOWN
                       ? 'shinyButtonDisabled'
-                      : 'shinyButton'
+                      : 'shinyButtonSecondary'
                   }
                   style={{marginTop: '20px'}}
                 >
                   {`Approve ${bank.depositTokenName}`}
                 </Button>
               ) : (
-                <IconButton
+                <Button
+                  color= "primary"
+                  variant= "contained"
                   disabled={bank.closedForStaking}
                   onClick={() => (bank.closedForStaking ? null : onPresentDeposit())}
                 >
-                  <AddIcon />
-                </IconButton>
+                  Purchase Node
+                </Button>
               )
             }
           </StyledCardActions>

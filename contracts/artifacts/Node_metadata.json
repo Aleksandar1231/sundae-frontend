@@ -846,11 +846,11 @@
 	},
 	"sources": {
 		"contracts/FudgeNode.sol": {
-			"keccak256": "0x1671e30a38cd8c25e89869c4646ba14cf0903b396b3e3a57d9141bfc8677237d",
+			"keccak256": "0x364fa58f4b75bf049b385d5368b847eb7050d0e8e22e50eac05df52c99401d0e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2dab7d55fdeddcba760b7a765b7dd5f5243eba129214f9a6fc2e33904c863489",
-				"dweb:/ipfs/QmRWUNHJsTAjnKd2tjw1jWvRUUqsp8GVctMwLfEjC2Dfku"
+				"bzz-raw://669363f6b48ffe8a51f7412a92b3b336f0eba61783be69654f0dd79b4832ff79",
+				"dweb:/ipfs/QmNWhVAEFygiYLhXFe3HpKc8KdnM9zd19YskxXy8jWquAq"
 			]
 		}
 	},

@@ -17,15 +17,13 @@ import Loader from './components/Loader';
 import Popups from './components/Popups';
 import Regulations from './views/Regulations/Regulations';
 import { RefreshContextProvider } from './contexts/RefreshContext';
-import Particles from 'react-tsparticles'; //'react-particles-js';
+// import Particles from 'react-tsparticles'; //'react-particles-js';
 
 const Home = lazy(() => import('./views/Home'));
 const Farms = lazy(() => import('./views/Cemetery'));
 const Boardroom = lazy(() => import('./views/Masonry'));
 const Bonds = lazy(() => import('./views/Pit'));
 const Nodes = lazy(() => import ('./views/Nodes'));
-// const SBS = lazy(() => import('./views/Sbs'));
-// const Liquidity = lazy(() => import('./views/Liquidity'));
 
 const NoMatch = () => (
   <h3 style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
@@ -44,85 +42,25 @@ const App: React.FC = () => {
   usePromptNetwork();
 
   return (
-    <div>
-     {/*  <Particles
-        id="tsparticles"
-        options={{
-          background: {
-            image: 'public/background.jpg',
-          },
-          fpsLimit: 120,
-          interactivity: {
-            events: {
-              onClick: {
-                enable: true,
-                mode: 'push',
-              },
-              onHover: {
-                enable: true,
-                mode: 'repulse',
-              },
-              resize: true,
-            },
-            modes: {
-              bubble: {
-                distance: 400,
-                duration: 2,
-                opacity: 0.8,
-                size: 40,
-              },
-              push: {
-                quantity: 4,
-              },
-              repulse: {
-                distance: 100,
-                duration: 0.4,
-              },
-            },
-          },
-          particles: {
-            color: {
-              value: '#ffffff',
-            },
-
-            move: {
-              direction: 'none',
-              enable: true,
-              outMode: 'bounce',
-              random: false,
-              speed: 1.5,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                area: 2000,
-              },
-              value: 80,
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: 'circle',
-            },
-            size: {
-              random: true,
-              value: 4,
-            },
-          },
-          detectRetina: true,
-        }}
-      /> */}
       <Providers>
         <Router>
           <Suspense fallback={<Loader />}>
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/farms" component={Farms} />
-              <Route path="/boardroom" component={Boardroom} />
-              <Route path="/bonds" component={Bonds} />
-              <Route path="/nodes" component={Nodes}/>
+              <Route exact path="/" >
+                <Home />
+              </Route>
+              <Route path="/farms" >
+                <Farms />
+              </Route>
+              <Route path="/boardroom">
+                <Boardroom />
+              </Route>
+              <Route path="/bonds">
+                <Bonds />
+              </Route>
+              <Route path="/nodes">
+                <Nodes />
+              </Route>
               {/* <Route path="/sbs">
               <SBS />
             </Route>
@@ -132,12 +70,13 @@ const App: React.FC = () => {
             <Route path="/liquidity">
               <Liquidity />
             </Route> */}
-              <Route path="*" component={NoMatch} />
+              <Route path="*" >
+              <NoMatch />
+            </Route>
             </Switch>
           </Suspense>
         </Router>
       </Providers>
-    </div>
   );
 };
 
