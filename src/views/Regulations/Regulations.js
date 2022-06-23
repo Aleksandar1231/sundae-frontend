@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-
+import { withStyles, makeStyles } from '@material-ui/core/styles'
 import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 
 import Page from '../../components/Page';
 import { createGlobalStyle } from 'styled-components';
 import useTombFinance from '../../hooks/useTombFinance';
+import useCashPriceInLastTWAP from '../../hooks/useCashPriceInLastTWAP';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -40,13 +40,13 @@ const StyledTableRow = withStyles((theme) => ({
 // {getDisplayBalance(cashPrice, 18, 4)}
 
 const Regulations = () => {
-  const cashPrice = useCashPriceInLastTWAP(); //price per last twap
-  const classes = useStyles();
   const tombFinance = useTombFinance();
+  const cashPrice = useCashPriceInLastTWAP();
+  const classes = useStyles();
   const [rows, setRows] = useState(null);
   function createData(epoch, dao, dev, masonry, bondsBought, bondsRedeemed, price) {
     var sum = (Number(dao) + Number(dev) + Number(masonry)).toFixed(2);
-    var price = Number(cashPrice).toFixed(4); //assign price
+    var price = Number(cashPrice.priceInDollars).toFixed(4); //assign price
     return { epoch, price, bondsBought, bondsRedeemed, sum };
   }
   useEffect(() => {
