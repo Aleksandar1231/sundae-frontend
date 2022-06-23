@@ -63,7 +63,6 @@ const Home = () => {
   const [expanded, setExpanded] = useState(false);
   // end strategy //
   const matches = useMediaQuery('(min-width:900px)');
-  // const rebateStats = useRebateTreasury();
   const classes = useStyles();
   const TVL = useTotalValueLocked();
   const tombFtmLpStats = useLpStats('FUDGE-DAI LP');
@@ -72,22 +71,9 @@ const Home = () => {
   const tShareStats = usetShareStats();
   const tBondStats = useBondStats();
   const tombFinance = useTombFinance();
-  const { price: ftmPrice, marketCap: ftmMarketCap, priceChange: ftmPriceChange } = useFantomPrice();
-  // const { balance: rebatesTVL } = useTotalTreasuryBalance();
-  // const {
-  //   balance,
-  //   balance_2shares_wftm,
-  //   balance_3omb_wftm,
-  //   balance_3shares_wftm,
-  //   balance_3omb,
-  //   balance_3shares,
-  //   balance_2shares,
-  // } = useTotalTreasuryBalance();
-  // const totalTVL = TVL + rebatesTVL;
-  const { account } = useWallet();
+
 
   const [banks] = useBanks();
-  const activeBanks = banks.filter((bank) => !bank.finished);
   const fudgeBank = banks.filter((bank) => bank.contract === "FudgeLPTShareRewardPool")[0]
   const fudgeDaiBank = banks.filter((bank) => bank.contract === "FudgeDaiLPTShareRewardPool")[0]
   const strawAvaxBank = banks.filter((bank) => bank.contract === "StrawDaiLPTShareRewardPool")[0]
@@ -312,7 +298,7 @@ const Home = () => {
         {/* Explanation text */}
         <Grid container direction="column" alignItems="center" justifyContent="center">
           <Grid item xs={12} sm={8}>
-            <Box p={4} justifyContent="center" alignItems="center" >
+            <Box p={4} justifyContent="center" alignItems="center" style={{marginTop:'50px'}}>
               <Typography variant="h3" fontWeight="bold" align="center">
                 The sweetest protocol on Avalanche!
               </Typography>

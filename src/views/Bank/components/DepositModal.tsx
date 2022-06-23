@@ -1,42 +1,23 @@
-import React, { useCallback,useEffect, useMemo, useState } from 'react';
-import ReactTooltip from 'react-tooltip';
+import React, { useCallback, useMemo, useState } from 'react';
+
 import { Button } from '@material-ui/core';
 import Modal, { ModalProps } from '../../../components/Modal';
 import ModalActions from '../../../components/ModalActions';
 import ModalTitle from '../../../components/ModalTitle';
 import TokenInput from '../../../components/TokenInput';
-import { getBalance, getDisplayBalance, getFullDisplayBalance } from '../../../utils/formatBalance';
+
+import { getFullDisplayBalance } from '../../../utils/formatBalance';
 import { BigNumber } from 'ethers';
-import useNodeText from '../../../hooks/useNodeText';
-import useNodePrice from '../../../hooks/useNodePrice';
-import { Bank } from '../../../tomb-finance';
 
 interface DepositModalProps extends ModalProps {
-  bank: Bank;
   max: BigNumber;
   decimals: number;
   onConfirm: (amount: string) => void;
   tokenName?: string;
 }
 
-const DepositModal: React.FC<DepositModalProps> = ({ bank, max, decimals, onConfirm, onDismiss, tokenName = '' }) => {
+const DepositModal: React.FC<DepositModalProps> = ({ max, decimals, onConfirm, onDismiss, tokenName = '' }) => {
   const [val, setVal] = useState('');
-  const { getNodeText } = useNodeText();
-  const nodePrice = useNodePrice(bank.contract, bank.poolId, bank.sectionInUI);
-  const [width, setWidth] = useState(window.innerWidth);
-  
-  function handleWindowSizeChange() {
-    setWidth(window.innerWidth);
-  }
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowSizeChange);
-    return () => {
-      window.removeEventListener('resize', handleWindowSizeChange);
-    }
-  }, []);
-
-  const isMobile = width <= 768
-  const numNodes = isMobile ? [1, 2, 3] : [1, 2, 3,4,5,6];
 
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max, decimals, false);
@@ -55,15 +36,21 @@ const DepositModal: React.FC<DepositModalProps> = ({ bank, max, decimals, onConf
 
   return (
     <Modal>
+<<<<<<< HEAD
       <ReactTooltip effect="solid" clickable type="dark" place="bottom" />
       <ModalTitle text={bank.sectionInUI !== 3 ? `Deposit ${tokenName}` : `Purchase ${getNodeText(bank.poolId)}s Node`} />
       {bank.sectionInUI !== 3 ? <><TokenInput
+=======
+      <ModalTitle text={`Deposit ${tokenName}`} />
+      <TokenInput
+>>>>>>> main
         value={val}
         onSelectMax={handleSelectMax}
         onChange={handleChange}
         max={fullBalance}
         symbol={tokenName}
       />
+<<<<<<< HEAD
         <ModalActions>
           <Button color="primary" variant="contained" onClick={() => onConfirm(val)}>
             Confirm
@@ -81,6 +68,14 @@ const DepositModal: React.FC<DepositModalProps> = ({ bank, max, decimals, onConf
           })}
         </div>
       }
+=======
+      <ModalActions>
+        {/* <Button color="secondary" variant="outlined" onClick={onDismiss}>Cancel</Button> */}
+        <Button color="primary" variant="contained" onClick={() => onConfirm(val)}>
+          Confirm
+        </Button>
+      </ModalActions>
+>>>>>>> main
     </Modal>
   );
 };

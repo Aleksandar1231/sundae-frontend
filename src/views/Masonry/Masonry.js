@@ -15,8 +15,6 @@ import { Alert } from '@material-ui/lab';
 import UnlockWallet from '../../components/UnlockWallet';
 import Page from '../../components/Page';
 
-// import useRedeemOnMasonry from '../../hooks/useRedeemOnMasonry';
-// import useStakedBalanceOnMasonry from '../../hooks/useStakedBalanceOnMasonry';
 import { getDisplayBalance } from '../../utils/formatBalance';
 import useCurrentEpoch from '../../hooks/useCurrentEpoch';
 import useFetchMasonryAPR from '../../hooks/useFetchMasonryAPR';
@@ -24,17 +22,8 @@ import useFetchMasonryAPR from '../../hooks/useFetchMasonryAPR';
 import useCashPriceInEstimatedTWAP from '../../hooks/useCashPriceInEstimatedTWAP';
 import useTreasuryAllocationTimes from '../../hooks/useTreasuryAllocationTimes';
 import useTotalStakedOnMasonry from '../../hooks/useTotalStakedOnMasonry';
-// import useClaimRewardCheck from '../../hooks/masonry/useClaimRewardCheck';
-// import useWithdrawCheck from '../../hooks/masonry/useWithdrawCheck';
 import ProgressCountdown from './components/ProgressCountdown';
 import { createGlobalStyle } from 'styled-components';
-
-/* const BackgroundImage = createGlobalStyle`
-  body, html {
-    background: url(${MasonryImage}) no-repeat !important;
-    background-size: cover !important;
-  }
-`; */
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
@@ -48,14 +37,11 @@ const useStyles = makeStyles((theme) => ({
 const Masonry = () => {
   const classes = useStyles();
   const { account } = useWallet();
-  // const { onRedeem } = useRedeemOnMasonry();
-  // const stakedBalance = useStakedBalanceOnMasonry();
   const currentEpoch = useCurrentEpoch();
   const cashStat = useCashPriceInEstimatedTWAP();
   const totalStaked = useTotalStakedOnMasonry();
   const masonryAPR = useFetchMasonryAPR();
-  // const canClaimReward = useClaimRewardCheck();
-  // const canWithdraw = useWithdrawCheck();
+
   const scalingFactor = useMemo(() => (cashStat ? Number(cashStat.priceInDollars).toFixed(4) : null), [cashStat]);
   const { to } = useTreasuryAllocationTimes();
 
@@ -76,7 +62,7 @@ const Masonry = () => {
                 <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent>
                     <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>Next Epoch</h3>
-                    <ProgressCountdown base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" />
+                    <ProgressCountdown style={{ fontWeight: 'lighter', display: 'flex', fontSize: '1.5rem', marginTop: '8px', justifyContent:'center' }} base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" />
                   </CardContent>
                 </Card>
               </Grid>
@@ -89,17 +75,21 @@ const Masonry = () => {
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid item xs={12} md={2} lg={3} className={classes.gridItem}>
+              <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
                 <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent align="center">
                     <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>
+<<<<<<< HEAD
                      TWAP
+=======
+                      TWAP
+>>>>>>> main
                     </h3>
                     <h2 style={{ fontWeight: 'lighter', display: 'flex', fontSize: '1.5rem', marginTop: '8px', justifyContent:'center' }}>{scalingFactor}</h2>
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid item xs={12} md={2} lg={3} className={classes.gridItem}>
+              <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
                 <Card style={{ background: '#fff', borderRadius: '15px' }} className={classes.gridItem}>
                   <CardContent align="center">
                     {/* <Grid container style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}> */}
