@@ -188,8 +188,24 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 2,
     closedForStaking: false,
   },
-
-
 };
+
+export const moralisConfiguration = {
+  appId: '229JUQVRbdYyHGNObmCA9LqmgpPayWJc1l3oUBL6',
+  serverUrl: 'https://metunprlpqub.usemoralis.com:2053/server'
+}
+
+export const lotteries = [
+  {
+    title: 'Fudge Node',
+    table: 'FudgeNode',
+    entries: 1
+  },
+  {
+    title: 'LP NODE',
+    table: 'LPNode',
+    entries: 10
+  }
+]
 
 export default configurations['production'];

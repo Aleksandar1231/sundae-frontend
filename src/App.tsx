@@ -24,6 +24,7 @@ const Farms = lazy(() => import('./views/Cemetery'));
 const Boardroom = lazy(() => import('./views/Masonry'));
 const Bonds = lazy(() => import('./views/Pit'));
 const Nodes = lazy(() => import ('./views/Nodes'));
+const Lottery = lazy(() => import('./views/Nodes/Lottery'));
 
 const NoMatch = () => (
   <h3 style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
@@ -60,6 +61,9 @@ const App: React.FC = () => {
               </Route>
               <Route path="/nodes">
                 <Nodes />
+              </Route>
+              <Route path="/nodes-lottery">
+                <Lottery />
               </Route>
               {/* <Route path="/sbs">
               <SBS />

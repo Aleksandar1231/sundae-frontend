@@ -292,7 +292,6 @@ const Home = () => {
 
   return (
     <Page>
-      {/*       <BackgroundImage /> */}
       <Grid container spacing={3} >
 
         {/* Explanation text */}
