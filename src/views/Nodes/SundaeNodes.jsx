@@ -106,7 +106,7 @@ const SundaeNodes = () => {
             <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
               <Card className={classes.gridItem}>
                 <CardContent style={{ textAlign: 'center' }}>
-                  <h3 style={{ margin: '5px', textAlign: 'center', color: '#000', fontSize: '18px' }}>Current leader</h3>
+                  <h3 style={{ margin: '5px', textAlign: 'center', color: '#000', fontSize: '18px' }}>Current Leader</h3>
                   <h2 style={{ fontWeight: 'lighter', display: 'flex', fontSize: '1.5rem', marginTop: '8px', justifyContent:'center' }}>
                   { leaderboardData && leaderboardData.length > 0 ? (
                     <>{leaderboardData[0].entries}</>
