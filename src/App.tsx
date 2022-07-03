@@ -67,13 +67,13 @@ const App: React.FC = () => {
               </Route>
               {/* <Route path="/sbs">
               <SBS />
-            </Route>
+            </Route> */}
             <Route path="/regulations">
               <Regulations />
             </Route>
-            <Route path="/liquidity">
+            {/* <Route path="/liquidity">
               <Liquidity />
-            </Route> */}
+            </Route>  */}
               <Route path="*" >
               <NoMatch />
             </Route>
