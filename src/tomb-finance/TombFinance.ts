@@ -937,6 +937,11 @@ export class TombFinance {
     const realAPR = ((amountOfRewardsPerDay * 100) / masonryTVL) * 365;
     return realAPR;
   }
+  
+  async uiAllocate(): Promise<TransactionResponse> {
+    const { Treasury } = this.contracts;
+    return await Treasury.allocateSeigniorage();
+  }
 
   /**
    * Checks if the user is allowed to retrieve their reward from the Masonry
