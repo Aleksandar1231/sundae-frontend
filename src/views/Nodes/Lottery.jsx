@@ -13,8 +13,8 @@ const Lottery = () => {
   const { path } = useRouteMatch();
   const [leaderboardData, setLeaderboardData] = useState(null);
 
-  const from = moment('2022-06-26 12:00:00Z');
-  const to = moment('2022-07-03 12:00:00Z');
+  const from = moment('2022-07-03 12:00:00Z');
+  const to = moment('2022-07-10 12:00:00Z');
 
   useEffect(() => {
     fetchLeaderboardData();
