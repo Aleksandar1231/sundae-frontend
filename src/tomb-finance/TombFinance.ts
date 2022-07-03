@@ -408,17 +408,17 @@ export class TombFinance {
     }
     const rewardPerSecond = await poolContract.tSharePerSecond();
     if (depositTokenName === 'FUDGE') {
-      return rewardPerSecond.mul(1000).div(55000);
+      return rewardPerSecond.mul(0).div(55000);
     } else if (depositTokenName === 'FUDGE-STRAW LP') {
       return rewardPerSecond.mul(0).div(55000);
     } else if (depositTokenName === 'STRAW-DAI LP') {
-      return rewardPerSecond.mul(20000).div(55000);
+      return rewardPerSecond.mul(16500).div(55000);
     } else if (depositTokenName === 'STRAW-AVAX LP') {
       return rewardPerSecond.mul(0).div(55000);
     } else if (depositTokenName === 'CREAM-STRAW LP') {
       return rewardPerSecond.mul(0).div(55000);
     } else if (depositTokenName === 'FUDGE-DAI LP') {
-      return rewardPerSecond.mul(34000).div(55000);
+      return rewardPerSecond.mul(38500).div(55000);
     } else {
       return rewardPerSecond.mul(0).div(55000);
     }
