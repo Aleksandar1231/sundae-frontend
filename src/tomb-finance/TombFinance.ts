@@ -255,7 +255,7 @@ export class TombFinance {
     return {
       tokenInFtm: priceInFTM,
       priceInDollars: priceOfSharesInDollars,
-      totalSupply: getDisplayBalance(supply, this.TSHARE.decimal, 0),
+      totalSupply: '70000',
       circulatingSupply: getDisplayBalance(tShareCirculatingSupply, this.TSHARE.decimal, 0),
     };
   }
