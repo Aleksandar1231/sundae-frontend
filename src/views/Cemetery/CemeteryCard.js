@@ -191,7 +191,7 @@ const CemeteryCard = ({ bank }) => {
                     </Button>
                   </div>
                 ) : (
-                  <Grid container alignItems='flex-start' flex spacing={2}>
+                  <Grid container alignItems='flex-start' flex spacing={2} style={{ justifyContent: "space-between" }}>
                     <Grid item>
                       <h2 style={{ color: 'black' }}>
                         {getDisplayBalance(stakedBalance, bank.depositToken.decimal)}
