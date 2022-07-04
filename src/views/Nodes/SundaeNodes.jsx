@@ -7,12 +7,9 @@ import SundaeNode from '../SundaeNode';
 import FudgeCard from './FudgeCard';
 import UnlockWallet from '../../components/UnlockWallet';
 import { useWallet } from 'use-wallet';
-import { Helmet } from 'react-helmet';
-import { createGlobalStyle } from 'styled-components';
 import ProgressCountdown from '../Masonry/components/ProgressCountdown';
 import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
-import Moralis from 'moralis/node';
 import { lotteries, moralisConfiguration } from '../../config';
 import { getLeaderboardTotal } from './util/getLeaderboardTotal';
 import InfoCards from "../Nodes/component/InfoCards";
@@ -36,8 +33,8 @@ const SundaeNodes = () => {
   // const from = moment('2022-06-26 06:00 +0000');
   // const to = moment('2022-07-03 06:00 +0000');
 
-  const from = moment('2022-06-26 06:00:00Z');
-  const to = moment('2022-07-03 06:00:00Z');
+  const from = moment('2022-07-03 12:00:00Z');
+  const to = moment('2022-07-10 12:00:00Z');
 
   useEffect(() => {
     fetchLeaderboardData();

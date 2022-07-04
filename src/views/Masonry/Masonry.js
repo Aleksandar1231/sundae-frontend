@@ -7,10 +7,8 @@ import Harvest from './components/Harvest';
 import Stake from './components/Stake';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Box, CardContent, /* Button ,*/ Typography, Grid } from '@material-ui/core';
+import { Box, CardContent,  Button , Typography, Grid } from '@material-ui/core';
 import Card from '../../components/Card';
-
-import { Alert } from '@material-ui/lab';
 
 import UnlockWallet from '../../components/UnlockWallet';
 import Page from '../../components/Page';
@@ -23,7 +21,7 @@ import useCashPriceInEstimatedTWAP from '../../hooks/useCashPriceInEstimatedTWAP
 import useTreasuryAllocationTimes from '../../hooks/useTreasuryAllocationTimes';
 import useTotalStakedOnMasonry from '../../hooks/useTotalStakedOnMasonry';
 import ProgressCountdown from './components/ProgressCountdown';
-import { createGlobalStyle } from 'styled-components';
+import useTreasuryAllocate from '../../hooks/useTreasuryAllocate';
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
@@ -41,6 +39,7 @@ const Masonry = () => {
   const cashStat = useCashPriceInEstimatedTWAP();
   const totalStaked = useTotalStakedOnMasonry();
   const masonryAPR = useFetchMasonryAPR();
+  const { onAllocate } = useTreasuryAllocate();
 
   const scalingFactor = useMemo(() => (cashStat ? Number(cashStat.priceInDollars).toFixed(4) : null), [cashStat]);
   const { to } = useTreasuryAllocationTimes();
@@ -120,6 +119,24 @@ const Masonry = () => {
                 </Card>
               </Grid>
             </Grid>
+
+            <Grid container justifyContent="center">
+              <Box mt={3} style={{ width: '600px', margin:'10px' }}>
+                <Box mt={5}>
+                  <Grid container justifyContent="center" spacing={3} mt={10}>
+                    <Button
+                      // disabled='false'
+                      onClick={onAllocate}
+                      color="primary"
+                      variant="contained"
+                    >
+                      Print FUDGE when timer expires
+                    </Button>
+                  </Grid>
+                </Box>
+              </Box>
+            </Grid>
+
 
 
             <Box mt={4}>

@@ -110,7 +110,7 @@ const Nav = () => {
               <Link color="textPrimary" to="/nodes" className='nav-link'>
                 Nodes
               </Link>
-             {/* <Link color="textPrimary" to="/regulations" className={classes.link}>
+             {/* <Link color="textPrimary" to="/regulations" className='nav-link'>
                 Regulations
               </Link> */}
               <a href="https://froyo.farm/#/avax" target="_blank" className='nav-link'>

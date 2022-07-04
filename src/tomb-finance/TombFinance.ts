@@ -255,7 +255,7 @@ export class TombFinance {
     return {
       tokenInFtm: priceInFTM,
       priceInDollars: priceOfSharesInDollars,
-      totalSupply: getDisplayBalance(supply, this.TSHARE.decimal, 0),
+      totalSupply: '70000',
       circulatingSupply: getDisplayBalance(tShareCirculatingSupply, this.TSHARE.decimal, 0),
     };
   }
@@ -408,17 +408,17 @@ export class TombFinance {
     }
     const rewardPerSecond = await poolContract.tSharePerSecond();
     if (depositTokenName === 'FUDGE') {
-      return rewardPerSecond.mul(1000).div(55000);
+      return rewardPerSecond.mul(0).div(55000);
     } else if (depositTokenName === 'FUDGE-STRAW LP') {
       return rewardPerSecond.mul(0).div(55000);
     } else if (depositTokenName === 'STRAW-DAI LP') {
-      return rewardPerSecond.mul(20000).div(55000);
+      return rewardPerSecond.mul(16500).div(55000);
     } else if (depositTokenName === 'STRAW-AVAX LP') {
       return rewardPerSecond.mul(0).div(55000);
     } else if (depositTokenName === 'CREAM-STRAW LP') {
       return rewardPerSecond.mul(0).div(55000);
     } else if (depositTokenName === 'FUDGE-DAI LP') {
-      return rewardPerSecond.mul(34000).div(55000);
+      return rewardPerSecond.mul(38500).div(55000);
     } else {
       return rewardPerSecond.mul(0).div(55000);
     }
@@ -936,6 +936,11 @@ export class TombFinance {
     const masonryTVL = Number(getDisplayBalance(masonrytShareBalanceOf, this.TSHARE.decimal)) * Number(TSHAREPrice);
     const realAPR = ((amountOfRewardsPerDay * 100) / masonryTVL) * 365;
     return realAPR;
+  }
+  
+  async uiAllocate(): Promise<TransactionResponse> {
+    const { Treasury } = this.contracts;
+    return await Treasury.allocateSeigniorage();
   }
 
   /**
