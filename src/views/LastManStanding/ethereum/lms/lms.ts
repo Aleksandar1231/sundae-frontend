@@ -2,7 +2,7 @@ import { BigNumber, utils } from "ethers";
 import config from "../../config";
 import { Symbol } from "../../types";
 import { getContract, parseBigNumber, _getProvider } from "../ethereum";
-import kocAbi from "./kocAbi";
+import kocAbi from "./lmsAbi";
 
 const contracts = {};
 for (const [key, value] of Object.entries(config.koc)) {

@@ -1,6 +1,6 @@
 import { BigNumber } from "ethers";
 import React, { useEffect, useState } from "react";
-import { Size } from "../../types";
+import { Size } from "../LastManStanding/types";
 
 interface ICountdown {
     period: BigNumber;

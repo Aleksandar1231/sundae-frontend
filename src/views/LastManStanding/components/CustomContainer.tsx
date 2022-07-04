@@ -1,3 +1,5 @@
+import React from "react";
+
 interface ICustomContainer {
     color?: string;
     paddingTop?: number | string;

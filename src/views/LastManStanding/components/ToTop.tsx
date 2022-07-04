@@ -1,4 +1,5 @@
-import useScrollPosition from "../hooks/useScrollPosition";
+import React from "react";
+import useScrollPosition from "../../../hooks/useScrollPosition";
 import CustomBtn from "./CustomBtn/CustomBtn";
 import Svg from "./Svg";
 import { BtnType, Size } from "../types";

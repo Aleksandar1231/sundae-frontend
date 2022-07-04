@@ -1,6 +1,7 @@
 import classes from "./CustomBtn.module.scss";
 import Loading from "../Loading/Loading";
 import { BtnType, Size } from "../../types";
+import React from "react";
 import { Link } from "react-router-dom";
 
 interface ICustomBtnProps {

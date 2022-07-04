@@ -1,3 +1,5 @@
+import React from "react";
+
 interface ISvg {
     name: string;
     width: number | string;

@@ -2,6 +2,7 @@ import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from "react";
 import { CSSTransition } from 'react-transition-group';
 import classes from "./ContainerWithBgImage.module.scss";
+import React from 'react';
 
 interface IContainerWithBgImage {
     bgImg: string;

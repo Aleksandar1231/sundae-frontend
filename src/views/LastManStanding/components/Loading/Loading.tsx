@@ -1,4 +1,5 @@
-import useMediaQuery from "../../hooks/useMediaQuery";
+import React from "react";
+import useMediaQuery from "../../../../hooks/useMediaQuery";
 import { Size } from "../../types";
 import classes from "./Loading.module.scss";
 

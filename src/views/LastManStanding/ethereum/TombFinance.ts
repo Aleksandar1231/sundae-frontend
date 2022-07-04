@@ -52,23 +52,6 @@ export default class TombFinance {
             .catch(() => 0);
     }
 
-    static async getCirculatingSupplyTomb(): Promise<number> {
-        /* const tombRewardPoolSupply = await TombFinance.tokens[Symbol.TOMB].balanceOf(config.rewardPools.ApexFtmRewardPool.address);
-        const tombRewardPoolSupply2 = await TombFinance.tokens[Symbol.TOMB].balanceOf(config.rewardPools.ApexFtmLPApexRewardPool.address);
-        return parseBigNumber(
-            (await TombFinance.tokens[Symbol.TOMB].totalSupply()).sub(tombRewardPoolSupply).sub(tombRewardPoolSupply2),
-            config.tokens[Symbol.TOMB].decimals); */
-        return 0
-    }
-
-    static async getCirculatingSupplyShare(): Promise<number> {
-        /*  const tombRewardPoolSupply = await TombFinance.tokens[Symbol.TSHARE].balanceOf(config.rewardPools.ApexFtmLPAShareRewardPool.address);
-         return parseBigNumber(
-             (await TombFinance.tokens[Symbol.TSHARE].totalSupply()).sub(tombRewardPoolSupply),
-             config.tokens[Symbol.TSHARE].decimals); */
-        return 0
-    }
-
     /**
        * Calculates the price of an LP token
        * Reference https://github.com/DefiDebauchery/discordpricebot/blob/4da3cdb57016df108ad2d0bb0c91cd8dd5f9d834/pricebot/pricebot.py#L150

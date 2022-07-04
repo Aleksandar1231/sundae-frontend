@@ -1,52 +1,28 @@
 import { BigNumber } from "ethers";
 import { useEffect, useRef, useState } from "react";
-import ContainerWithBgImage from "../../components/ContainerWithBgImage/ContainerWithBgImage";
-import config from "../../config";
-import { parseBigNumber, useWallet, watchTransaction } from "../../ethereum/ethereum";
-import handleResult from "../../ethereum/handleResult";
+import ContainerWithBgImage from "./components/ContainerWithBgImage/ContainerWithBgImage";
+import config from "../LastManStanding/config";
+import { parseBigNumber, useWallet, watchTransaction } from "./ethereum/ethereum";
+import handleResult from "./ethereum/handleresult";
 import Countdown from "./Countdown";
 import usdc from "../../assets/images/koc/usdc.svg";
 import usdc_sm from "../../assets/images/koc/usdc_sm.svg";
 import avax from "../../assets/images/koc/avax.svg";
 import avax_sm from "../../assets/images/koc/avax_sm.svg";
-import slot from "../../assets/images/koc/SLOT.svg";
-import slot_sm from "../../assets/images/koc/SLOT_sm.svg";
-import stomb from "../../assets/images/koc/STOMB.svg";
-import stomb_sm from "../../assets/images/koc/STOMB_sm.svg";
-import grave from "../../assets/images/koc/grave.svg";
-import grave_sm from "../../assets/images/koc/grave_sm.svg";
-import gshare from "../../assets/images/koc/gshare.svg";
-import gshare_sm from "../../assets/images/koc/gshare_sm.svg";
-import zombie from "../../assets/images/koc/zombie.svg";
-import zombie_sm from "../../assets/images/koc/zombie_sm.svg";
-import zshare from "../../assets/images/koc/zshare.svg";
-import zshare_sm from "../../assets/images/koc/zshare_sm.svg";
-import glad from "../../assets/images/koc/glad.svg";
-import glad_sm from "../../assets/images/koc/glad_sm.svg";
-import gladshare from "../../assets/images/koc/gladshare.svg";
-import gladshare_sm from "../../assets/images/koc/gladshare_sm.svg";
-import wlrs from "../../assets/images/koc/wlrs.svg";
-import wlrs_sm from "../../assets/images/koc/wlrs_sm.svg";
-import wshare from "../../assets/images/koc/wshare.svg";
-import wshare_sm from "../../assets/images/koc/wshare_sm.svg";
 import grape from "../../assets/images/koc/grape.svg";
 import grape_sm from "../../assets/images/koc/grape_sm.svg";
-import wine from "../../assets/images/koc/wine.svg";
-import wine_sm from "../../assets/images/koc/wine_sm.svg";
-import astro from "../../assets/images/koc/astro.png";
-import astro_sm from "../../assets/images/koc/astro_sm.png";
-import game from "../../assets/images/koc/game.jpg";
-import game_sm from "../../assets/images/koc/game_sm.jpg";
-import CustomBtn from "../../components/CustomBtn/CustomBtn";
-import EthereumInteraction from "../../ethereum/EthereumInteraction";
-import { buy, claim, getClaimed, getClaimPeriod, getLastTs, getPeriod, getPotSize, getTicketSize, getWinner } from "../../ethereum/koc/koc";
+
+import CustomBtn from "./components/CustomBtn/CustomBtn";
+import EthereumInteraction from "./ethereum/EthereumInteraction";
+import { buy, claim, getClaimed, getClaimPeriod, getLastTs, getPeriod, getPotSize, getTicketSize, getWinner } from "./ethereum/lms/lms";
 import separateNumberWithCommas from "../../utils/separateNumberWithCommas";
-import Loading from "../../components/Loading/Loading";
-import { BtnType, DynamicObject, Size, Symbol } from "../../types";
-import Svg from "../../components/Svg";
-import TombFinance from "../../ethereum/TombFinance";
+import Loading from "./components/Loading/Loading";
+import { BtnType, DynamicObject, Size, Symbol } from "./types";
+import Svg from "./components/Svg";
+import TombFinance from "./ethereum/TombFinance";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { ChainId } from "@traderjoe-xyz/sdk";
+import React from "react";
 
 interface IKoCPage {
     refHeader: any;
@@ -81,19 +57,8 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
     const tokensUnfiltered = {
         AVAX: null,
         USDC: TombFinance.tokens[`koc${Symbol.USDC}`],
-        STOMB: TombFinance.tokens[Symbol.STOMB],
-        SLOT: TombFinance.tokens[Symbol.SLOT],
-        GRAVE: TombFinance.tokens[Symbol.GRAVE],
-        GSHARE: TombFinance.tokens[Symbol.GSHARE],
-        ZOMBIE: TombFinance.tokens[Symbol.ZOMBIE],
-        ZSHARE: TombFinance.tokens[Symbol.ZSHARE],
-        WLRS: TombFinance.tokens[Symbol.WLRS],
-        WSHARE: TombFinance.tokens[Symbol.WSHARE],
         GRAPE: TombFinance.tokens[Symbol.GRAPE],
-        WINE: TombFinance.tokens[Symbol.WINE],
-        GLAD: undefined,
-        GLADSHARE: undefined,
-        ASTRO: TombFinance.tokens[Symbol.ASTRO],
+
     }
     const tokens = {};
     for (const [key, value] of Object.entries(tokensUnfiltered)) {
@@ -135,138 +100,6 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
             color: "avax",
         },
         {
-            symbol: Symbol.STOMB,
-            icon: stomb,
-            iconWidth: 48,
-            iconHeight: 72,
-            iconSm: stomb_sm,
-            iconSmWidth: 24,
-            iconSmHeight: 35,
-            border: "border-stomb",
-            shadow: "shadow-[0_8px_14px_rgba(107,0,250,0.04)] hover:shadow-[0_10px_25px_rgba(107,0,250,0.2)]",
-            text: "text-stomb",
-            fill: "fill-stomb",
-            bg: "#6b00fa",
-            bgLight: "bg-[#f4edff]",
-            color: "stomb",
-        },
-        {
-            symbol: Symbol.SLOT,
-            icon: slot,
-            iconWidth: 48,
-            iconHeight: 72,
-            iconSm: slot_sm,
-            iconSmWidth: 23,
-            iconSmHeight: 35,
-            border: "border-slot",
-            shadow: "shadow-[0_8px_14px_rgba(150,72,255,0.04)] hover:shadow-[0_10px_25px_rgba(150,72,255,0.2)]",
-            text: "text-slot",
-            fill: "fill-slot",
-            bg: "#9648ff",
-            bgLight: "bg-[#f0e5ff]",
-            color: "slot",
-        },
-        {
-            symbol: Symbol.GRAVE,
-            icon: grave,
-            iconWidth: 72,
-            iconHeight: 72,
-            iconClassNameCollapsed: `sm:mr-[-8px]`,
-            iconSm: grave_sm,
-            iconSmWidth: 35,
-            iconSmHeight: 35,
-            border: "border-grave",
-            shadow: "shadow-[0_8px_14px_rgba(227,3,51,0.04)] hover:shadow-[0_10px_25px_rgba(227,3,51,0.2)]",
-            text: "text-grave",
-            fill: "fill-grave",
-            bg: "#e30333",
-            bgLight: "bg-[#f9ccd6]",
-            color: "grave",
-        },
-        {
-            symbol: Symbol.GSHARE,
-            icon: gshare,
-            iconWidth: 72,
-            iconHeight: 72,
-            iconClassNameCollapsed: `sm:mr-[-8px]`,
-            iconSm: gshare_sm,
-            iconSmWidth: 35,
-            iconSmHeight: 35,
-            border: "border-gshare",
-            shadow: "shadow-[0_8px_14px_rgba(235,78,112,0.04)] hover:shadow-[0_10px_25px_rgba(235,78,112,0.2)]",
-            text: "text-gshare",
-            fill: "fill-gshare",
-            bg: "#eb4e70",
-            bgLight: "bg-[#fbdbe2]",
-            color: "gshare",
-        },
-        {
-            symbol: Symbol.ZOMBIE,
-            icon: zombie,
-            iconWidth: 72,
-            iconHeight: 72,
-            iconClassNameCollapsed: `sm:mr-[-8px]`,
-            iconSm: zombie_sm,
-            iconSmWidth: 35,
-            iconSmHeight: 35,
-            border: "border-zombie",
-            shadow: "shadow-[0_8px_14px_rgba(3,227,103,0.04)] hover:shadow-[0_10px_25px_rgba(3,227,103,0.2)]",
-            text: "text-zombie",
-            fill: "fill-zombie",
-            bg: "#03e367",
-            bgLight: "bg-[#ccf9e0]",
-            color: "zombie",
-        },
-        {
-            symbol: Symbol.ZSHARE,
-            icon: zshare,
-            iconWidth: 72,
-            iconHeight: 72,
-            iconClassNameCollapsed: "sm:mr-[-8px]",
-            iconSm: zshare_sm,
-            iconSmWidth: 35,
-            iconSmHeight: 35,
-            border: "border-zshare",
-            shadow: "shadow-[0_8px_14px_rgba(78,235,148,0.04)] hover:shadow-[0_10px_25px_rgba(78,235,148,0.2)]",
-            text: "text-zshare",
-            fill: "fill-zshare",
-            bg: "#4eeb94",
-            bgLight: "bg-[#dbfbe9]",
-            color: "zshare",
-        },
-        {
-            symbol: Symbol.WLRS,
-            icon: wlrs,
-            iconWidth: 74,
-            iconHeight: 72,
-            iconSm: wlrs_sm,
-            iconSmWidth: 36,
-            iconSmHeight: 35,
-            border: "border-wlrs",
-            shadow: "shadow-[0_8px_14px_rgba(147,193,230,0.04)] hover:shadow-[0_10px_25px_rgba(147,193,230,0.2)]",
-            text: "text-wlrs",
-            fill: "fill-wlrs",
-            bg: "#93c1e6",
-            bgLight: "bg-[#e9f2fa]",
-            color: "wlrs",
-        },
-        {
-            symbol: Symbol.WSHARE,
-            icon: wshare,
-            iconWidth: 74,
-            iconHeight: 72,
-            iconSm: wshare_sm,
-            iconSmWidth: 36,
-            iconSmHeight: 35,
-            border: "border-wshare",
-            shadow: "shadow-[0_8px_14px_rgba(51,72,118,0.04)] hover:shadow-[0_10px_25px_rgba(51,72,118,0.2)]",
-            text: "text-wshare",
-            fill: "fill-wshare",
-            bg: "#334876",
-            bgLight: "bg-[#d6dae3]",
-            color: "wshare",
-        },
-        {
             symbol: Symbol.GRAPE,
             icon: grape,
             iconWidth: 71,
@@ -281,91 +114,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
             bg: "#82096c",
             bgLight: "bg-[#e6cde1]",
             color: "grape",
-        },
-        {
-            symbol: Symbol.WINE,
-            icon: wine,
-            iconWidth: 52,
-            iconHeight: 72,
-            iconSm: wine_sm,
-            iconSmWidth: 25,
-            iconSmHeight: 35,
-            border: "border-wine",
-            shadow: "shadow-[0_8px_14px_rgba(180,21,40,0.04)] hover:shadow-[0_10px_25px_rgba(180,21,40,0.2)]",
-            text: "text-wine",
-            fill: "fill-wine",
-            bg: "#b41528",
-            bgLight: "bg-[#f0d0d4]",
-            color: "wine",
-        },
-        {
-            symbol: Symbol.ASTRO,
-            icon: astro,
-            iconWidth: 72,
-            iconHeight: 72,
-            iconSm: astro_sm,
-            iconSmWidth: 35,
-            iconSmHeight: 35,
-            iconClassName: "rounded-full",
-            border: "border-orange",
-            shadow: "shadow-[0_8px_14px_rgba(255,103,0,0.04)] hover:shadow-[0_10px_25px_rgba(255,103,0,0.2)]",
-            text: "text-orange",
-            fill: "fill-orange",
-            bg: "#FF6700",
-            bgLight: "bg-[#ffe0cc]",
-            color: "orange",
-        },
-        {
-            symbol: Symbol.GAME,
-            icon: game,
-            iconWidth: 72,
-            iconHeight: 72,
-            iconSm: game_sm,
-            iconSmWidth: 35,
-            iconSmHeight: 35,
-            iconClassName: "rounded-full",
-            border: "border-game",
-            shadow: "shadow-[0_8px_14px_rgba(255,103,0,0.04)] hover:shadow-[0_10px_25px_rgba(255,103,0,0.2)]",
-            text: "text-game",
-            fill: "fill-game",
-            bg: "#b41528",
-            bgLight: "bg-[#ffe0cc]",
-            color: "game",
-        },
-        {
-            inactive: true,
-            symbol: Symbol.TOMB,
-            icon: glad,
-            iconWidth: 72,
-            iconHeight: 72,
-            iconSm: glad_sm,
-            iconSmWidth: 35,
-            iconSmHeight: 35,
-            border: "border-glad",
-            shadow: "shadow-[0_8px_14px_rgba(56,182,255,0.04)] hover:shadow-[0_10px_25px_rgba(56,182,255,0.2)]",
-            text: "text-glad",
-            fill: "fill-glad",
-            bg: "#38b6ff",
-            bgLight: "bg-[#d7f0ff]",
-            color: "glad",
-        },
-        {
-            inactive: true,
-            symbol: Symbol.TSHARE,
-            icon: gladshare,
-            iconWidth: 65,
-            iconHeight: 72,
-            iconSm: gladshare_sm,
-            iconSmWidth: 32,
-            iconSmHeight: 35,
-            border: "border-glad",
-            shadow: "shadow-[0_8px_14px_rgba(56,182,255,0.04)] hover:shadow-[0_10px_25px_rgba(56,182,255,0.2)]",
-            text: "text-glad",
-            fill: "fill-glad",
-            bg: "#38b6ff",
-            bgLight: "bg-[#d7f0ff]",
-            color: "glad",
-        },
+        }
     ]
 
     const refsBigBoxes = useRef({});
@@ -704,31 +453,6 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                 <div className="bg-lightblue bg-opacity-70 w-full h-full min-h-[100vh]">
                     <div className="container mx-auto px-2 sm:px-5 py-[130px] flex justify-center">
                         <div className="text-black text-center w-full">
-                            <p className="text-20 sm:text-24 font-medium mb-1">
-                                Whitelist still available!
-                            </p>
-                            <div className="flex justify-center flex-wrap mb-12">
-                                <CustomBtn
-                                    type={BtnType.filled}
-                                    color={"orange"}
-                                    asLink
-                                    to={{ pathname: "/" }}
-                                    state={{ scrollToWhitelist: true }}
-                                    className="m-2.5"
-                                >
-                                    Buy Whitelist
-                                </CustomBtn>
-                               {/*  <CustomBtn
-                                    type={BtnType.outlined}
-                                    color={"orange"}
-                                    asLink
-                                    to={{ pathname: "/" }}
-                                    state={{ scrollToBuyPGlad: true }}
-                                    className="m-2.5"
-                                >
-                                    Buy pGLAD
-                                </CustomBtn> */}
-                            </div>
                             <p className="text-20 sm:text-24 font-medium mb-1">
                                 King
                                 <br />
