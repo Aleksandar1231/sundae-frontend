@@ -17,7 +17,6 @@ import Loader from './components/Loader';
 import Popups from './components/Popups';
 import Regulations from './views/Regulations/Regulations';
 import { RefreshContextProvider } from './contexts/RefreshContext';
-// import Particles from 'react-tsparticles'; //'react-particles-js';
 
 const Home = lazy(() => import('./views/Home'));
 const Farms = lazy(() => import('./views/Cemetery'));
@@ -65,15 +64,9 @@ const App: React.FC = () => {
               <Route path="/nodes-lottery">
                 <Lottery />
               </Route>
-              {/* <Route path="/sbs">
-              <SBS />
-            </Route> */}
             <Route path="/regulations">
               <Regulations />
             </Route>
-            {/* <Route path="/liquidity">
-              <Liquidity />
-            </Route>  */}
               <Route path="*" >
               <NoMatch />
             </Route>
