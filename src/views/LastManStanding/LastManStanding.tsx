@@ -160,7 +160,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
 
     useEffect(() => {
         if (prevWallet && wallet) {
-            Object.keys(tokens).filter((key: Symbol) => key !== Symbol.AVAX).forEach((key: Symbol) => {
+            Object.keys(tokens).filter((key: string) => key !== Symbol.AVAX).forEach((key: string) => {
                 if (localStorage.getItem(`isApprovedKoc${key}`) === "true") localStorage.removeItem(`isApprovedKoc${key}`);
             });
         }

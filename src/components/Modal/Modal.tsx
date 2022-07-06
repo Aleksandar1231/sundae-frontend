@@ -9,7 +9,7 @@ export interface ModalProps {
   onDismiss?: () => void;
 }
 
-const Modal: React.FC = ({ children }) => {
+const Modal: React.FC<{ children: React.ReactNode | React.ReactNode[] }> = ({ children }) => {
   return (
     <Container size="sm">
       <StyledModal>

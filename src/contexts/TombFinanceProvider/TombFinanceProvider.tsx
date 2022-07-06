@@ -9,7 +9,7 @@ export interface TombFinanceContext {
 
 export const Context = createContext<TombFinanceContext>({ tombFinance: null });
 
-export const TombFinanceProvider: React.FC = ({ children }) => {
+export const TombFinanceProvider: React.FC<{ children: React.ReactNode | React.ReactNode[] }> = ({ children }) => {
   const { ethereum, account } = useWallet();
   const [tombFinance, setTombFinance] = useState<TombFinance>();
 

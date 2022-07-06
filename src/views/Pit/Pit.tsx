@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Page from '../../components/Page';
 import PitImage from '../../assets/img/none.png';
 import { createGlobalStyle } from 'styled-components';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Route, Routes, useMatch } from 'react-router-dom';
 import { useWallet } from 'use-wallet';
 import UnlockWallet from '../../components/UnlockWallet';
 import PageHeader from '../../components/PageHeader';
@@ -29,7 +29,7 @@ import useTombStats from '../../hooks/useTombStats';
 `;
  */
 const Pit: React.FC = () => {
-  const { path } = useRouteMatch();
+  const { pathname } = useMatch('/bonds');
   const { account } = useWallet();
   const tombFinance = useTombFinance();
   const addTransaction = useTransactionAdder();
@@ -70,19 +70,17 @@ const Pit: React.FC = () => {
   const isBondPurchasable = useMemo(() => Number(bondStat?.tokenInFtm) < 1.01, [bondStat]);
 
   return (
-    <Switch>
       <Page>
         {/* <BackgroundImage /> */}
         {!!account ? (
           <>
-            <Route exact path={path}>
+
               <Typography color="textPrimary" align="center" variant="h3" gutterBottom style={{marginTop:'50px'}}>
                 Bonds
               </Typography>
               <Typography color="textPrimary" align="center" variant="h5" gutterBottom style={{marginTop:'25px'}}>
                 Earn premiums upon redemption
               </Typography>
-            </Route>
             <StyledBond style={{ marginTop: '75px' }}>
               <StyledCardWrapper>
                 <ExchangeCard
@@ -142,12 +140,12 @@ const Pit: React.FC = () => {
                 />
               </StyledCardWrapper>
             </StyledBond>
-          </>
+            </>
         ) : (
           <UnlockWallet />
         )}
       </Page>
-    </Switch>
+    
   );
 };
 

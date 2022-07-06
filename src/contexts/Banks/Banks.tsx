@@ -4,7 +4,7 @@ import useTombFinance from '../../hooks/useTombFinance';
 import {Bank} from '../../tomb-finance';
 import config, {bankDefinitions} from '../../config';
 
-const Banks: React.FC = ({children}) => {
+const Banks: React.FC<{ children: React.ReactNode | React.ReactNode[] }> = ({children}) => {
   const [banks, setBanks] = useState<Bank[]>([]);
   const tombFinance = useTombFinance();
   const isUnlocked = tombFinance?.isUnlocked;

@@ -13,7 +13,7 @@ export const Context = createContext<ModalsContext>({
   onDismiss: () => {},
 });
 
-const Modals: React.FC = ({ children }) => {
+const Modals: React.FC<{ children: React.ReactNode | React.ReactNode[] }> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState<React.ReactNode>();
 

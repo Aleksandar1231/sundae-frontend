@@ -4,6 +4,7 @@ import { Info } from 'react-feather';
 
 type NoticeProps = {
   color?: 'yellow' | 'grey' | 'green';
+  children: React.ReactNode | React.ReactNode[];
 };
 
 const Notice: React.FC<NoticeProps> = ({ color = 'grey', children }) => {

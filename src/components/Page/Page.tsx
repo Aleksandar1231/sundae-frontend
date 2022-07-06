@@ -5,7 +5,7 @@ import useEagerConnect from '../../hooks/useEagerConnect';
 import Footer from '../Footer';
 import Nav from '../Nav';
 
-const Page: React.FC = ({ children }) => {
+const Page: React.FC<{ children: React.ReactNode | React.ReactNode[] }> = ({ children }) => {
   useEagerConnect();
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>

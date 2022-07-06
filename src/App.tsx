@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Provider } from 'react-redux';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider as TP } from '@material-ui/core/styles';
 import { ThemeProvider as TP1 } from 'styled-components';
 import { UseWalletProvider } from 'use-wallet';
@@ -43,41 +43,26 @@ const App: React.FC = () => {
 
   return (
       <Providers>
+        <Suspense fallback={<Loader />}>
         <Router>
-          <Suspense fallback={<Loader />}>
-            <Switch>
-              <Route exact path="/" >
-                <Home />
-              </Route>
-              <Route path="/farms" >
-                <Farms />
-              </Route>
-              <Route path="/boardroom">
-                <Boardroom />
-              </Route>
-              <Route path="/bonds">
-                <Bonds />
-              </Route>
-              <Route path="/nodes">
-                <Nodes />
-              </Route>
-              <Route path="/nodes-lottery">
-                <Lottery />
-              </Route>
-            <Route path="/regulations">
-              <Regulations />
-            </Route>
-              <Route path="*" >
-              <NoMatch />
-            </Route>
-            </Switch>
-          </Suspense>
+            <Routes>
+              <Route path="/"  element={<Home/>}/>
+              <Route path="/farms/*" element={<Farms/>}/>
+              <Route path="/boardroom" element={<Boardroom/>}/>
+              <Route path="/bonds" element={<Bonds/>}/>
+              <Route path="/nodes/*" element={<Nodes/>}/>
+              <Route path="/nodes-lottery" element={<Lottery/>}/>
+              <Route path="/regulations" element={<Regulations/>}/>
+              <Route path="*" element={<NoMatch/>}/>
+          </Routes>
+          
         </Router>
+        </Suspense>
       </Providers>
   );
 };
 
-const Providers: React.FC = ({ children }) => {
+const Providers: React.FC<{ children: React.ReactNode | React.ReactNode[] }> = ({ children }) => {
   return (
     <TP1 theme={theme}>
       <TP theme={newTheme}>

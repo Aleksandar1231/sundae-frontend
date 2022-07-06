@@ -1,6 +1,6 @@
 import React from 'react';
 import { useWallet } from 'use-wallet';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Route, Routes, useMatch } from 'react-router-dom';
 import Bank from '../Bank';
 
 import { Box, Container, Typography, Grid } from '@material-ui/core';
@@ -34,17 +34,15 @@ import useBanks from '../../hooks/useBanks';
 
 const Cemetery = () => {
   const [banks] = useBanks();
-  const { path } = useRouteMatch();
+  const { path } = useMatch('/farms');
   const { account } = useWallet();
   const strawActive = true
   const activeBanks = banks.filter((bank) => !bank.finished && (strawActive || bank.sectionInUI !== 2));
   return (
-    <Switch>
-      <Page>
-        <Route exact path={path}>
-         {/*  <BackgroundImage /> */}
+    <Page>
           {!!account ? (
             <Container maxWidth="lg">
+              {console.error("poo")}
               <Typography color="textPrimary" align="center" variant="h3" gutterBottom style={{marginTop:'50px'}}>
                 Farms
               </Typography>
@@ -105,14 +103,13 @@ const Cemetery = () => {
             </Container>
           ) : (
             <UnlockWallet />
-          )}
-        </Route>
-        <Route path={`${path}/:bankId`}>
-         {/*  <BackgroundImage /> */}
-          <Bank />
-        </Route>
-      </Page>
-    </Switch >
+          )
+        }
+          
+      <Routes>
+        <Route path={`${path}/:bankId`} element={<Bank/>}/>
+      </Routes >
+    </Page>
   );
 };
 

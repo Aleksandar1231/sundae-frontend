@@ -1,6 +1,6 @@
 import { Box, CardContent, Grid, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { useMatch } from 'react-router-dom';
 import Page from '../../components/Page';
 import { lotteries, moralisConfiguration } from '../../config';
 import moment from 'moment/moment';
@@ -10,7 +10,7 @@ import Card from '../../components/Card';
 
 
 const Lottery = () => {
-  const { path } = useRouteMatch();
+  const { path } = useMatch('/nodes-lottery');
   const [leaderboardData, setLeaderboardData] = useState(null);
 
   const from = moment('2022-07-03 12:00:00Z');

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Card: React.FC = ({ children }) => <StyledCard>{children}</StyledCard>;
+const Card: React.FC<{ children: React.ReactNode | React.ReactNode[] }> = ({ children }) => <StyledCard>{children}</StyledCard>;
 
 const StyledCard = styled.div`
 background-color: rgb(255, 255, 255); //${(props) => props.theme.color.grey[800]};
