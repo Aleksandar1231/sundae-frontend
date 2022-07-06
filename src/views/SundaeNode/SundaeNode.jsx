@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useWallet } from 'use-wallet';
+import Page from '../../components/Page';
 import PageHeader from '../../components/PageHeader';
 import { Box, CardContent, Typography, Grid, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -52,7 +53,7 @@ const SundaeNode = () => {
 
   return bank
   ? (
-      <>
+      <Page>
         <PageHeader icon="🏦" subtitle={bank?.name} title={'Nodes'} />
 
         <Box>
@@ -139,7 +140,7 @@ const SundaeNode = () => {
           </StyledBank>
         </Box>
 
-      </>
+      </Page>
     )
     : <BankNotFound />
 };

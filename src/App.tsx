@@ -51,7 +51,8 @@ const App: React.FC = () => {
               <Route path="/farms/*" element={<Farms/>}/>
               <Route path="/boardroom" element={<Boardroom/>}/>
               <Route path="/bonds" element={<Bonds/>}/>
-              <Route path="/nodes" element={<Nodes/>}>
+              <Route path="/nodes">
+                <Route index element={<Nodes />} />
                 <Route path=":bankId" element={<SundaeNode/>}/>
               </Route>
               <Route path="/nodes-lottery" element={<Lottery/>}/>

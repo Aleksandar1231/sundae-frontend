@@ -57,7 +57,7 @@ const SundaeNodes = () => {
 
 
   return (
-    <Container>
+    <>
       <Page>
       {!!account ? (
         <>
@@ -132,10 +132,10 @@ const SundaeNodes = () => {
         ) : (
           <UnlockWallet />
         )}
+        
       </Page>
-
       <Outlet/>
-      </Container>
+      </>
   );
 };
 
