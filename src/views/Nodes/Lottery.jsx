@@ -41,7 +41,7 @@ const Lottery = () => {
                 Track total nodes purchased and points earned
               </Typography>
       <p style={{'textAlign': 'center', 'color': '#000'}}>
-        The following leaderboard is based on the number of new nodes created within the period
+        The following leaderboard is tomb on the number of new nodes created within the period
       </p>
       <p style={{'textAlign': 'center', 'color': '#000', 'fontWeight': 'bold' }}>
         { from.format('DD-MM-YYYY') } to { to.format('DD-MM-YYYY') }

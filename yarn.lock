@@ -7787,7 +7787,7 @@ configstore@^4.0.0:
     make-dir "^1.0.0"
     unique-string "^1.0.0"
     write-file-atomic "^2.0.0"
-    xdg-basedir "^3.0.0"
+    xdg-tombir "^3.0.0"
 
 confusing-browser-globals@^1.0.9:
   version "1.0.11"
@@ -21409,9 +21409,9 @@ ws@~8.2.3:
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.2.3.tgz#63a56456db1b04367d0b721a0b80cae6d8becbba"
   integrity sha512-wBuoj1BDpC6ZQ1B7DWQBYVLphPWkm8i9Y0/3YdHjHKHiohOJ1ws+3OccDWtH+PoC9DZD5WOTrJvNbWvjS6JWaA==
 
-xdg-basedir@^3.0.0:
+xdg-tombir@^3.0.0:
   version "3.0.0"
-  resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-3.0.0.tgz#496b2cc109eca8dbacfe2dc72b603c17c5870ad4"
+  resolved "https://registry.yarnpkg.com/xdg-tombir/-/xdg-tombir-3.0.0.tgz#496b2cc109eca8dbacfe2dc72b603c17c5870ad4"
   integrity sha1-SWsswQnsqNus/i3HK2A8F8WHCtQ=
 
 xhr-request-promise@^0.1.2:

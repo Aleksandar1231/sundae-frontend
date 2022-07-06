@@ -1803,7 +1803,7 @@ pragma solidity ^0.8.0;
 
 
 /**
- * @dev Contract module that allows children to implement role-based access
+ * @dev Contract module that allows children to implement role-tomb access
  * control mechanisms. This is a lightweight version that doesn't allow enumerating role
  * members except through off-chain means by accessing the contract event logs. Some
  * applications may benefit from on-chain enumerability, for those cases see

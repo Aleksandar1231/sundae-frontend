@@ -26,6 +26,7 @@ export class TombFinance {
   contracts: { [name: string]: Contract };
   externalTokens: { [name: string]: ERC20 };
   masonryVersionOfUser?: string;
+  freezerVersionofUser?: string;
 
   TOMBWFTM_LP: Contract;
   TOMB: ERC20;
@@ -35,6 +36,7 @@ export class TombFinance {
   FTM: ERC20;
   DAI: ERC20;
   MIM: ERC20;
+  MBBT: ERC20; // FROYO STRAW-DAI receipt token
 
 
   constructor(cfg: Configuration) {
@@ -152,7 +154,15 @@ export class TombFinance {
     : await pool.compound();
   }
 
+  //===================================================================
+  //===================== Freezer Locked Staking =============================
+  //================================================= =========================
+  //==================================================================
+  //===================================================================
 
+  async fetchFreezerVersionOfUser(): Promise<string> {
+    return 'latest';
+  }
 
 
   //===================================================================
@@ -1213,7 +1223,7 @@ export class TombFinance {
    * @param filter applied on the query to the treasury events
    * @param from block number
    * @param to block number
-   * @returns the amount of bonds events emitted based on the filter provided during a specific period
+   * @returns the amount of bonds events emitted tomb on the filter provided during a specific period
    */
   async getBondsWithFilterForPeriod(filter: EventFilter, from: number, to: number): Promise<number> {
     const { Treasury } = this.contracts;
