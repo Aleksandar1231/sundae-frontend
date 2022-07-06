@@ -24,6 +24,7 @@ const Boardroom = lazy(() => import('./views/Masonry'));
 const Bonds = lazy(() => import('./views/Pit'));
 const Nodes = lazy(() => import ('./views/Nodes'));
 const Lottery = lazy(() => import('./views/Nodes/Lottery'));
+const SundaeNode = lazy(() => import('./views/SundaeNode'));
 
 const NoMatch = () => (
   <h3 style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
@@ -50,7 +51,9 @@ const App: React.FC = () => {
               <Route path="/farms/*" element={<Farms/>}/>
               <Route path="/boardroom" element={<Boardroom/>}/>
               <Route path="/bonds" element={<Bonds/>}/>
-              <Route path="/nodes/*" element={<Nodes/>}/>
+              <Route path="/nodes" element={<Nodes/>}>
+                <Route path=":bankId" element={<SundaeNode/>}/>
+              </Route>
               <Route path="/nodes-lottery" element={<Lottery/>}/>
               <Route path="/regulations" element={<Regulations/>}/>
               <Route path="*" element={<NoMatch/>}/>

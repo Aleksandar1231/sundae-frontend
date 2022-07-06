@@ -1,6 +1,6 @@
-import { Button, CardContent, Grid, Typography } from '@material-ui/core';
+import { Button, CardContent, Grid, Typography, Container } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import { Link, Route, Routes, useMatch } from 'react-router-dom';
+import { Link, Route, Routes, useMatch, Outlet } from 'react-router-dom';
 import Page from '../../components/Page';
 import Card from '../../components/Card';
 import SundaeNode from '../SundaeNode';
@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SundaeNodes = () => {
-  const {pathname} = useMatch('/nodes');
   const { account } = useWallet();
   const [leaderboardData, setLeaderboardData] = useState(null);
   const [userEntries, setUserEntries] = useState(null);
@@ -58,10 +57,9 @@ const SundaeNodes = () => {
 
 
   return (
+    <Container>
       <Page>
       {!!account ? (
-        <Routes>
-        <Route index element={ 
         <>
         <Typography color="textPrimary" align="center" variant="h3" gutterBottom style={{marginTop:'50px'}}>
             Nodes
@@ -129,15 +127,15 @@ const SundaeNodes = () => {
             </Grid>
           </Grid>
               <InfoCards />
-        <Route path={`:id`} element={<SundaeNode />}/>
+
         </>
-        }/>
-        </Routes>
         ) : (
           <UnlockWallet />
         )}
       </Page>
-    
+
+      <Outlet/>
+      </Container>
   );
 };
 
