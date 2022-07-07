@@ -466,7 +466,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                         <Typography color="textPrimary" align="center" variant="h5" gutterBottom style={{marginTop:'25px'}}>
                             Fight and win to become the champion
                         </Typography>
-                            <div className="flex flex-wrap justify-center items-center mt-10 mb-24">
+                            {/* <div className="flex flex-wrap justify-center items-center mt-10 mb-24">
                                 {sortedPots.map((pot, i: number) => {
                                     const symbol: Symbol = pot.symbol;
                                     return (
@@ -520,7 +520,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                     )
                                 })
                                 }
-                            </div >
+                            </div > */}
                             <div className="flex flex-wrap justify-center">
                                 {sortedPots.map((pot, i: number) => {
                                     const symbol: Symbol = pot.symbol;
