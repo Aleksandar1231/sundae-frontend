@@ -12,7 +12,6 @@ import avax_sm from "../../assets/img/lms/avax_sm.svg";
 import grape from "../../assets/img/lms/grape.svg";
 import grape_sm from "../../assets/img/lms/grape_sm.svg";
 
-import CustomBtn from "./components/CustomBtn/CustomBtn";
 import EthereumInteraction from "./ethereum/EthereumInteraction";
 import { buy, claim, getClaimed, getClaimPeriod, getLastTs, getPeriod, getPotSize, getTicketSize, getWinner } from "./ethereum/lms/lms";
 import separateNumberWithCommas from "../../utils/separateNumberWithCommas";
@@ -464,7 +463,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                          </Typography>
 
                         <Typography color="textPrimary" align="center" variant="h5" gutterBottom style={{marginTop:'25px'}}>
-                            Fight and win to become the champion
+                            Do you have what it takes to be the champion
                         </Typography>
                             {/* <div className="flex flex-wrap justify-center items-center mt-10 mb-24">
                                 {sortedPots.map((pot, i: number) => {
@@ -603,9 +602,9 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                                         It only takes 30 minutes of ruling the Colosseum to begin earning!
                                                         <br />
                                                     </>}
-                                                <span className="font-bold">Only the most recent</span> Gladiator can win the pot.
-                                                Another Gladiator can come by and dominate the Colosseum themselves;
-                                                if another Gladiator joins the tournament, they will knock you off and dominate the tournament.
+                                                <span className="font-bold">Only the most recent</span> Champion can win the pot.
+                                                Another Champion can come by and dominate the fight themselves;
+                                                if another Champion joins the fight, they will knock you off and dominate.
                                                 {pot.symbol === Symbol.AVAX && <><br /></>}
                                                 <br /> <br />
                                                 {winner?.[symbol] !== undefined
@@ -618,7 +617,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                                         && winner?.[symbol]?.toLowerCase() === wallet
                                                         ? Date.now() / 1000 < lastTs?.[symbol]?.toNumber() + period?.[symbol]?.toNumber()
                                                             ? <>
-                                                                The Colosseum is roaring! <span className='font-bold'>You are dominating</span> the Tournament!
+                                                                The fight is getting intense! <span className='font-bold'>You are dominating</span> the Tournament!
                                                                 <br />
                                                                 If you survive until the timer runs out,
                                                                 <br />
@@ -637,7 +636,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                                                 {pot.earning &&
                                                                     <>
                                                                         <br /> <br />
-                                                                        If you were kicked out of the Colosseum right now,
+                                                                        If you were kicked out of the fight right now,
                                                                         <br />
                                                                         you'd earn
                                                                         {" "}
@@ -655,7 +654,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                                             </>
                                                             :
                                                             <>
-                                                                The Colosseum is roaring! You have <span className='font-bold'>won!</span>
+                                                                The fight is over! You have <span className='font-bold'>won!</span>
                                                                 <br />
                                                                 Claim
                                                                 {" "}
@@ -729,14 +728,20 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                                     loaded={loaded}
                                                     loadingColor={pot.color}
                                                     connectButton={
-                                                        <CustomBtn color={pot.color}>
+                                                        <Button 
+                                                        color="primary"
+                                                        variant="contained"
+                                                        >
                                                             Connect to Metamask
-                                                        </CustomBtn>
+                                                        </Button>
                                                     }
                                                     chainSwitchButton={
-                                                        <CustomBtn color={pot.color}>
+                                                        <Button 
+                                                        color="primary"
+                                                        variant="contained"
+                                                        >
                                                             Switch to Avalanche
-                                                        </CustomBtn>
+                                                        </Button>
                                                     }
                                                 >
                                                     {(symbol !== Symbol.AVAX ? approved?.[symbol] !== undefined : true)
@@ -749,24 +754,22 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                                         && ticketSize?.[symbol] !== undefined
                                                         ? (symbol !== Symbol.AVAX && !approved?.[symbol]
                                                             ?
-                                                            <CustomBtn
-                                                                color={pot.color}
+                                                            <Button
+                                                                color="primary"
+                                                                variant="contained"
                                                                 onClick={async () => await onApprove(symbol)}
-                                                                loading={loading?.[symbol]}
                                                                 disabled={Object.values(loading).find(loading => loading)}
-                                                                className={"min-w-[141px] min-h-[46px]"}
                                                             >
                                                                 Approve
-                                                            </CustomBtn>
+                                                            </Button>
                                                             : (!lastTs?.[symbol] || lastTs?.[symbol]?.eq(0)
                                                                 || Date.now() / 1000 < lastTs?.[symbol]?.toNumber() + period?.[symbol]?.toNumber())
                                                                 ?
-                                                                <CustomBtn
-                                                                    color={pot.color}
-                                                                    loading={loading?.[symbol]}
+                                                                <Button
+                                                                    color="primary"
+                                                                    variant="contained"
                                                                     disabled={Object.values(loading).find(loading => loading)}
                                                                     onClick={async () => await onBuy(symbol)}
-                                                                    className={`sm:min-w-[387px] min-h-[46px]`}
                                                                 >
                                                                     {(!lastTs?.[symbol] || lastTs?.[symbol]?.eq(0)) ? "Be the first to join and start" : "Join"}
                                                                     {" "}
@@ -779,7 +782,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                                                             (${separateNumberWithCommas(parseFloat((parseBigNumber(ticketSize?.[symbol], config.tokens[symbol].decimals) * avaxPriceInDollars)?.toFixed(2)) || "0")})
                                                                         </>
                                                                     }
-                                                                </CustomBtn>
+                                                                </Button>
                                                                 :
                                                                 (winner?.[symbol]?.toLowerCase() !== wallet || BigNumber.from(winner?.[symbol]).eq(0))
                                                                     ? <></>
@@ -794,9 +797,9 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                                                                 The time for you to claim your reward has expired. You can't claim it anymore.
                                                                             </p>
                                                                             :
-                                                                            <CustomBtn
-                                                                                color={pot.color}
-                                                                                loading={loading?.[symbol]}
+                                                                            <Button
+                                                                                color="primary"
+                                                                                variant="contained"
                                                                                 disabled={Object.values(loading).find(loading => loading)}
                                                                                 onClick={async () => await onClaim(symbol)}
                                                                             >
@@ -807,7 +810,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                                                                         (${separateNumberWithCommas(parseFloat((potSize?.[symbol] * avaxPriceInDollars)?.toFixed(2)) || "0")})
                                                                                     </>
                                                                                 }
-                                                                            </CustomBtn>)
+                                                                            </Button>)
                                                         : <div className="flex justify-center items-center"><Loading color={pot.color} /></div>
                                                     }
                                                 </EthereumInteraction>
