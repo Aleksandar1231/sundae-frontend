@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.6.12+commit.27d51765"
+		"version": "0.8.9+commit.e5eed63a"
 	},
 	"language": "Solidity",
 	"output": {
@@ -19,9 +19,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/FudgeNode.sol": "Address"
+			"contracts/Tournament.sol": "Address"
 		},
-		"evmVersion": "istanbul",
+		"evmVersion": "london",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -33,12 +33,11 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/FudgeNode.sol": {
-			"keccak256": "0x364fa58f4b75bf049b385d5368b847eb7050d0e8e22e50eac05df52c99401d0e",
-			"license": "MIT",
+		"contracts/Tournament.sol": {
+			"keccak256": "0x7163b63996c7c82c9a96665b67d9703b532bbbf0004f3e2917df4a5dfc4b540b",
 			"urls": [
-				"bzz-raw://669363f6b48ffe8a51f7412a92b3b336f0eba61783be69654f0dd79b4832ff79",
-				"dweb:/ipfs/QmNWhVAEFygiYLhXFe3HpKc8KdnM9zd19YskxXy8jWquAq"
+				"bzz-raw://6b3758131d6a179ccef805aec6cc607aac61d95d09d185032bb8283dda5ba37b",
+				"dweb:/ipfs/QmTCPKfXbX8JxwKaYBAJq9KzpkzofAzvmXqQU68TX2VTMa"
 			]
 		}
 	},

@@ -24,6 +24,8 @@ export enum Symbol {
     USDC = "USDC",
     USDT = "USDT",
     GRAPE = "GRAPE",
+    FUDGE = "FUDGE",
+    STRAW = "STRAW",
 }
 
 export interface Link {

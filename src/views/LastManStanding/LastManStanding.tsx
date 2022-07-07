@@ -11,6 +11,8 @@ import avax from '../../assets/img/lms/avax.svg';
 import avax_sm from '../../assets/img/lms/avax_sm.svg';
 import grape from '../../assets/img/lms/grape.svg';
 import grape_sm from '../../assets/img/lms/grape_sm.svg';
+import fudge from '../../assets/img/fudge.png';
+import straw from '../../assets/img/straw.png';
 
 import EthereumInteraction from './ethereum/EthereumInteraction';
 import {
@@ -70,6 +72,8 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
     AVAX: null,
     USDC: TombFinance.tokens[`koc${Symbol.USDC}`],
     GRAPE: TombFinance.tokens[Symbol.GRAPE],
+    FUDGE: TombFinance.tokens[Symbol.FUDGE],
+    STRAW: TombFinance.tokens[Symbol.STRAW],
   };
   const tokens = {};
   for (const [key, value] of Object.entries(tokensUnfiltered)) {
@@ -77,45 +81,77 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
   }
 
   const pots: Pot[] = [
+    // {
+    //   symbol: Symbol.USDC,
+    //   earning: true,
+    //   icon: usdc,
+    //   iconWidth: 72,
+    //   iconHeight: 72,
+    //   iconSm: usdc_sm,
+    //   iconSmWidth: 35,
+    //   iconSmHeight: 35,
+    //   border: 'border-usdc',
+    //   shadow: 'shadow-[0_8px_14px_rgba(42,120,205,0.04)] hover:shadow-[0_10px_25px_rgba(42,120,205,0.2)]',
+    //   text: 'text-usdc',
+    //   fill: 'fill-usdc',
+    //   bg: '#6ca4dc',
+    //   bgLight: 'bg-[#f0f5fb]',
+    //   color: 'usdc',
+    // },
+    // {
+    //   symbol: Symbol.AVAX,
+    //   icon: avax,
+    //   iconWidth: 72,
+    //   iconHeight: 72,
+    //   iconSm: avax_sm,
+    //   iconSmWidth: 35,
+    //   iconSmHeight: 35,
+    //   border: 'border-avax',
+    //   shadow: 'shadow-[0_8px_14px_rgba(236,69,69,0.04)] hover:shadow-[0_10px_25px_rgba(236,69,69,0.2)]',
+    //   text: 'text-avax',
+    //   fill: 'fill-avax',
+    //   bg: '#ee868c',
+    //   bgLight: 'bg-[#fbe6e8]',
+    //   color: 'avax',
+    // },
+    // {
+    //   symbol: Symbol.GRAPE,
+    //   icon: grape,
+    //   iconWidth: 71,
+    //   iconHeight: 72,
+    //   iconSm: grape_sm,
+    //   iconSmWidth: 35,
+    //   iconSmHeight: 35,
+    //   border: 'border-grape',
+    //   shadow: 'shadow-[0_8px_14px_rgba(130,9,108,0.04)] hover:shadow-[0_10px_25px_rgba(130,9,108,0.2)]',
+    //   text: 'text-grape',
+    //   fill: 'fill-grape',
+    //   bg: '#82096c',
+    //   bgLight: 'bg-[#e6cde1]',
+    //   color: 'grape',
+    // },
     {
-      symbol: Symbol.USDC,
-      earning: true,
-      icon: usdc,
-      iconWidth: 72,
-      iconHeight: 72,
-      iconSm: usdc_sm,
-      iconSmWidth: 35,
-      iconSmHeight: 35,
-      border: 'border-usdc',
-      shadow: 'shadow-[0_8px_14px_rgba(42,120,205,0.04)] hover:shadow-[0_10px_25px_rgba(42,120,205,0.2)]',
-      text: 'text-usdc',
-      fill: 'fill-usdc',
-      bg: '#6ca4dc',
-      bgLight: 'bg-[#f0f5fb]',
-      color: 'usdc',
-    },
-    {
-      symbol: Symbol.AVAX,
-      icon: avax,
-      iconWidth: 72,
-      iconHeight: 72,
-      iconSm: avax_sm,
-      iconSmWidth: 35,
-      iconSmHeight: 35,
-      border: 'border-avax',
-      shadow: 'shadow-[0_8px_14px_rgba(236,69,69,0.04)] hover:shadow-[0_10px_25px_rgba(236,69,69,0.2)]',
-      text: 'text-avax',
-      fill: 'fill-avax',
-      bg: '#ee868c',
-      bgLight: 'bg-[#fbe6e8]',
-      color: 'avax',
-    },
-    {
-      symbol: Symbol.GRAPE,
-      icon: grape,
+      symbol: Symbol.FUDGE,
+      icon: fudge,
       iconWidth: 71,
       iconHeight: 72,
-      iconSm: grape_sm,
+      iconSm: fudge,
+      iconSmWidth: 35,
+      iconSmHeight: 35,
+      border: 'border-grape',
+      shadow: 'shadow-[0_8px_14px_rgba(130,9,108,0.04)] hover:shadow-[0_10px_25px_rgba(130,9,108,0.2)]',
+      text: 'text-grape',
+      fill: 'fill-grape',
+      bg: '#82096c',
+      bgLight: 'bg-[#e6cde1]',
+      color: 'grape',
+    },
+    {
+      symbol: Symbol.STRAW,
+      icon: straw,
+      iconWidth: 71,
+      iconHeight: 72,
+      iconSm: straw,
       iconSmWidth: 35,
       iconSmHeight: 35,
       border: 'border-grape',
@@ -480,7 +516,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                 Last Man Standing
               </Typography>
 
-              <Typography color="textPrimary" align="center" variant="h5" gutterBottom style={{ marginTop: '25px' }}>
+              <Typography color="textPrimary" align="center" variant="h5" gutterBottom style={{ marginTop: '25px', marginBottom:'75px' }}>
                 Do you have what it takes to be the champion
               </Typography>
               {/* <div className="flex flex-wrap justify-center items-center mt-10 mb-24">
@@ -571,7 +607,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                               style={{
                                 display: 'flex',
                                 flexDirection: 'column',
-                                margin: '10px',
+                                marginTop: '30px',
                                 justifyContent: 'center',
                                 alignItems: 'center',
                               }}
@@ -619,7 +655,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                   <br />
                                   {pot.earning && (
                                     <>
-                                      It only takes 30 minutes of ruling the Colosseum to begin earning!
+                                      It only takes 30 minutes of ruling to begin earning!
                                       <br />
                                     </>
                                   )}
@@ -633,6 +669,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                     </>
                                   )}
                                   <br />
+                                  <br />
                                   {winner?.[symbol] !== undefined &&
                                     !BigNumber.from(winner?.[symbol]).eq(0) &&
                                     lastTs?.[symbol] !== undefined &&
@@ -642,8 +679,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                       Date.now() / 1000 <
                                       lastTs?.[symbol]?.toNumber() + period?.[symbol]?.toNumber() ? (
                                         <>
-                                          The fight is getting intense!{' '}
-                                          <span className="font-bold">You are dominating</span> the Tournament!
+                                          <span style={{fontWeight:'bold'}} className="font-bold">You are dominating</span> the Tournament!
                                           <br />
                                           If you survive until the timer runs out,
                                           <br />
@@ -694,7 +730,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                         </>
                                       ) : (
                                         <>
-                                          The fight is over! You have <span className="font-bold">won!</span>
+                                          The fight is over! You have <span style={{ fontWeight: 'bold' }} className="font-bold">won!</span>
                                           <br />
                                           Claim{' '}
                                           <span className="font-bold">
@@ -721,7 +757,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                       (Date.now() / 1000 <
                                       lastTs?.[symbol]?.toNumber() + period?.[symbol]?.toNumber() ? (
                                         <>
-                                          Currently the following address{' '}
+                                          The following address{' '}
                                           <span className="font-bold">
                                             will win the{' '}
                                             {separateNumberWithCommas(parseFloat(potSize?.[symbol]?.toFixed(2) || '0'))}{' '}
@@ -791,7 +827,6 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                 wallet={wallet}
                                 chain={chain}
                                 loaded={loaded}
-                                loadingColor={pot.color}
                                 connectButton={
                                   <Button color="primary" variant="contained">
                                     Connect to Metamask

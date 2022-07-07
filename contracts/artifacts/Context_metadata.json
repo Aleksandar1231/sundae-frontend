@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.4+commit.c7e474f2"
+		"version": "0.8.9+commit.e5eed63a"
 	},
 	"language": "Solidity",
 	"output": {
@@ -19,25 +19,25 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Zapper.sol": "Context"
+			"contracts/Tournament.sol": "Context"
 		},
-		"evmVersion": "istanbul",
+		"evmVersion": "london",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Zapper.sol": {
-			"keccak256": "0x100db51d1a789d1984c4b7afa14e0ee00479ceb1e581923fa02a44b3b87f9e42",
+		"contracts/Tournament.sol": {
+			"keccak256": "0x7163b63996c7c82c9a96665b67d9703b532bbbf0004f3e2917df4a5dfc4b540b",
 			"urls": [
-				"bzz-raw://0516fc1af995b14903bdd95107deb31a738632311bd394e78a0f12ae8c0f4b88",
-				"dweb:/ipfs/QmQMgVfPiuVsTWrxdaQgCraZrm3Kd7D1WrqfXCZpmYsmM5"
+				"bzz-raw://6b3758131d6a179ccef805aec6cc607aac61d95d09d185032bb8283dda5ba37b",
+				"dweb:/ipfs/QmTCPKfXbX8JxwKaYBAJq9KzpkzofAzvmXqQU68TX2VTMa"
 			]
 		}
 	},

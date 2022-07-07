@@ -111,7 +111,7 @@ const Nav = () => {
                 Nodes
               </Link>
               <Link color="textPrimary" to="/lastmanstanding" className='nav-link'>
-                LMS
+                Last-Man-Standing
               </Link>
              {/* <Link color="textPrimary" to="/regulations" className='nav-link'>
                 Regulations
