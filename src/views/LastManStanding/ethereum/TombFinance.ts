@@ -60,10 +60,6 @@ export default class TombFinance {
         return amount / supply * priceInDollars * 2; //We multiply by 2 since half the price of the lp token is the price of each piece of the pair. So twice gives the total
     }
 
-    static getOneOfTheTokensOfLpToken(lpToken: string): Symbol {
-        if (lpToken.includes(Symbol.TOMB)) return Symbol.TOMB;
-        else if (lpToken.includes(Symbol.TSHARE)) return Symbol.TSHARE;
-    }
 
     /**
     * Method to calculate the tokenPrice of the deposited asset in a pool/bank
@@ -85,8 +81,6 @@ export default class TombFinance {
             if (price) return price;
             else {
                 switch (depositTokenName) {
-                    case Symbol.TSHARE_AVAX_LP: return 10;
-                    case Symbol.TOMB_AVAX_LP: return 20;
                 }
             }
         }

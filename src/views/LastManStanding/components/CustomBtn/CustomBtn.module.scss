@@ -1,0 +1,55 @@
+$colors: "rippleForNavigationBtn" #FF6700 #fff 0.15,
+    "white" #fff #FF6700,
+    "orange" #FF6700,
+    "yellow" #FFD43C,
+    "blue" #0263D1,
+    "discord" #5865F2,
+    "twitter" #55ACEE,
+    "telegram" #27ADE3,
+    "black" #222732,
+    "usdc" #2a78cd,
+    "avax" #ec4545,
+    "stomb" #6b00fa,
+    "slot" #9648ff,
+    "grave" #e30333,
+    "gshare" #eb4e70,
+    "zombie" #03e367,
+    "zshare" #4eeb94,
+    "wlrs" #93c1e6,
+    "wshare" #334876,
+    "grape" #82096c,
+    "game" rgb(232, 37, 219),
+    "wine" #b41528,
+    "glad" #38b6ff;
+
+@mixin ripple($bgColor, $rippleColor: #fff, $opacity: 1) {
+    background-position: center;
+    transition: background 0.8s, filter 0.3s, opacity 0.3s, color 0.3s, fill 0.3s, box-shadow 0.3s;
+
+    &:hover {
+        background: rgba($bgColor, $opacity) radial-gradient(circle, transparent 1%, rgba($bgColor, $opacity) 1%) center/15000%;
+    }
+
+    &:active {
+        background-color: rgba($rippleColor, $opacity);
+        background-size: 100%;
+        transition: background 0s, filter 0s, opacity 0.3s, color 0.3s, fill 0.3s, box-shadow 0.3s;
+    }
+}
+
+@each $name,
+$bgColor,
+$rippleColor,
+$opacity in $colors {
+    @if $rippleColor ==null {
+        $rippleColor: #fff
+    }
+
+    @if $opacity ==null {
+        $opacity: 1
+    }
+
+    .#{$name} {
+        @include ripple($bgColor, $rippleColor, $opacity);
+    }
+}

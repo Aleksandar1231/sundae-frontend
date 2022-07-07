@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useRef } from 'react';
 import { Provider } from 'react-redux';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider as TP } from '@material-ui/core/styles';
@@ -25,6 +25,7 @@ const Bonds = lazy(() => import('./views/Pit'));
 const Nodes = lazy(() => import ('./views/Nodes'));
 const Lottery = lazy(() => import('./views/Nodes/Lottery'));
 const SundaeNode = lazy(() => import('./views/SundaeNode'));
+const LastManStanding = lazy(() => import('./views/LastManStanding'));
 
 const NoMatch = () => (
   <h3 style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
@@ -39,7 +40,7 @@ const App: React.FC = () => {
     localStorage.setItem('connectorId', '');
     localStorage.setItem('version_app', '1.1');
   }
-
+  const refHeader = useRef();
   usePromptNetwork();
 
   return (
@@ -51,6 +52,7 @@ const App: React.FC = () => {
               <Route path="/farms/*" element={<Farms/>}/>
               <Route path="/boardroom" element={<Boardroom/>}/>
               <Route path="/bonds" element={<Bonds/>}/>
+              <Route path="/lastmanstanding" element={<LastManStanding refHeader={refHeader}/>}/>
               <Route path="/nodes">
                 <Route index element={<Nodes />} />
                 <Route path=":bankId" element={<SundaeNode/>}/>

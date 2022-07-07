@@ -5,12 +5,12 @@ import config from "../LastManStanding/config";
 import { parseBigNumber, useWallet, watchTransaction } from "./ethereum/ethereum";
 import handleResult from "./ethereum/handleresult";
 import Countdown from "./Countdown";
-import usdc from "../../assets/images/koc/usdc.svg";
-import usdc_sm from "../../assets/images/koc/usdc_sm.svg";
-import avax from "../../assets/images/koc/avax.svg";
-import avax_sm from "../../assets/images/koc/avax_sm.svg";
-import grape from "../../assets/images/koc/grape.svg";
-import grape_sm from "../../assets/images/koc/grape_sm.svg";
+import usdc from "../../assets/img/lms/usdc.svg";
+import usdc_sm from "../../assets/img/lms/usdc_sm.svg";
+import avax from "../../assets/img/lms/avax.svg";
+import avax_sm from "../../assets/img/lms/avax_sm.svg";
+import grape from "../../assets/img/lms/grape.svg";
+import grape_sm from "../../assets/img/lms/grape_sm.svg";
 
 import CustomBtn from "./components/CustomBtn/CustomBtn";
 import EthereumInteraction from "./ethereum/EthereumInteraction";
@@ -23,6 +23,11 @@ import TombFinance from "./ethereum/TombFinance";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { ChainId } from "@traderjoe-xyz/sdk";
 import React from "react";
+
+import Page from '../../components/Page';
+import { Button, CardContent, Grid, Typography, Container } from '@material-ui/core';
+
+
 
 interface IKoCPage {
     refHeader: any;
@@ -448,21 +453,19 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
     }, [lastTs, period, sortedPots]);
 
     return (
-        <>
+
+        <Page>
             <ContainerWithBgImage bgImg="hero" lazyLoadNotNeeded subContainerNotNeeded className="min-h-[100vh]" bgClassName="blur-[6px]">
                 <div className="bg-lightblue bg-opacity-70 w-full h-full min-h-[100vh]">
                     <div className="container mx-auto px-2 sm:px-5 py-[130px] flex justify-center">
                         <div className="text-black text-center w-full">
-                            <p className="text-20 sm:text-24 font-medium mb-1">
-                                King
-                                <br />
-                                of the
-                                <br />
-                                Colosseum
-                            </p>
-                            <p className="text-black text-14 sm:text-16 mb-5">
-                                Fight in the most prestigious tournament and earn insane money in a few hours!
-                            </p>
+                        <Typography color="textPrimary" align="center" variant="h3" gutterBottom style={{marginTop:'50px'}}>
+                            Last Man Standing
+                         </Typography>
+
+                        <Typography color="textPrimary" align="center" variant="h5" gutterBottom style={{marginTop:'25px'}}>
+                            Fight and win to become the champion
+                        </Typography>
                             <div className="flex flex-wrap justify-center items-center mt-10 mb-24">
                                 {sortedPots.map((pot, i: number) => {
                                     const symbol: Symbol = pot.symbol;
@@ -820,6 +823,6 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                     </div>
                 </div>
             </ContainerWithBgImage>
-        </>
+         </Page>
     )
 }
