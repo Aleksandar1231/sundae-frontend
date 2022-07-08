@@ -516,7 +516,13 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                 Last Man Standing
               </Typography>
 
-              <Typography color="textPrimary" align="center" variant="h5" gutterBottom style={{ marginTop: '25px', marginBottom:'75px' }}>
+              <Typography
+                color="textPrimary"
+                align="center"
+                variant="h5"
+                gutterBottom
+                style={{ marginTop: '25px', marginBottom: '75px' }}
+              >
                 Do you have what it takes to be the champion
               </Typography>
               {/* <div className="flex flex-wrap justify-center items-center mt-10 mb-24">
@@ -679,7 +685,10 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                       Date.now() / 1000 <
                                       lastTs?.[symbol]?.toNumber() + period?.[symbol]?.toNumber() ? (
                                         <>
-                                          <span style={{fontWeight:'bold'}} className="font-bold">You are dominating</span> the Tournament!
+                                          <span style={{ fontWeight: 'bold' }} className="font-bold">
+                                            You are dominating
+                                          </span>{' '}
+                                          the Tournament!
                                           <br />
                                           If you survive until the timer runs out,
                                           <br />
@@ -730,7 +739,10 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                         </>
                                       ) : (
                                         <>
-                                          The fight is over! You have <span style={{ fontWeight: 'bold' }} className="font-bold">won!</span>
+                                          The fight is over! You have{' '}
+                                          <span style={{ fontWeight: 'bold' }} className="font-bold">
+                                            won!
+                                          </span>
                                           <br />
                                           Claim{' '}
                                           <span className="font-bold">
@@ -838,14 +850,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                   </Button>
                                 }
                               >
-                                {(symbol !== Symbol.AVAX ? approved?.[symbol] !== undefined : true) &&
-                                winner?.[symbol] !== undefined &&
-                                isClaimed?.[symbol] !== undefined &&
-                                lastTs?.[symbol] !== undefined &&
-                                period?.[symbol] !== undefined &&
-                                claimPeriod?.[symbol] !== undefined &&
-                                potSize?.[symbol] !== undefined &&
-                                ticketSize?.[symbol] !== undefined ? (
+                                {
                                   symbol !== Symbol.AVAX && !approved?.[symbol] ? (
                                     <Button
                                       color="primary"
@@ -925,11 +930,7 @@ export default function KocPage({ refHeader }: IKoCPage): JSX.Element {
                                       )}
                                     </Button>
                                   )
-                                ) : (
-                                  <div className="flex justify-center items-center">
-                                    <Loading color={pot.color} />
-                                  </div>
-                                )}
+                                }
                               </EthereumInteraction>
 
                               <Grid>
