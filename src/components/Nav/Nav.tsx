@@ -168,6 +168,7 @@ const Nav = () => {
                 <ListItemLink primary="Boardroom" to="/boardroom" />
                 <ListItemLink primary="Bonds" to="/bonds" />
                  <ListItemLink primary="Nodes" to="/nodes" /> 
+                 <ListItemLink primary="Last Man Standing" to="/lastmanstanding" /> 
                 <ListItem button component="a" href="https://froyo.farm/#/avax">
                   <ListItemText disableTypography style={{ color: '#000' }}>
                     Vaults
