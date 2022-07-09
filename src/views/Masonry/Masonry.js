@@ -61,6 +61,8 @@ const Masonry = () => {
         <>
           <br />
           <br />
+          <br />
+          <br />
           <Grid container spacing={3} justifyContent="center" alignItems="center">
             <Grid item xs={12} lg={5} className={classes.gridItem}>
               <Carder style={{ background: 'transparent', borderRadius: '15px', height:'400px' }} className={classes.gridItem}>
@@ -90,8 +92,8 @@ const Masonry = () => {
                     gutterBottom
                     style={{ marginTop: '25px' }}
                   >
-                    This is where our members sit around and stake their STRAW for FUDGE expansion rewards. As long as
-                    the time-weighted average price (TWAP) of FUDGE is $1.01 or higher, new tokens will be minted when
+                    This is where our members stake their STRAW for FUDGE expansion rewards. As long as
+                    the time-weighted average price (TWAP) of FUDGE is 1.01 or higher, new tokens will be minted when
                     an epoch passes.
                   </Typography>
                 </CardContent>
@@ -104,10 +106,10 @@ const Masonry = () => {
                   <Grid
                     style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
                   >
-                    <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px' }}>
+                    <h3 style={{ margin: '10px', textAlign: 'center', color: '#000', fontSize: '18px', marginTop: '25px' }}>
                       Total Value Locked
                     </h3>
-                    <h2>${tvl}</h2>
+                    <h2 style={{fontSize:"35px", marginBottom:"45px"}}>${tvl}</h2>
                   </Grid>
                   <Grid style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Grid>
