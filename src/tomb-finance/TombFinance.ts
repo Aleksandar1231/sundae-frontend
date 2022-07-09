@@ -1177,7 +1177,7 @@ export class TombFinance {
     if (page > 0) startPageAddress = perPage * (page + 1);
 
     //Start block is always one 30460397 in masonryFundEvents
-    let firstEpochBlockPerHistory = 30460397;
+    let firstEpochBlockPerHistory = 11267135;
     let eva: Array<Event>;
     eva = [];
 

@@ -19,7 +19,6 @@ import Pagination from '@material-ui/lab/Pagination';
 import Page from '../../components/Page';
 import useTombFinance from '../../hooks/useTombFinance';
 
-import PageHeader from '../../components/PageHeader';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {

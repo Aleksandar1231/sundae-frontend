@@ -113,9 +113,9 @@ const Nav = () => {
               <Link color="textPrimary" to="/lastmanstanding" className='nav-link'>
                 Last-Man-Standing
               </Link>
-             {/* <Link color="textPrimary" to="/metrics" className='nav-link'>
+             <Link color="textPrimary" to="/metrics" className='nav-link'>
                 Metrics
-              </Link> */}
+              </Link>
               <a href="https://froyo.farm/#/avax" target="_blank" className='nav-link'>
                 Vaults
               </a>

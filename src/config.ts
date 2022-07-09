@@ -8,7 +8,7 @@ const configurations: { [env: string]: Configuration } = {
     chainId: ChainId.AVALANCHE,
     networkName: 'Avalanche Mainnet',
     ftmscanUrl: 'https://snowtrace.io/',
-    defaultProvider: 'https://api.avax.network/ext/bc/C/rpc',
+    defaultProvider: 'https://rpc.ankr.com/avalanche',
     deployments: require('./tomb-finance/deployments/deployments.mainnet.json'),
     externalTokens: {
       WFTM: ['0xd586e7f844cea2f87f50152665bcbc2c279d8d70', 18], //DAI
