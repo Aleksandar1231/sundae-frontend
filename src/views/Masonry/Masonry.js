@@ -62,8 +62,8 @@ const Masonry = () => {
           <br />
           <br />
           <Grid container spacing={3} justifyContent="center" alignItems="center">
-            <Grid item xs={12} md={6} className={classes.gridItem}>
-              <Carder style={{ background: 'transparent', borderRadius: '15px' }} className={classes.gridItem}>
+            <Grid item xs={12} lg={5} className={classes.gridItem}>
+              <Carder style={{ background: 'transparent', borderRadius: '15px', height:'400px' }} className={classes.gridItem}>
                 <CardContent>
                   <Typography
                     color="textPrimary"
@@ -98,8 +98,8 @@ const Masonry = () => {
               </Carder>
             </Grid>
 
-            <Grid item xs={12} md={6} className={classes.gridItem}>
-              <Card style={{ background: 'white', borderRadius: '15px' }} className={classes.gridItem}>
+            <Grid item xs={12} lg={4} className={classes.gridItem}>
+              <Carder style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', borderRadius: '15px', height:'400px' }} className={classes.gridItem}>
                 <CardContent>
                   <Grid
                     style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
@@ -210,7 +210,7 @@ const Masonry = () => {
                     </Grid>
                   </Grid>
                 </CardContent>
-              </Card>
+              </Carder>
             </Grid>
           </Grid>
 
@@ -245,6 +245,23 @@ const Masonry = () => {
                 </StyledCardsWrapper>
               </StyledBoardroom>
             </Box>
+
+            <Grid container justifyContent="center">
+              <Box mt={3} style={{ width: '600px', margin: '10px' }}>
+                <Box mt={5}>
+                  <Grid container justifyContent="center" spacing={3} mt={10}>
+                    <Button
+                      // disabled='false'
+                      onClick={onAllocate}
+                      color="primary"
+                      variant="contained"
+                    >
+                      Print FUDGE when timer expires
+                    </Button>
+                  </Grid>
+                </Box>
+              </Box>
+            </Grid>
 
             {/* <Grid container justify="center" spacing={3}>
             <Grid item xs={4}>
