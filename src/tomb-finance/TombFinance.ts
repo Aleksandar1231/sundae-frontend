@@ -3,7 +3,7 @@
 import { Fetcher, Route, Token } from '@traderjoe-xyz/sdk';
 import { Configuration } from './config';
 import { ContractName, TokenStat, AllocationTime, LPStat, Bank, PoolStats, TShareSwapperStat } from './types';
-import { BigNumber, Contract, ethers, EventFilter } from 'ethers';
+import { BigNumber, Contract, ethers, Event, EventFilter } from 'ethers';
 import { decimalToBalance } from './ether-utils';
 import { TransactionResponse } from '@ethersproject/providers';
 import ERC20 from './ERC20';
@@ -26,6 +26,8 @@ export class TombFinance {
   contracts: { [name: string]: Contract };
   externalTokens: { [name: string]: ERC20 };
   masonryVersionOfUser?: string;
+  masonryFundEvents: Array<Event> = [];
+  lastEpoch: number = 0;
 
   TOMBWFTM_LP: Contract;
   TOMB: ERC20;
@@ -35,6 +37,7 @@ export class TombFinance {
   FTM: ERC20;
   DAI: ERC20;
   MIM: ERC20;
+
 
 
   constructor(cfg: Configuration) {
@@ -1148,24 +1151,77 @@ export class TombFinance {
     return (quote / 1e18).toString();
   }
 
+  getEventsLength(): number {
+    return this.masonryFundEvents.length;
+  }
+
   /**
    * @returns an array of the regulation events till the most up to date epoch
    */
-  async listenForRegulationsEvents(): Promise<any> {
+   async listenForRegulationsEvents(page: number, rowsPerPage: number): Promise<any> {
     const { Treasury } = this.contracts;
-
-    const treasuryDaoFundedFilter = Treasury.filters.DaoFundFunded();
     const treasuryDevFundedFilter = Treasury.filters.DevFundFunded();
-    const treasuryMasonryFundedFilter = Treasury.filters.MasonryFunded();
+    const treasuryDaoFundedFilter = Treasury.filters.DaoFundFunded();
+    // const treasuryTeamFundedFilter = Treasury.filters.TeamFundFunded();
     const boughtBondsFilter = Treasury.filters.BoughtBonds();
     const redeemBondsFilter = Treasury.filters.RedeemedBonds();
 
-    let epochBlocksRanges: any[] = [];
-    let masonryFundEvents = await Treasury.queryFilter(treasuryMasonryFundedFilter);
     var events: any[] = [];
-    masonryFundEvents.forEach(function callback(value, index) {
-      events.push({ epoch: index + 1 });
+
+    let perPage = rowsPerPage;
+    //At this moment we download all possible masonry fund events. For pagination we should slice array by index
+    //startPageAddress is a start index of event's array.
+    let startPageAddress = rowsPerPage;
+    let endPageAddress = page * perPage;
+
+    if (page > 0) startPageAddress = perPage * (page + 1);
+
+    //Start block is always one 30460397 in masonryFundEvents
+    let firstEpochBlockPerHistory = 30460397;
+    let eva: Array<Event>;
+    eva = [];
+
+    let currentEpoch = Number(await this.getCurrentEpoch());
+    let epochBlocksRanges: any[] = [];
+
+    if (this.masonryFundEvents.length == 0 || currentEpoch != this.lastEpoch) {
+      const treasurymasonryFundedFilter = Treasury.filters.MasonryFunded();
+      this.masonryFundEvents = await Treasury.queryFilter(
+        treasurymasonryFundedFilter,
+        firstEpochBlockPerHistory,
+        'latest',
+      );
+      this.lastEpoch = currentEpoch;
+    }
+
+    //Something went wrong
+    if (this.masonryFundEvents.length === 0) {
+      console.error('masonry fund events length = 0');
+      return events;
+    }
+
+    if (this.masonryFundEvents.length < startPageAddress) {
+      startPageAddress = this.masonryFundEvents.length;
+    }
+
+    eva = this.masonryFundEvents.slice(
+      this.masonryFundEvents.length - startPageAddress,
+      this.masonryFundEvents.length - endPageAddress,
+    );
+
+    let firstEpochTime = this.masonryFundEvents[0].args.timestamp;
+    let firstBlockNum = eva[0].blockNumber;
+
+    let lastBlockNum = 0;
+
+    eva.forEach(function callback(value, index) {
+      let currentTimeStamp = value.args.timestamp;
+      let basedEpoch = 21600;
+
+      events.push({ epoch: Math.round((currentTimeStamp - firstEpochTime) / basedEpoch) + 1 });
+      // }
       events[index].masonryFund = getDisplayBalance(value.args[1]);
+
       if (index === 0) {
         epochBlocksRanges.push({
           index: index,
@@ -1181,33 +1237,51 @@ export class TombFinance {
           boughBonds: 0,
           redeemedBonds: 0,
         });
+
         epochBlocksRanges[index - 1].endBlock = value.blockNumber;
+        lastBlockNum = value.blockNumber;
       }
     });
 
-    epochBlocksRanges.forEach(async (value, index) => {
-      events[index].bondsBought = await this.getBondsWithFilterForPeriod(
-        boughtBondsFilter,
-        value.startBlock,
-        value.endBlock,
-      );
-      events[index].bondsRedeemed = await this.getBondsWithFilterForPeriod(
-        redeemBondsFilter,
-        value.startBlock,
-        value.endBlock,
-      );
-    });
-    let DEVFundEvents = await Treasury.queryFilter(treasuryDevFundedFilter);
+    //Usually for the last epoch we set undefined but for other pages where the epoch is not the last we have to set the existing block number
+    if (page > 0) {
+      epochBlocksRanges[epochBlocksRanges.length - 1].endBlock =
+        this.masonryFundEvents[this.masonryFundEvents.length - startPageAddress].blockNumber;
+    }
+
+    await Promise.all(
+      epochBlocksRanges.map(async (value, index) => {
+        events[index].bondsBought = await this.getBondsWithFilterForPeriod(
+          boughtBondsFilter,
+          value.startBlock,
+          value.endBlock,
+        );
+
+        events[index].bondsRedeemed = await this.getBondsWithFilterForPeriod(
+          redeemBondsFilter,
+          value.startBlock,
+          value.endBlock,
+        );
+      }),
+    );
+
+    let DEVFundEvents = await Treasury.queryFilter(treasuryDevFundedFilter, firstBlockNum, lastBlockNum);
     DEVFundEvents.forEach(function callback(value, index) {
       events[index].devFund = getDisplayBalance(value.args[1]);
     });
-    let DAOFundEvents = await Treasury.queryFilter(treasuryDaoFundedFilter);
+
+    let DAOFundEvents = await Treasury.queryFilter(treasuryDaoFundedFilter, firstBlockNum, lastBlockNum);
     DAOFundEvents.forEach(function callback(value, index) {
       events[index].daoFund = getDisplayBalance(value.args[1]);
     });
+
+    // let TeamFundEvents = await Treasury.queryFilter(treasuryTeamFundedFilter, firstBlockNum, lastBlockNum);
+    // TeamFundEvents.forEach(function callback(value, index) {
+    //   events[index].teamFund = getDisplayBalance(value.args[1]);
+    // });
+
     return events;
   }
-
   /**
    * Helper method
    * @param filter applied on the query to the treasury events
@@ -1215,10 +1289,23 @@ export class TombFinance {
    * @param to block number
    * @returns the amount of bonds events emitted based on the filter provided during a specific period
    */
-  async getBondsWithFilterForPeriod(filter: EventFilter, from: number, to: number): Promise<number> {
+   async getBondsWithFilterForPeriod(filter: EventFilter, from: number, to: number): Promise<number> {
+    let totalBondAmount = 0;
     const { Treasury } = this.contracts;
-    const bondsAmount = await Treasury.queryFilter(filter, from, to);
-    return bondsAmount.length;
+    try {
+      const bondsAmount = await Treasury.queryFilter(filter, from, to);
+      if (bondsAmount.length === 0) return 0;
+      bondsAmount.forEach((element) => {
+        let bondAmount = element.args.bondAmount;
+        if (bondAmount) {
+          totalBondAmount += Number(bondAmount) / 1e18;
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
+    return totalBondAmount;
   }
 
   async zapStrategy(from: string, amount: string | BigNumber, percentFudgeLP: string | number | BigNumber, gasLimit?: BigNumber): Promise<TransactionResponse> {

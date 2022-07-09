@@ -113,8 +113,8 @@ const Nav = () => {
               <Link color="textPrimary" to="/lastmanstanding" className='nav-link'>
                 Last-Man-Standing
               </Link>
-             {/* <Link color="textPrimary" to="/regulations" className='nav-link'>
-                Regulations
+             {/* <Link color="textPrimary" to="/metrics" className='nav-link'>
+                Metrics
               </Link> */}
               <a href="https://froyo.farm/#/avax" target="_blank" className='nav-link'>
                 Vaults

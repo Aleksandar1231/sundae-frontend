@@ -42,7 +42,6 @@ const Cemetery = () => {
     <Page>
           {!!account ? (
             <Container maxWidth="lg">
-              {console.error("poo")}
               <Typography color="textPrimary" align="center" variant="h3" gutterBottom style={{marginTop:'50px'}}>
                 Farms
               </Typography>

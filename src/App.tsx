@@ -15,7 +15,7 @@ import config from './config';
 import Updaters from './state/Updaters';
 import Loader from './components/Loader';
 import Popups from './components/Popups';
-import Regulations from './views/Regulations/Regulations';
+import Metrics from './views/Metrics/Metrics';
 import { RefreshContextProvider } from './contexts/RefreshContext';
 
 const Home = lazy(() => import('./views/Home'));
@@ -58,7 +58,7 @@ const App: React.FC = () => {
                 <Route path=":bankId" element={<SundaeNode/>}/>
               </Route>
               <Route path="/nodes-lottery" element={<Lottery/>}/>
-              <Route path="/regulations" element={<Regulations/>}/>
+              <Route path="/metrics" element={<Metrics/>}/>
               <Route path="*" element={<NoMatch/>}/>
           </Routes>
           
