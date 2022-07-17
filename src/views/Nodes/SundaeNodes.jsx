@@ -32,8 +32,8 @@ const SundaeNodes = () => {
   // const from = moment('2022-06-26 06:00 +0000');
   // const to = moment('2022-07-03 06:00 +0000');
 
-  const from = moment('2022-07-10 12:00:00Z');
-  const to = moment('2022-07-17 12:00:00Z');
+  const from = moment('2022-07-17 12:00:00Z');
+  const to = moment('2022-07-24 12:00:00Z');
 
   useEffect(() => {
     fetchLeaderboardData();
