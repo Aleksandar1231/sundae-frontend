@@ -15,7 +15,7 @@ const Lottery = () => {
 
 
   const from = moment('2022-07-31 12:00:00Z');
-  const to = moment('2022-08-7 12:00:00Z');
+  const to = moment('2022-08-07 12:00:00Z');
 
   useEffect(() => {
     fetchLeaderboardData();

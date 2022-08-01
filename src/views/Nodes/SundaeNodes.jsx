@@ -33,7 +33,7 @@ const SundaeNodes = () => {
   // const to = moment('2022-07-03 06:00 +0000');
 
   const from = moment('2022-07-31 12:00:00Z');
-  const to = moment('2022-08-7 12:00:00Z');
+  const to = moment('2022-08-07 12:00:00Z');
 
   useEffect(() => {
     fetchLeaderboardData();
