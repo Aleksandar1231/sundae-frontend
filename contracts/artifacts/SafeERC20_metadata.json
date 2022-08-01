@@ -1,0 +1,47 @@
+{
+	"compiler": {
+		"version": "0.6.12+commit.27d51765"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Wrappers around ERC20 operations that throw on failure (when the token contract returns false). Tokens that return no value (and instead revert or throw on failure) are also supported, non-reverting calls are assumed to be successful. To use this library you can add a `using SafeERC20 for ERC20;` statement to your contract, which allows you to call the safe operations as `token.safeTransfer(...)`, etc.",
+			"kind": "dev",
+			"methods": {},
+			"title": "SafeERC20",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/FudgeNode.sol": "SafeERC20"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/FudgeNode.sol": {
+			"keccak256": "0x364fa58f4b75bf049b385d5368b847eb7050d0e8e22e50eac05df52c99401d0e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://669363f6b48ffe8a51f7412a92b3b336f0eba61783be69654f0dd79b4832ff79",
+				"dweb:/ipfs/QmNWhVAEFygiYLhXFe3HpKc8KdnM9zd19YskxXy8jWquAq"
+			]
+		}
+	},
+	"version": 1
+}

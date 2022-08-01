@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.9+commit.e5eed63a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Collection of functions related to the address type",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Tournament.sol": "Address"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Tournament.sol": {
+			"keccak256": "0x7163b63996c7c82c9a96665b67d9703b532bbbf0004f3e2917df4a5dfc4b540b",
+			"urls": [
+				"bzz-raw://6b3758131d6a179ccef805aec6cc607aac61d95d09d185032bb8283dda5ba37b",
+				"dweb:/ipfs/QmTCPKfXbX8JxwKaYBAJq9KzpkzofAzvmXqQU68TX2VTMa"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,60 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"görli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"linkReferences": {},
+			"object": "6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220b981cccc0fb52ec98ad4722c6f8bdd873d573d80aaf43f5aafee1a43a19b75f364736f6c634300060c0033",
+			"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x3F DUP1 PUSH1 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xB9 DUP2 0xCC 0xCC 0xF 0xB5 0x2E 0xC9 DUP11 0xD4 PUSH19 0x2C6F8BDD873D573D80AAF43F5AAFEE1A43A19B PUSH22 0xF364736F6C634300060C003300000000000000000000 ",
+			"sourceMap": "15009:700:0:-:0;;;;;;;;;;;;;;;;;;;"
+		},
+		"deployedBytecode": {
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "6080604052600080fdfea2646970667358221220b981cccc0fb52ec98ad4722c6f8bdd873d573d80aaf43f5aafee1a43a19b75f364736f6c634300060c0033",
+			"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xB9 DUP2 0xCC 0xCC 0xF 0xB5 0x2E 0xC9 DUP11 0xD4 PUSH19 0x2C6F8BDD873D573D80AAF43F5AAFEE1A43A19B PUSH22 0xF364736F6C634300060C003300000000000000000000 ",
+			"sourceMap": "15009:700:0:-:0;;;;;"
+		},
+		"gasEstimates": {
+			"creation": {
+				"codeDepositCost": "12600",
+				"executionCost": "66",
+				"totalCost": "12666"
+			},
+			"internal": {
+				"checkSameOriginReentranted()": "infinite",
+				"checkSameSenderReentranted()": "infinite"
+			}
+		},
+		"methodIdentifiers": {}
+	},
+	"abi": []
+}
